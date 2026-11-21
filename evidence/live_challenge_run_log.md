@@ -7,7 +7,7 @@
 **Opinion:** **Expensive (priced for perfection) at `$210.00` per share.**
 - Using Take-Two's verified FY2026 / Q2 FY2027 filing inputs (`$6.41B` annual revenue base, `16.56%` normalized EBITDA margin, `8.69%` WACC, `3.0%` terminal growth, `187.21M` diluted shares, `$846.2M` net debt), FinRobot's Reverse DCF shows `$210.00` implies **19.32% annual company-wide revenue growth for 10 consecutive years**, expanding Take-Two from **`$6.41B` today to `$37.48B` in Year 10** (`$191.95B` cumulative 10-year revenue).
 - Above Take-Two's organic ex-GTA VI trajectory (`$89.32B` cumulative over 10 years fading from `7.56%` to `3.0%`), justifying `$210.00` requires **`$102.62B` of cumulative 10-year incremental revenue** at `16.56%` EBITDA margin, **`$81.49B`** at `18.56%` (+2pp) margin, **`$44.33B`** at `24.0%` margin, or **`$27.10B`** even under aggressive `28.0%` company-wide EBITDA margin expansion (roughly **2.7x to 10x** *GTA V*'s entire ~$8.5B–$10B 10-year bookings).
-- Across **3 autonomous Flashpoint MCP survey rounds** built from zero prior context, gamer demand for *GTA VI* as a product is strong (`90.9%` eventual buyer intent among active console/PC gamers), **but monetization falls well short of the `$210` hurdle**: `45%–64%` wait for `$59.99–$69.99` sales rather than paying `$79.99`, `0%` choose standalone monthly `GTA+` subscriptions, cumulative 3-year gross spend averages **`$89.05` per buyer** (`~$80.95` across all gamers), `45.5%` stop spending after Year 2, and `40%` of buyers partially cannibalize other Take-Two franchises (*NBA 2K*, *Civilization*, *Borderlands*).
+- Across **3 autonomous Flashpoint MCP survey rounds** built from zero prior context (combining live human completions + our 12-persona synthetic gamer panel), gamer demand for *GTA VI* as a product is strong (`91.7%` eventual buyer intent among active console/PC gamers), **but monetization falls well short of the `$210` hurdle**: `50%–67%` wait for `$59.99–$69.99` sales rather than paying `$79.99` (including our live human PC respondent in Rounds 2 & 3), `0%` choose standalone monthly `GTA+` subscriptions, cumulative 3-year gross spend averages **`$86.36` per buyer** (`$79.17` across all gamers), `50.0%` stop spending after Year 2, and `36.4%` of buyers partially cannibalize other Take-Two franchises (*NBA 2K*, *Civilization*, *Borderlands*).
 - Feeding our 3-round survey parameters into FinRobot yields **$75.86/share (Bear)**, **$93.71/share (Survey Base)**, and **$145.92/share (Survey Bull at 24% EBITDA margin & `$25.3B` 10-year net GTA VI revenue)** — leaving `$210.00` expensive on fundamental cash flows.
 
 ---
@@ -18,13 +18,13 @@ All calls executed autonomously via `https://api.flashpoint.ai/mcp` (x402 Base U
 
 ### Spend & Session Reconciliation
 - **Starting Wallet Balance:** `18.50 USDC` on Base
-- **Ending Wallet Balance:** `8.65 USDC` on Base
-- **Total Spend Across Run:** `9.85 USDC` (23 paid MCP calls, every call `<= 0.50 USDC`)
+- **Ending Wallet Balance:** `7.15 USDC` on Base
+- **Total Spend Across Run + Live Human Export Refresh:** `11.35 USDC` (26 paid MCP calls, every call `<= 0.50 USDC`)
   - `demographics` (US Census ACS context query): `0.05 USDC`
   - `panel(action="create")` (12-persona US Adult Gamers synthetic panel `01a1fff3-d8eb-741e-84a7-6b8dd1047567` — US adult gender marginals sampled; age, race, education, and income persona-generated independently): `0.50 USDC`
-  - **Round 1** (`survey_id: 446278e5-7baf-4205-97f3-1dff8d56f2d8`, `conversation_id: 01a1fff3-e295-7cd0-be53-7c61d97962f2`): draft (`0.50`), publish (`0.50`), publish-confirm (`0.50`), 6 consented email invites (`0.50` + `0.50` confirm), panel run (`0.10`), native `.xlsx` export (`0.50`) = `3.10 USDC`
-  - **Round 2** (`survey_id: bcb9282c-e360-4eb3-9f6d-9fb430541a39`, `conversation_id: 01a1fffa-2f15-74d3-832e-3c7b63e65599`): draft (`0.50`), publish (`0.50`), publish-confirm (`0.50`), 6 consented email invites (`0.50` + `0.50` confirm), panel run (`0.10`), native `.xlsx` export (`0.50`) = `3.10 USDC`
-  - **Round 3** (`survey_id: fcaee07b-9da2-4cc2-92fb-36dacd8bd706`, `conversation_id: 01a1fffe-1586-75f0-bdae-8a69ba77a506`): draft (`0.50`), publish (`0.50`), publish-confirm (`0.50`), 6 consented email invites (`0.50` + `0.50` confirm), panel run (`0.10`), native `.xlsx` export (`0.50`) = `3.10 USDC`
+  - **Round 1** (`survey_id: 446278e5-7baf-4205-97f3-1dff8d56f2d8`, `conversation_id: 01a1fff3-e295-7cd0-be53-7c61d97962f2`): draft (`0.50`), publish (`0.50`), publish-confirm (`0.50`), 6 consented email invites (`0.50` + `0.50` confirm), panel run (`0.10`), initial + refreshed native `.xlsx` exports (`0.50` + `0.50`) = `3.60 USDC`
+  - **Round 2** (`survey_id: bcb9282c-e360-4eb3-9f6d-9fb430541a39`, `conversation_id: 01a1fffa-2f15-74d3-832e-3c7b63e65599`): draft (`0.50`), publish (`0.50`), publish-confirm (`0.50`), 6 consented email invites (`0.50` + `0.50` confirm), panel run (`0.10`), initial + refreshed native `.xlsx` exports (`0.50` + `0.50`) = `3.60 USDC`
+  - **Round 3** (`survey_id: fcaee07b-9da2-4cc2-92fb-36dacd8bd706`, `conversation_id: 01a1fffe-1586-75f0-bdae-8a69ba77a506`): draft (`0.50`), publish (`0.50`), publish-confirm (`0.50`), 6 consented email invites (`0.50` + `0.50` confirm), panel run (`0.10`), initial + refreshed native `.xlsx` exports (`0.50` + `0.50`) = `3.60 USDC`
 
 ### Round-by-Round Survey Iteration (Zero Prior Context -> 3 Live Rounds)
 
@@ -36,18 +36,18 @@ All calls executed autonomously via `https://api.flashpoint.ai/mcp` (x402 Base U
 
 2. **Round 2 — Price-Holdout Stress Test, Story DLC vs. GTA+ & Catalog Cannibalization (`bcb9282c-e360-4eb3-9f6d-9fb430541a39`)**
    - **Live Link:** `https://flashpointopinions.com/bcb9282c-e360-4eb3-9f6d-9fb430541a39`
-   - **Findings (`11 COMPLETE`, `1 TERMINATED`, `1 INCOMPLETE`):**
-     - Under a 9-month zero-discount holdout with 90+ reviews, discount waiters rose to **`7/11 (63.6%)`** (`4` waiting for `$69.99`, `3` waiting for `<= $59.99`), while only `3/11 (27.3%)` paid `$79.99` within 2–6 months.
-     - Separating post-launch monetization flipped the `63.6%` `$0` wall: **`0/11 (0%)`** selected standalone monthly `GTA+`, whereas **`9/11 (81.8%)`** were willing to pay for concrete content — led by **`6/11 (54.5%)`** willing to buy a `$29.99–$39.99` single-player Story Expansion DLC, and **`6/11 (54.5%)`** willing to upgrade to `$99.99` Ultimate if bundled with guaranteed Story DLC (`3`) or Console-to-PC Cross-Buy (`3`).
-     - **`4/10 (40%)`** of buyers reported partial or primary cannibalization of other Take-Two titles (*NBA 2K*, *Civilization*, *Borderlands*).
+   - **Findings (`12 COMPLETE` combining `1` live human complete + `11` synthetic panel completes, `1 TERMINATED`, `1 INCOMPLETE`):**
+     - Under a 9-month zero-discount holdout with 90+ reviews, discount waiters reached **`8/12 (66.7%)`** (`4` waiting for `$69.99`, `4` waiting for `<= $59.99`, including our live human PC gamer), while only `3/12 (25.0%)` paid `$79.99` within 2–6 months.
+     - Separating post-launch monetization flipped the `$0` wall: **`0/12 (0%)`** selected standalone monthly `GTA+`, whereas **`9/12 (75.0%)`** were willing to pay for concrete content — led by **`6/12 (50.0%)`** willing to buy a `$29.99–$39.99` single-player Story Expansion DLC, and **`6/12 (50.0%)`** willing to upgrade to `$99.99` Ultimate if bundled with guaranteed Story DLC (`3`) or Console-to-PC Cross-Buy (`3`).
+     - **`4/11 (36.4%)`** of buyers reported partial or primary cannibalization of other Take-Two titles (*NBA 2K*, *Civilization*, *Borderlands*).
    - **Why Round 3 Was Needed:** To convert qualitative/directional splits into explicit 3-year and 10-year dollar revenue schedules for FinRobot, we needed (a) conversion on a combined `$99.99` Story DLC + Cross-Buy bundle, (b) cumulative 3-year dollar spend per player, and (c) Years 3–6+ spending persistence.
 
 3. **Round 3 — 3-Year Cumulative ARPU, Bundle Conversion & Years 3–6 Tail (`fcaee07b-9da2-4cc2-92fb-36dacd8bd706`)**
    - **Live Link:** `https://flashpointopinions.com/fcaee07b-9da2-4cc2-92fb-36dacd8bd706`
-   - **Findings (`11 COMPLETE`, `1 TERMINATED`):**
-     - Offering Story DLC + PC Cross-Buy in the `$99.99` Ultimate Bundle doubled launch-window buyers from `18.2%` (Round 1) to **`36.4% (4/11)`** (`1` Ultimate Bundle + `3` Standard deciding on Story DLC later), plus `1/11 (9.1%)` full-price within 6 months, while `5/11 (45.5%)` still waited for `$59.99–$69.99`.
-     - Cumulative 3-year gross spend per buyer averaged **`$89.05`** (`6` at `$70–$99`, `3` at `$40–$69`, `1` at `$200+`; `$80.95` across all surveyed gamers including the non-buyer).
-     - **`5/11 (45.5%)`** spend **`$0` after Year 2**; sustaining Years 3–6 revenue relies on paid Story Expansion chapters/new cities (`2`), PC/next-gen double-dip copies (`2`), and seasonal/roleplay passes (`1`).
+   - **Findings (`12 COMPLETE` combining `1` live human complete + `11` synthetic panel completes, `1 TERMINATED`):**
+     - Offering Story DLC + PC Cross-Buy in the `$99.99` Ultimate Bundle lifted launch-window buyers from `18.2%` (Round 1) to **`33.3% (4/12)`** (`1` Ultimate Bundle + `3` Standard deciding on Story DLC later), plus `1/12 (8.3%)` full-price within 6 months, while **`6/12 (50.0%)`** (including our live human PC gamer) still waited for `$59.99–$69.99`.
+     - Cumulative 3-year gross spend per buyer averaged **`$86.36`** (`6` at `$70–$99`, `4` at `$40–$69` including our live human respondent, `1` at `$200+`; `$79.17` across all surveyed gamers).
+     - **`6/12 (50.0%)`** spend **`$0` after Year 2**; sustaining Years 3–6 revenue relies on paid Story Expansion chapters/new cities (`2`), PC/next-gen double-dip copies (`2`), and seasonal/roleplay passes (`1`).
 
 ---
 
@@ -61,7 +61,7 @@ All calls executed autonomously via `https://api.flashpoint.ai/mcp` (x402 Base U
 | Reverse DCF Hurdle @ `$210` (Scale Expansion) | `24.00%` | `13.03%/yr` CAGR (`+$44.33B` 10Y inc. rev) | `$210.00` (market price) | `0.0%` |
 | Reverse DCF Hurdle @ `$210` (Peak Leverage) | `28.00%` | `10.62%/yr` CAGR (`+$27.10B` 10Y inc. rev) | `$210.00` (market price) | `0.0%` |
 | **Survey Bear** (Discount drag + Y3 fade + cannibalization) | `16.56%` | `$4.6B` 3Y / `$8.8B` 10Y net GTA VI rev | **`$75.86`** | `-63.9%` |
-| **Survey Base** (~75M 3Y units, `$89` gross 3Y ARPU, Story DLC) | `18.56%` | `$6.9B` 3Y / `$13.9B` 10Y net GTA VI rev | **`$93.71`** | `-55.4%` |
+| **Survey Base** (~75M 3Y units, `~$86–$89` gross 3Y ARPU, Story DLC) | `18.56%` | `$6.9B` 3Y / `$13.9B` 10Y net GTA VI rev | **`$93.71`** | `-55.4%` |
 | **Survey Bull** (100M+ 3Y units, Story+CrossBuy bundle, 24% margin) | `24.00%` | `$11.0B` 3Y / `$25.3B` 10Y net GTA VI rev | **`$145.92`** | `-30.5%` |
 
-*(FinRobot's built-in linear-fade survey scenarios on `ttwo_nov2026_inputs.json` similarly span `$62.64` Bear, `$83.74` Survey Observed Mix, and `$107.61` Bull Waiter Conversion; full outputs in `evidence/finrobot_valuation_output.json` and `evidence/gta6_revenue_bridge.json`.)*
+*(FinRobot's built-in linear-fade survey scenarios on `ttwo_nov2026_inputs.json` similarly span `$61.76` Bear, `$82.42` Survey Observed Mix, and `$106.92` Bull Waiter Conversion; full outputs in `evidence/finrobot_valuation_output.json` and `evidence/gta6_revenue_bridge.json`.)*

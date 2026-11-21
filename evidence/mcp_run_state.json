@@ -2,9 +2,9 @@
   "created_at": "2026-11-21T21:10:20.000Z",
   "max_run_usdc": 12,
   "max_call_usdc": 0.5,
-  "spent_usdc_estimated": 9.85,
+  "spent_usdc_estimated": 11.35,
   "initial_balance_usdc": 18.5,
-  "latest_balance_usdc": 8.65,
+  "latest_balance_usdc": 7.15,
   "auxiliary_mcp_calls": [
     {
       "at": "2026-11-21T21:10:36.824Z",

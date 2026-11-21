@@ -138,19 +138,19 @@
     },
     {
       "file": "evidence/round2_responses_redacted.csv",
-      "total_records": 13,
+      "total_records": 14,
       "status_counts": {
         "INCOMPLETE": 1,
-        "COMPLETE": 11,
+        "COMPLETE": 12,
         "TERMINATED": 1
       },
       "cutoff_utc": null,
       "signals": {
-        "eligible_completes": 11,
+        "eligible_completes": 12,
         "post_cutoff_excluded": 0,
-        "immediate_or_launch_share": 0.2727,
-        "discount_waiter_share": 0.6364,
-        "non_buyer_share": 0.0909,
+        "immediate_or_launch_share": 0.25,
+        "discount_waiter_share": 0.6667,
+        "non_buyer_share": 0.0833,
         "budget_objection_share": 0.0,
         "time_constraint_share": 0.0,
         "premium_or_bundle_affinity_share": 0.0
@@ -158,62 +158,65 @@
       "question_distributions": {
         "Q1": {
           "Yes (18+ in US) \u2014 PlayStation 5 (including PS5 Pro)": 5,
-          "Yes (18+ in US) \u2014 Gaming PC or gaming laptop": 3,
+          "Yes (18+ in US) \u2014 Gaming PC or gaming laptop": 4,
           "Yes (18+ in US) \u2014 Xbox Series X or Series S": 3
         },
         "Q2": {
+          "Wait for a discount until a deeper sale drops it to $59.99 or less": 4,
           "Wait for a discount until the first sale drops it to $69.99": 4,
           "Buy full price at $79.99 within 2 to 6 months once my schedule clears": 3,
-          "Wait for a discount until a deeper sale drops it to $59.99 or less": 3,
           "Do not plan to buy the game": 1
         },
         "Q3": {
           "A major single-player Story Expansion DLC ($29.99\u2013$39.99 one-time)": 3,
           "Both a paid Story Expansion DLC and ongoing GTA Online or GTA+ spending": 3,
-          "One-off GTA Online in-game currency or seasonal passes ($10\u2013$25)": 3,
-          "None \u2014 I will only pay for the base game": 2
+          "None \u2014 I will only pay for the base game": 3,
+          "One-off GTA Online in-game currency or seasonal passes ($10\u2013$25)": 3
         },
         "Q4": {
-          "Nothing \u2014 I would not pay $99.99 for any edition": 5,
+          "Nothing \u2014 I would not pay $99.99 for any edition": 6,
           "Cross-buy perk (console purchase includes a free or discounted PC upgrade later)": 3,
           "Guaranteed access to the first single-player Story Expansion DLC": 3
         },
         "Q5": {
+          "Neither \u2014 GTA VI is extra entertainment money and does not reduce my other game purchases": 4,
           "Mostly games from other publishers (EA, Ubisoft, Activision, Sony), not other Take-Two games": 3,
-          "Neither \u2014 GTA VI is extra entertainment money and does not reduce my other game purchases": 3,
           "Other Take-Two games I might otherwise buy (such as NBA 2K, Civilization, or Borderlands)": 3,
           "Both other Take-Two games and other publishers games equally": 1,
           "Not applicable \u2014 I will not buy GTA VI": 1
+        },
+        "Display Order": {
+          "Screener|Main": 1
         }
       },
       "crosstabs": {}
     },
     {
       "file": "evidence/round3_responses_redacted.csv",
-      "total_records": 12,
+      "total_records": 13,
       "status_counts": {
         "TERMINATED": 1,
-        "COMPLETE": 11
+        "COMPLETE": 12
       },
       "cutoff_utc": null,
       "signals": {
-        "eligible_completes": 11,
+        "eligible_completes": 12,
         "post_cutoff_excluded": 0,
-        "immediate_or_launch_share": 0.4545,
-        "discount_waiter_share": 0.4545,
-        "non_buyer_share": 0.0909,
-        "budget_objection_share": 0.4545,
-        "time_constraint_share": 0.0909,
-        "premium_or_bundle_affinity_share": 0.7273
+        "immediate_or_launch_share": 0.4167,
+        "discount_waiter_share": 0.5,
+        "non_buyer_share": 0.0833,
+        "budget_objection_share": 0.5,
+        "time_constraint_share": 0.0833,
+        "premium_or_bundle_affinity_share": 0.6667
       },
       "question_distributions": {
         "Q1": {
           "Yes (18+ in US) \u2014 PlayStation 5 (including PS5 Pro)": 5,
-          "Yes (18+ in US) \u2014 Gaming PC or gaming laptop": 3,
+          "Yes (18+ in US) \u2014 Gaming PC or gaming laptop": 4,
           "Yes (18+ in US) \u2014 Xbox Series X or Series S": 3
         },
         "Q2": {
-          "Wait for a discount to $59.99\u2013$69.99 because of the price or my budget": 5,
+          "Wait for a discount to $59.99\u2013$69.99 because of the price or my budget": 6,
           "Buy at launch \u2014 $79.99 Standard Edition now, and decide on $39.99 Story DLC later": 3,
           "Buy at launch \u2014 $99.99 Ultimate Bundle (includes first Story Expansion DLC plus discounted/free PC Cross-Buy upgrade)": 1,
           "Buy later within 6 months at full price ($79.99) once I have time to play": 1,
@@ -221,16 +224,19 @@
         },
         "Q3": {
           "$70\u2013$99 total (base game or discounted bundle only)": 6,
-          "$40\u2013$69 total (discounted base game only)": 3,
+          "$40\u2013$69 total (discounted base game only)": 4,
           "$100\u2013$139 total (for example, base game plus Story DLC or online passes)": 1,
           "$200 or more total across 3 years": 1
         },
         "Q4": {
-          "Nothing \u2014 after Years 1\u20132 I move on to new games and spend $0 more on GTA VI": 5,
+          "Nothing \u2014 after Years 1\u20132 I move on to new games and spend $0 more on GTA VI": 6,
           "A discounted PC or next-generation console second copy only": 2,
           "Paid Story Expansion chapters or new map cities ($29.99\u2013$39.99 each)": 2,
           "Not applicable \u2014 I will not buy GTA VI": 1,
           "Ongoing GTA Online seasonal passes or roleplay/creator servers ($20\u2013$50 per year)": 1
+        },
+        "Display Order": {
+          "Screener|Main": 1
         }
       },
       "crosstabs": {}
@@ -240,25 +246,25 @@
     {
       "scenario": "bear_discount_drag",
       "description": "Price-sensitive waiters defer to steeper markdowns; lower margin & Y1 growth",
-      "year1_growth": 0.05737,
-      "ebitda_margin": 0.15878,
-      "implied_fair_value_per_share": 62.64,
-      "market_implied_10y_growth_hurdle": 0.20088
+      "year1_growth": 0.05555,
+      "ebitda_margin": 0.1581,
+      "implied_fair_value_per_share": 61.76,
+      "market_implied_10y_growth_hurdle": 0.20168
     },
     {
       "scenario": "survey_observed_mix",
       "description": "Observed full-price + premium-edition affinity + time-delayed full-price realization",
-      "year1_growth": 0.10146,
-      "ebitda_margin": 0.1706,
-      "implied_fair_value_per_share": 83.74,
-      "market_implied_10y_growth_hurdle": 0.1878
+      "year1_growth": 0.0993,
+      "ebitda_margin": 0.16977,
+      "implied_fair_value_per_share": 82.42,
+      "market_implied_10y_growth_hurdle": 0.18868
     },
     {
       "scenario": "bull_waiter_conversion",
       "description": "Targeted bundle / post-launch window converts hesitant waiters with +200bp margin",
-      "year1_growth": 0.13419,
+      "year1_growth": 0.13264,
       "ebitda_margin": 0.1856,
-      "implied_fair_value_per_share": 107.61,
+      "implied_fair_value_per_share": 106.92,
       "market_implied_10y_growth_hurdle": 0.17295
     }
   ]

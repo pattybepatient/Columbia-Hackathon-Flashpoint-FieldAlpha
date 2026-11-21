@@ -97,15 +97,25 @@
     }
   },
   "survey_3round_arpu_metrics": {
-    "raw_q3_mean_3y_spend_usd": 91.82,
-    "buyer_adjusted_mean_3y_spend_per_gamer_usd": 80.95,
-    "mean_3y_gross_arpu_per_buyer_usd": 89.05,
-    "launch_full_price_share_r3": 0.3636,
-    "discount_waiter_share_r3": 0.4545,
-    "story_dlc_willingness_share_r2": 0.5455,
+    "eligible_completes_r1_r2_r3": [
+      11,
+      12,
+      12
+    ],
+    "human_completes_included_r2_r3": [
+      0,
+      1,
+      1
+    ],
+    "raw_q3_mean_3y_spend_usd": 89.12,
+    "buyer_adjusted_mean_3y_spend_per_gamer_usd": 79.17,
+    "mean_3y_gross_arpu_per_buyer_usd": 86.36,
+    "launch_full_price_share_r3": 0.3333,
+    "discount_waiter_share_r3": 0.5,
+    "story_dlc_willingness_share_r2": 0.5,
     "standalone_gtaplus_subscription_share_r2": 0.0,
-    "zero_spend_after_y2_share_r3": 0.4545,
-    "partial_ttwo_catalog_cannibalization_share_r2": 0.4
+    "zero_spend_after_y2_share_r3": 0.5,
+    "partial_ttwo_catalog_cannibalization_share_r2": 0.3636
   },
   "gta6_explicit_revenue_dcf_cases": [
     {
