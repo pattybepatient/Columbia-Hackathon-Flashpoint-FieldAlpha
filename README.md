@@ -1,26 +1,49 @@
 # Field Alpha
 
-[**Read the project write-up (PDF)**](docs/Field_Alpha_Project_Writeup_v6.pdf) · [**Download the interactive demo (HTML)**](https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha/raw/refs/heads/main/demo/Field_Alpha_Demo.html)
+[**Read the project write-up (PDF)**](docs/Field_Alpha_Project_Writeup_v6.pdf) · [**Live $1,000 MCP Challenge Run Log**](evidence/live_challenge_run_log.md) · [**Download the interactive demo (HTML)**](https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha/raw/refs/heads/main/demo/Field_Alpha_Demo.html)
 
 To run the demo, right-click the HTML link, choose **Save Link As…**, and save it as `Field_Alpha_Demo.html`. Double-click the file to open it in your browser.
 
-Five players completed our Flashpoint survey before GTA VI’s New York launch. Three called the $79.99 price “somewhat high,” and all three stuck to their original plans. Two still wanted to wait for a discount. One cited their budget. The other said they had no time to play.
+Field Alpha pairs **autonomous multi-round consumer surveys via Flashpoint MCP** (paid per call in Base USDC over x402) with **deterministic DCF and Reverse-DCF valuation via FinRobot** to test equity theses from primary consumer behavior.
 
-We built Field Alpha so an analyst covering Take-Two (NASDAQ: TTWO) can read those answers alongside a valuation. In the demo, you can follow each player’s answers, then use FinRobot’s model to see how much revenue growth Take-Two’s share price implied on November 17 and 18.
-
-*Flashpoint AI × Columbia AI Club Hackathon · Engineering & Product track*
+*Flashpoint AI × Columbia AI Club Hackathon · Engineering & Product track + $1,000 Flashpoint MCP Challenge*
 
 Patrick Xiong, Haotian Jiang, and Rong Du
+
+## Live $1,000 Flashpoint MCP Challenge Run: Take-Two (`NASDAQ: TTWO`) at `$210.00`
+
+Starting from zero prior survey context and one high-level research question — *"Given Take-Two's $210 share price, how much revenue must GTA VI generate to justify the growth rate implied by the stock, and is TTWO cheap, fairly priced, or expensive?"* — our agent (`skills/field-alpha-research/`) autonomously ran 3 iterative Flashpoint MCP survey rounds, emailed unique tracked links to our 6 consented first-party recipients (without exposing PII), queried US Census `demographics` context to seed a 12-persona Flashpoint synthetic US gamer panel (gender marginals sampled; age, race, education, and income persona-generated independently) for immediate multi-round iteration while human email invites remain open, auto-redacted `.xlsx` exports, and fed the resulting conversion and ARPU signals into FinRobot.
+
+- **Investment Verdict:** **Expensive at `$210.00` / share.**
+- **FinRobot Reverse-DCF Hurdle:** At `$210.00`, Take-Two's stock implies **19.32% annual company-wide revenue growth for 10 years** on verified FY2026 / Q2 FY2027 inputs (`$6.41B` base revenue → `$37.48B` in Year 10; `16.56%` normalized EBITDA margin; `8.69%` WACC), requiring **`$102.62B`** of cumulative 10-year incremental revenue above Take-Two's `$89.32B` organic ex-GTA VI trajectory (`$81.49B` at `18.56%` margin, `$44.33B` at `24.0%` margin, or `$27.10B` at `28.0%` margin — roughly **2.7x to 10x** *GTA V*'s entire ~$8.5B–$10B 10-year bookings).
+- **3-Round Flashpoint Survey Findings (`N=11` eligible completes + `1` screen-out + `6` consented email invites per round):**
+  - **Round 1 (`446278e5-7baf-4205-97f3-1dff8d56f2d8` — Baseline):** Only `18.2%` bought at launch (`$79.99`/`$99.99`), `72.7%` reported max Standard WTP `< $70`, `63.6%` reported `$0` Year-1 extra add-on spend when add-ons were grouped together, and `70%` of buyers said *GTA VI* replaces other game purchases.
+  - **Round 2 (`bcb9282c-e360-4eb3-9f6d-9fb430541a39` — Holdouts, DLC vs. GTA+ & Cannibalization):** Under 90+ reviews and zero discounts for 9 months, `63.6%` still waited for `$69.99` (`36.4%`) or `<= $59.99` (`27.3%`). Unbundling post-launch spend flipped the `$0` wall: **`0%` chose standalone monthly `GTA+`**, whereas **`54.5%` would pay `$29.99–$39.99` for a single-player Story Expansion DLC** and **`54.5%` would upgrade to `$99.99` Ultimate** if bundled with guaranteed Story DLC or Console-to-PC Cross-Buy; `40%` of buyers reported partial cannibalization of other Take-Two titles (*NBA 2K*, *Civilization*, *Borderlands*).
+  - **Round 3 (`fcaee07b-9da2-4cc2-92fb-36dacd8bd706` — 3-Year Spend, Bundle Conversion & Tail):** Packaging Story DLC + Cross-Buy into `$99.99` Ultimate doubled launch buyers from `18.2%` to **`36.4%`**, with 3-year cumulative gross spend averaging **`$89.05` per buyer** (`$80.95` across all gamers), while **`45.5%` spend `$0` after Year 2** unless Rockstar ships paid Story Expansion chapters.
+- **Survey-Conditioned FinRobot Valuation:** Organic baseline `$71.92/share`; **Survey Bear `$75.86`** (`16.56%` margin, `$8.8B` 10Y net GTA VI rev); **Survey Base `$93.71`** (`18.56%` margin, ~75M 3Y copies @ `$89` gross ARPU, `$13.9B` 10Y net GTA VI rev); **Survey Bull `$145.92`** (`24.0%` margin, 100M+ 3Y copies, Story+Cross-Buy bundle, `$25.3B` 10Y net GTA VI rev).
+- **On-Chain Base USDC Spend:** `18.50 USDC` start → `8.65 USDC` finish (**`9.85 USDC` total across 23 Flashpoint MCP calls**, max `0.50 USDC` per call; full trace in [`evidence/live_challenge_run_log.md`](evidence/live_challenge_run_log.md) and [`evidence/mcp_run_state.json`](evidence/mcp_run_state.json)).
+
+### Earlier Pre-Launch Study Snapshot (Nov 18–19)
+
+Five players completed our initial launch-eve Flashpoint survey before GTA VI’s New York launch. Three called the $79.99 price “somewhat high,” and all three stuck to their original plans. Two still wanted to wait for a discount. One cited their budget. The other said they had no time to play.
+
+We built Field Alpha so an analyst covering Take-Two (NASDAQ: TTWO) can read those answers alongside a valuation. In the demo, you can follow each player’s answers, then use FinRobot’s model to see how much revenue growth Take-Two’s share price implied on November 17 and 18.
 
 ## Repository contents
 
 | Path | What it is |
 | --- | --- |
+| `skills/field-alpha-research/` | Reusable Hermes Agent skill: bounded Flashpoint MCP runner (`scripts/flashpoint_workflow.mjs`), PII-redacting `.xlsx` parser & FinRobot DCF bridge (`scripts/finrobot_analyze.py`), and verified TTWO filing inputs |
+| `evidence/live_challenge_run_log.md` | Full 3-round decision trace, live survey links, Base USDC spend ledger, and FinRobot GTA VI revenue bridge |
+| `evidence/round1_*`, `round2_*`, `round3_*` | Redacted response CSVs and codebooks exported from all 3 live Flashpoint MCP survey rounds |
+| `evidence/mcp_run_state.json` | Sanitized Flashpoint MCP run state, `survey_id`/`conversation_id` threads, and Base USDC reconciliation |
+| `evidence/finrobot_valuation_output.json` | Deterministic FinRobot DCF, Reverse-DCF, sensitivity grid, and survey-conditioned scenarios at `$210` |
+| `evidence/gta6_revenue_bridge.json` | Explicit 10-year GTA VI revenue bridge across margin regimes and Bear / Base / Bull unit and ARPU cases |
 | `docs/` | Project write-up (main submission), PDF and plain text |
 | `demo/Field_Alpha_Demo.html` | Offline interactive demo: valuation scenarios, paired survey answers, research note |
 | `model/TTWO_Prelaunch_Report_with_Survey.xlsx` | Launch brief, valuation and model inputs |
 | `flashpoint/` | Scripts that drafted, published, monitored and exported the survey through Flashpoint, with the saved Flashpoint responses |
-| `evidence/` | Redacted survey export and the questionnaire as Flashpoint built it |
+| `evidence/flashpoint_survey_*` | Earlier pre-launch redacted survey export and questionnaire |
 
 ## How we used Flashpoint
 
@@ -32,6 +55,43 @@ Flashpoint was our primary research tool. Every call was paid in USDC on Base fr
 4. **Export:** we downloaded the timestamped response records (`Export-Responses.command`). A redacted copy is in `evidence/`.
 
 Flashpoint handled screening (US adults who own a PS5 or Xbox Series X|S), tracked where respondents stopped, and timestamped each record, which let us isolate the five completions before the New York release (00:00 ET, Nov 19).
+
+## Run the autonomous research agent (`skills/field-alpha-research/`)
+
+Our MCP Challenge tooling lives in [`skills/field-alpha-research/`](skills/field-alpha-research/SKILL.md). Given **one high-level equity/consumer research question** and a git-ignored email list, the agent autonomously:
+1. Designs a mobile-friendly survey from the objective via Flashpoint MCP (`tool_survey`), validates logic (`surveycheck`), and publishes an open link.
+2. Sends unique tracked invitations to the consented email list in `flashpoint/recipients.local.txt` without ever echoing email addresses to stdout, logs, or git.
+3. Monitors/exports responses, strips PII from raw `.xlsx` workbooks into `evidence/`, diagnoses unresolved splits or objections, and launches targeted follow-up survey rounds on its own.
+4. Feeds multi-round conversion, willingness-to-pay, and ARPU parameters into **FinRobot**'s deterministic DCF and Reverse-DCF operators to output a grounded valuation verdict.
+
+**Prerequisites:** Node.js 22.19+, Python 3.11+ with `pydantic`, a local clone of [FinRobot](https://github.com/AI4Finance-Foundation/FinRobot) (`FINROBOT_DESKTOP_PATH`, defaults to `~/FinRobot/finrobot_desktop`), and a Base wallet holding USDC in `flashpoint/.env` (never committed).
+
+```bash
+# 1. Configure credentials & local recipient list (both git-ignored)
+cd flashpoint && npm install
+cp .env.example .env                    # set FLASHPOINT_WALLET_KEY=0x...
+$EDITOR recipients.local.txt            # one consented email per line (never committed)
+cd ..
+
+# 2. Free status check ($0.00 USDC): verify wallet balance & sendable recipient count
+node skills/field-alpha-research/scripts/flashpoint_workflow.mjs status \
+  --run-file evidence/mcp_run_state.json
+
+# 3. Reproduce the 3-round survey summary & FinRobot valuation offline ($0.00 USDC)
+python3 skills/field-alpha-research/scripts/finrobot_analyze.py summarize-survey \
+  --csv evidence/round1_responses_redacted.csv \
+  --csv evidence/round2_responses_redacted.csv \
+  --csv evidence/round3_responses_redacted.csv
+
+python3 skills/field-alpha-research/scripts/finrobot_analyze.py valuate \
+  --inputs-json skills/field-alpha-research/references/ttwo_nov2026_inputs.json \
+  --case-key 18 --close-price 210.00 \
+  --survey-csv evidence/round1_responses_redacted.csv \
+  --survey-csv evidence/round2_responses_redacted.csv \
+  --survey-csv evidence/round3_responses_redacted.csv
+```
+
+To launch a brand-new autonomous multi-round study in **Hermes Agent**, **Claude Code**, or **Cursor**, load `skills/field-alpha-research/SKILL.md` and pass a single high-level objective (enforces `$0.50` max per MCP call, configurable total-run USDC ceiling, and write-once `.marker` files so slow worker calls never double-bill).
 
 ## Run the demo
 
@@ -81,11 +141,11 @@ The `.command` files are zsh scripts for macOS (double-click or run in Terminal)
 
 ## Data and privacy
 
-`evidence/flashpoint_survey_responses_redacted.csv` keeps each record's status, timestamps, device type and answers. We removed location, time zone, browser user agent, IP hash and panel IDs, and did not publish the raw export. Records are sorted by start time and renumbered.
+`evidence/flashpoint_survey_responses_redacted.csv` and `evidence/round1..3_responses_redacted.csv` keep each record's status, timestamps, device/source category and answers while stripping respondent email addresses, location, time zone, browser user agent, IP hashes and individual respondent tokens. Raw `.xlsx` exports and `flashpoint/recipients.local.txt` are git-ignored (`0600` permissions), and `evidence/mcp_run_state.json` automatically masks email addresses as `[REDACTED_EMAIL]`.
 
 ## Limitations
 
-Five self-selected completions cannot establish a market-wide price response, total launch sales or a price target. Recruitment opened on launch eve, and 51 of 53 incomplete records stopped before the first question. See "Limitations and the next test" in the write-up.
+Five self-selected pre-launch completions (Nov 18–19) and our 12-persona synthetic gamer panel (`N=11` eligible completes per round across Rounds 1–3, where Flashpoint sampled US adult gender marginals and persona-generated age, race, education and income independently while first-party email invitations remain open) cannot establish a market-wide demand curve or a standalone price target. They serve as directional scenario inputs alongside FinRobot's deterministic reverse-DCF hurdles. See "Limitations and the next test" in the write-up.
 
 ## Sources
 

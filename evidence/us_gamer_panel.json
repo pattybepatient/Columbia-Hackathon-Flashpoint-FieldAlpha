@@ -1,0 +1,990 @@
+{
+  "created_at": "2026-11-21T21:12:14.008Z",
+  "cost_usdc": 0.5,
+  "balance_after_usdc": 17.95,
+  "result": {
+    "task_id": "01a1fff3-4a8f-73e3-a846-0b0c11311120",
+    "task_name": "create_panel",
+    "status": "completed",
+    "result": {
+      "panel_id": "01a1fff3-d8eb-741e-84a7-6b8dd1047567",
+      "name": "Field Alpha US Adult Gamers (Census Grounded Nov 2026)",
+      "num_respondents": 12,
+      "summary": "Panel 'Field Alpha US Adult Gamers (Census Grounded Nov 2026)': 12/12 personas generated\nAge range: 22-76, median 41\nGender: Male: 6, Female: 6\nIncome: 50-75k: 3, 25-50k: 3, 75-100k: 2, 100-150k: 2, <25k: 1\nTop locations: Columbus, USA (1), Phoenix, USA (1), Atlanta, USA (1)\nTop roles: Community College Student and Part-Time Grocery Clerk (1), IT Support Specialist (1), Marketing Manager (1), Senior Project Manager (1), Warehouse Shift Supervisor (1)\nCOMPOSITION: sampled to real population marginals on gender. Invented by the generator, not sampled: age, race, education, income. Do not describe the panel as matching Census data on those. independence — marginals matched, correlation not modelled. Caveats: gender: no Census counts for this panel; used the US adult split.",
+      "composition": {
+        "sampled": true,
+        "dimensions": [
+          "gender"
+        ],
+        "invented": [
+          "age",
+          "race",
+          "education",
+          "income"
+        ],
+        "notes": [
+          "gender: no Census counts for this panel; used the US adult split"
+        ],
+        "joint": "independence — marginals matched, correlation not modelled"
+      },
+      "brief_check": null,
+      "brief_check_text": null,
+      "sample_personas": [
+        {
+          "age": 22,
+          "gender": "Male",
+          "location": "Columbus, USA",
+          "education": "Some College",
+          "income_bracket": "<25k",
+          "occupation": "Community College Student and Part-Time Grocery Clerk",
+          "household_size": 3,
+          "marital_status": "Single",
+          "children": false,
+          "ethnicity": "African American",
+          "personality": "Enthusiastic and competitive, he is highly influenced by friends and online gaming communities but carefully watches his spending.",
+          "values": [
+            "entertainment",
+            "friendship",
+            "value",
+            "competition"
+          ],
+          "interests": [
+            "open-world games",
+            "basketball",
+            "YouTube",
+            "music"
+          ],
+          "media_habits": "Watches Twitch, YouTube gaming channels, TikTok, and Discord discussions daily, with occasional gaming podcasts.",
+          "shopping_behavior": "Mostly buys digitally during sales, compares prices across storefronts, and relies heavily on user reviews and friends' recommendations.",
+          "tech_adoption": "Early Adopter",
+          "brand_loyalty": "High",
+          "purchase_frequency": "full-price games: 1-2 annually, discounted games: quarterly, in-game purchases: monthly, subscriptions: rarely",
+          "survey_attitude": "Agreeable",
+          "trust_level": "Moderate Trust",
+          "custom_attributes": [
+            {
+              "name": "primary_platform",
+              "value": "PlayStation 5"
+            },
+            {
+              "name": "gaming_intensity",
+              "value": "Hardcore"
+            },
+            {
+              "name": "rockstar_fandom",
+              "value": "High"
+            },
+            {
+              "name": "gta_online_usage",
+              "value": "Frequent"
+            },
+            {
+              "name": "edition_intent",
+              "value": "Standard at launch if affordable; otherwise wait for sale"
+            }
+          ]
+        },
+        {
+          "age": 29,
+          "gender": "Male",
+          "location": "Phoenix, USA",
+          "education": "Bachelor's",
+          "income_bracket": "50-75k",
+          "occupation": "IT Support Specialist",
+          "household_size": 2,
+          "marital_status": "Partnered",
+          "children": false,
+          "ethnicity": "Hispanic",
+          "personality": "Practical and tech-oriented, he enjoys major releases but dislikes paying extra for content he may not use.",
+          "values": [
+            "value",
+            "convenience",
+            "technology",
+            "independence"
+          ],
+          "interests": [
+            "PC building",
+            "open-world games",
+            "fitness",
+            "craft beer"
+          ],
+          "media_habits": "Uses Reddit, YouTube, Steam forums, and gaming podcasts several times a week while avoiding most influencer hype.",
+          "shopping_behavior": "Researches technical performance and edition contents before purchasing, and routinely waits for reviews or modest discounts.",
+          "tech_adoption": "Early Adopter",
+          "brand_loyalty": "Medium",
+          "purchase_frequency": "full-price games: annually, discounted games: every 2-3 months, PC hardware: annually, in-game purchases: rarely",
+          "survey_attitude": "Neutral",
+          "trust_level": "Moderate Trust",
+          "custom_attributes": [
+            {
+              "name": "primary_platform",
+              "value": "Gaming PC"
+            },
+            {
+              "name": "gaming_intensity",
+              "value": "Moderate"
+            },
+            {
+              "name": "rockstar_fandom",
+              "value": "Medium"
+            },
+            {
+              "name": "gta_online_usage",
+              "value": "Occasional"
+            },
+            {
+              "name": "edition_intent",
+              "value": "Wait for PC release and a discount"
+            }
+          ]
+        },
+        {
+          "age": 34,
+          "gender": "Female",
+          "location": "Atlanta, USA",
+          "education": "Master's",
+          "income_bracket": "75-100k",
+          "occupation": "Marketing Manager",
+          "household_size": 2,
+          "marital_status": "Married",
+          "children": false,
+          "ethnicity": "African American",
+          "personality": "Social and discerning, she enjoys games as a way to relax with friends but has limited patience for aggressive monetization.",
+          "values": [
+            "quality",
+            "work-life balance",
+            "fairness",
+            "social connection"
+          ],
+          "interests": [
+            "story-driven games",
+            "travel",
+            "cooking",
+            "streaming television"
+          ],
+          "media_habits": "Follows gaming creators on YouTube and Instagram and watches streaming entertainment several evenings per week.",
+          "shopping_behavior": "Prefers digital convenience, checks review scores and accessibility features, and pays more only when the added content feels substantial.",
+          "tech_adoption": "Mainstream",
+          "brand_loyalty": "Medium",
+          "purchase_frequency": "full-price games: every 1-2 years, discounted games: quarterly, in-game purchases: rarely, subscriptions: monthly",
+          "survey_attitude": "Skeptical",
+          "trust_level": "Low Trust",
+          "custom_attributes": [
+            {
+              "name": "primary_platform",
+              "value": "PlayStation 5"
+            },
+            {
+              "name": "gaming_intensity",
+              "value": "Casual"
+            },
+            {
+              "name": "rockstar_fandom",
+              "value": "Medium"
+            },
+            {
+              "name": "gta_online_usage",
+              "value": "Occasional"
+            },
+            {
+              "name": "edition_intent",
+              "value": "Standard edition after reviews; unlikely to buy Ultimate"
+            }
+          ]
+        },
+        {
+          "age": 41,
+          "gender": "Female",
+          "location": "Denver, USA",
+          "education": "Bachelor's",
+          "income_bracket": "100-150k",
+          "occupation": "Senior Project Manager",
+          "household_size": 4,
+          "marital_status": "Married",
+          "children": true,
+          "ethnicity": "Caucasian",
+          "personality": "Organized and time-constrained, she values polished experiences and is willing to pay for convenience when the purchase is clearly worthwhile.",
+          "values": [
+            "family",
+            "quality",
+            "efficiency",
+            "responsible spending"
+          ],
+          "interests": [
+            "fitness",
+            "crime dramas",
+            "cooperative games",
+            "hiking"
+          ],
+          "media_habits": "Uses Netflix and podcasts daily, with occasional YouTube gaming reviews and family-oriented gaming streams.",
+          "shopping_behavior": "Buys digitally from established brands, prefers bundles that save time, and usually waits for independent reviews before committing.",
+          "tech_adoption": "Mainstream",
+          "brand_loyalty": "High",
+          "purchase_frequency": "full-price games: every 1-2 years, discounted games: twice yearly, in-game purchases: rarely, subscriptions: monthly",
+          "survey_attitude": "Neutral",
+          "trust_level": "Moderate Trust",
+          "custom_attributes": [
+            {
+              "name": "primary_platform",
+              "value": "Xbox Series X"
+            },
+            {
+              "name": "gaming_intensity",
+              "value": "Casual"
+            },
+            {
+              "name": "rockstar_fandom",
+              "value": "Medium"
+            },
+            {
+              "name": "gta_online_usage",
+              "value": "Rare"
+            },
+            {
+              "name": "edition_intent",
+              "value": "Standard on sale; Ultimate only in a compelling family-budget period"
+            }
+          ]
+        },
+        {
+          "age": 46,
+          "gender": "Male",
+          "location": "Chicago, USA",
+          "education": "High School",
+          "income_bracket": "25-50k",
+          "occupation": "Warehouse Shift Supervisor",
+          "household_size": 3,
+          "marital_status": "Divorced",
+          "children": true,
+          "ethnicity": "Hispanic",
+          "personality": "Blunt and budget-conscious, he is a long-time gamer who enjoys familiar franchises but resents recurring fees and digital upselling.",
+          "values": [
+            "family",
+            "value",
+            "reliability",
+            "leisure"
+          ],
+          "interests": [
+            "sports",
+            "action games",
+            "cars",
+            "barbecuing"
+          ],
+          "media_habits": "Watches sports and gaming videos on YouTube, uses Facebook regularly, and follows a few longtime game reviewers.",
+          "shopping_behavior": "Often buys physical copies from retailers, trades in older games, and waits for price drops unless a release has strong nostalgic appeal.",
+          "tech_adoption": "Late Adopter",
+          "brand_loyalty": "Medium",
+          "purchase_frequency": "full-price games: every 2-3 years, discounted games: quarterly, in-game purchases: rarely, subscriptions: occasionally",
+          "survey_attitude": "Skeptical",
+          "trust_level": "Low Trust",
+          "custom_attributes": [
+            {
+              "name": "primary_platform",
+              "value": "Xbox Series S"
+            },
+            {
+              "name": "gaming_intensity",
+              "value": "Moderate"
+            },
+            {
+              "name": "rockstar_fandom",
+              "value": "High"
+            },
+            {
+              "name": "gta_online_usage",
+              "value": "Frequent"
+            },
+            {
+              "name": "edition_intent",
+              "value": "Wait for Standard discount; rejects Ultimate at $99.99"
+            }
+          ]
+        }
+      ],
+      "artifact": {
+        "type": "panel",
+        "title": "Field Alpha US Adult Gamers (Census Grounded Nov 2026)",
+        "summary": "12 personas",
+        "storage": {
+          "panel_id": "01a1fff3-4a93-7181-8aae-d2e96b19bc1f",
+          "personas": [
+            {
+              "age": 22,
+              "gender": "Male",
+              "location": "Columbus, USA",
+              "education": "Some College",
+              "income_bracket": "<25k",
+              "occupation": "Community College Student and Part-Time Grocery Clerk",
+              "household_size": 3,
+              "marital_status": "Single",
+              "children": false,
+              "ethnicity": "African American",
+              "personality": "Enthusiastic and competitive, he is highly influenced by friends and online gaming communities but carefully watches his spending.",
+              "values": [
+                "entertainment",
+                "friendship",
+                "value",
+                "competition"
+              ],
+              "interests": [
+                "open-world games",
+                "basketball",
+                "YouTube",
+                "music"
+              ],
+              "media_habits": "Watches Twitch, YouTube gaming channels, TikTok, and Discord discussions daily, with occasional gaming podcasts.",
+              "shopping_behavior": "Mostly buys digitally during sales, compares prices across storefronts, and relies heavily on user reviews and friends' recommendations.",
+              "tech_adoption": "Early Adopter",
+              "brand_loyalty": "High",
+              "purchase_frequency": "full-price games: 1-2 annually, discounted games: quarterly, in-game purchases: monthly, subscriptions: rarely",
+              "survey_attitude": "Agreeable",
+              "trust_level": "Moderate Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "PlayStation 5"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Hardcore"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "High"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Frequent"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Standard at launch if affordable; otherwise wait for sale"
+                }
+              ]
+            },
+            {
+              "age": 29,
+              "gender": "Male",
+              "location": "Phoenix, USA",
+              "education": "Bachelor's",
+              "income_bracket": "50-75k",
+              "occupation": "IT Support Specialist",
+              "household_size": 2,
+              "marital_status": "Partnered",
+              "children": false,
+              "ethnicity": "Hispanic",
+              "personality": "Practical and tech-oriented, he enjoys major releases but dislikes paying extra for content he may not use.",
+              "values": [
+                "value",
+                "convenience",
+                "technology",
+                "independence"
+              ],
+              "interests": [
+                "PC building",
+                "open-world games",
+                "fitness",
+                "craft beer"
+              ],
+              "media_habits": "Uses Reddit, YouTube, Steam forums, and gaming podcasts several times a week while avoiding most influencer hype.",
+              "shopping_behavior": "Researches technical performance and edition contents before purchasing, and routinely waits for reviews or modest discounts.",
+              "tech_adoption": "Early Adopter",
+              "brand_loyalty": "Medium",
+              "purchase_frequency": "full-price games: annually, discounted games: every 2-3 months, PC hardware: annually, in-game purchases: rarely",
+              "survey_attitude": "Neutral",
+              "trust_level": "Moderate Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "Gaming PC"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Moderate"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "Medium"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Occasional"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Wait for PC release and a discount"
+                }
+              ]
+            },
+            {
+              "age": 34,
+              "gender": "Female",
+              "location": "Atlanta, USA",
+              "education": "Master's",
+              "income_bracket": "75-100k",
+              "occupation": "Marketing Manager",
+              "household_size": 2,
+              "marital_status": "Married",
+              "children": false,
+              "ethnicity": "African American",
+              "personality": "Social and discerning, she enjoys games as a way to relax with friends but has limited patience for aggressive monetization.",
+              "values": [
+                "quality",
+                "work-life balance",
+                "fairness",
+                "social connection"
+              ],
+              "interests": [
+                "story-driven games",
+                "travel",
+                "cooking",
+                "streaming television"
+              ],
+              "media_habits": "Follows gaming creators on YouTube and Instagram and watches streaming entertainment several evenings per week.",
+              "shopping_behavior": "Prefers digital convenience, checks review scores and accessibility features, and pays more only when the added content feels substantial.",
+              "tech_adoption": "Mainstream",
+              "brand_loyalty": "Medium",
+              "purchase_frequency": "full-price games: every 1-2 years, discounted games: quarterly, in-game purchases: rarely, subscriptions: monthly",
+              "survey_attitude": "Skeptical",
+              "trust_level": "Low Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "PlayStation 5"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Casual"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "Medium"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Occasional"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Standard edition after reviews; unlikely to buy Ultimate"
+                }
+              ]
+            },
+            {
+              "age": 41,
+              "gender": "Female",
+              "location": "Denver, USA",
+              "education": "Bachelor's",
+              "income_bracket": "100-150k",
+              "occupation": "Senior Project Manager",
+              "household_size": 4,
+              "marital_status": "Married",
+              "children": true,
+              "ethnicity": "Caucasian",
+              "personality": "Organized and time-constrained, she values polished experiences and is willing to pay for convenience when the purchase is clearly worthwhile.",
+              "values": [
+                "family",
+                "quality",
+                "efficiency",
+                "responsible spending"
+              ],
+              "interests": [
+                "fitness",
+                "crime dramas",
+                "cooperative games",
+                "hiking"
+              ],
+              "media_habits": "Uses Netflix and podcasts daily, with occasional YouTube gaming reviews and family-oriented gaming streams.",
+              "shopping_behavior": "Buys digitally from established brands, prefers bundles that save time, and usually waits for independent reviews before committing.",
+              "tech_adoption": "Mainstream",
+              "brand_loyalty": "High",
+              "purchase_frequency": "full-price games: every 1-2 years, discounted games: twice yearly, in-game purchases: rarely, subscriptions: monthly",
+              "survey_attitude": "Neutral",
+              "trust_level": "Moderate Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "Xbox Series X"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Casual"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "Medium"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Rare"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Standard on sale; Ultimate only in a compelling family-budget period"
+                }
+              ]
+            },
+            {
+              "age": 46,
+              "gender": "Male",
+              "location": "Chicago, USA",
+              "education": "High School",
+              "income_bracket": "25-50k",
+              "occupation": "Warehouse Shift Supervisor",
+              "household_size": 3,
+              "marital_status": "Divorced",
+              "children": true,
+              "ethnicity": "Hispanic",
+              "personality": "Blunt and budget-conscious, he is a long-time gamer who enjoys familiar franchises but resents recurring fees and digital upselling.",
+              "values": [
+                "family",
+                "value",
+                "reliability",
+                "leisure"
+              ],
+              "interests": [
+                "sports",
+                "action games",
+                "cars",
+                "barbecuing"
+              ],
+              "media_habits": "Watches sports and gaming videos on YouTube, uses Facebook regularly, and follows a few longtime game reviewers.",
+              "shopping_behavior": "Often buys physical copies from retailers, trades in older games, and waits for price drops unless a release has strong nostalgic appeal.",
+              "tech_adoption": "Late Adopter",
+              "brand_loyalty": "Medium",
+              "purchase_frequency": "full-price games: every 2-3 years, discounted games: quarterly, in-game purchases: rarely, subscriptions: occasionally",
+              "survey_attitude": "Skeptical",
+              "trust_level": "Low Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "Xbox Series S"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Moderate"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "High"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Frequent"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Wait for Standard discount; rejects Ultimate at $99.99"
+                }
+              ]
+            },
+            {
+              "age": 52,
+              "gender": "Male",
+              "location": "Seattle, USA",
+              "education": "PhD",
+              "income_bracket": "150k+",
+              "occupation": "Research Scientist",
+              "household_size": 2,
+              "marital_status": "Married",
+              "children": false,
+              "ethnicity": "Asian",
+              "personality": "Analytical and patient, he appreciates technical achievement and deep systems but expects transparent value for premium pricing.",
+              "values": [
+                "innovation",
+                "quality",
+                "intellectual curiosity",
+                "fairness"
+              ],
+              "interests": [
+                "simulation games",
+                "science fiction",
+                "photography",
+                "hiking"
+              ],
+              "media_habits": "Reads long-form technology coverage, watches Digital Foundry-style analysis, and uses Reddit and podcasts selectively.",
+              "shopping_behavior": "Buys high-quality products after extensive comparison, and pays premium prices when performance and longevity are demonstrated.",
+              "tech_adoption": "Early Adopter",
+              "brand_loyalty": "Low",
+              "purchase_frequency": "full-price games: annually, discounted games: every few months, PC hardware: annually, in-game purchases: rarely",
+              "survey_attitude": "Neutral",
+              "trust_level": "High Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "Gaming PC"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Hardcore"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "Medium"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Occasional"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Ultimate at launch if technical and content benefits are credible"
+                }
+              ]
+            },
+            {
+              "age": 58,
+              "gender": "Female",
+              "location": "Tampa, USA",
+              "education": "Bachelor's",
+              "income_bracket": "50-75k",
+              "occupation": "Retired Elementary School Teacher",
+              "household_size": 2,
+              "marital_status": "Widowed",
+              "children": true,
+              "ethnicity": "Caucasian",
+              "personality": "Patient and independent, she plays occasionally for relaxation and is cautious about unfamiliar digital purchasing systems.",
+              "values": [
+                "simplicity",
+                "family",
+                "security",
+                "value"
+              ],
+              "interests": [
+                "puzzle games",
+                "gardening",
+                "crime television",
+                "travel"
+              ],
+              "media_habits": "Watches cable news and streaming television daily, with occasional Facebook gaming groups and YouTube tutorials.",
+              "shopping_behavior": "Prefers physical retail purchases or help from family, avoids complicated bundles, and waits for discounts before buying.",
+              "tech_adoption": "Late Adopter",
+              "brand_loyalty": "Low",
+              "purchase_frequency": "full-price games: rarely, discounted games: annually, in-game purchases: never, subscriptions: rarely",
+              "survey_attitude": "Neutral",
+              "trust_level": "Moderate Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "PlayStation 5"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Casual"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "Low"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Never"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Unlikely to purchase at launch; would consider Standard on substantial sale"
+                }
+              ]
+            },
+            {
+              "age": 27,
+              "gender": "Male",
+              "location": "Austin, USA",
+              "education": "Bachelor's",
+              "income_bracket": "75-100k",
+              "occupation": "Software Engineer",
+              "household_size": 1,
+              "marital_status": "Single",
+              "children": false,
+              "ethnicity": "Mixed",
+              "personality": "Curious and highly engaged, he follows game development closely and enjoys experimenting with new technology, but dislikes manipulative monetization.",
+              "values": [
+                "innovation",
+                "autonomy",
+                "quality",
+                "sustainability"
+              ],
+              "interests": [
+                "PC gaming",
+                "game development",
+                "live music",
+                "cycling"
+              ],
+              "media_habits": "Active on Twitch, Discord, Reddit, YouTube, and gaming podcasts, often consuming launch analysis and developer interviews.",
+              "shopping_behavior": "Primarily buys digitally, owns multiple storefront libraries, and preorders selectively after studying performance details and roadmaps.",
+              "tech_adoption": "Early Adopter",
+              "brand_loyalty": "Medium",
+              "purchase_frequency": "full-price games: 3-5 annually, discounted games: monthly, PC hardware: annually, in-game purchases: occasionally",
+              "survey_attitude": "Agreeable",
+              "trust_level": "Moderate Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "Gaming PC"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Hardcore"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "High"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Frequent"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Ultimate at launch if cross-progression and online benefits are meaningful"
+                }
+              ]
+            },
+            {
+              "age": 63,
+              "gender": "Male",
+              "location": "Detroit, USA",
+              "education": "High School",
+              "income_bracket": "25-50k",
+              "occupation": "Retired Auto Plant Maintenance Technician",
+              "household_size": 1,
+              "marital_status": "Widowed",
+              "children": true,
+              "ethnicity": "African American",
+              "personality": "Sociable but skeptical, he enjoys recognizable franchises yet strongly prefers predictable one-time costs over subscriptions.",
+              "values": [
+                "independence",
+                "value",
+                "tradition",
+                "community"
+              ],
+              "interests": [
+                "classic cars",
+                "sports",
+                "action games",
+                "local history"
+              ],
+              "media_habits": "Watches sports and local news, uses Facebook, and watches occasional game walkthroughs on YouTube.",
+              "shopping_behavior": "Buys physical games during retailer promotions, rarely preorders, and is unlikely to spend on cosmetic or recurring digital items.",
+              "tech_adoption": "Laggard",
+              "brand_loyalty": "High",
+              "purchase_frequency": "full-price games: every 2-3 years, discounted games: annually, in-game purchases: never, subscriptions: rarely",
+              "survey_attitude": "Contrarian",
+              "trust_level": "Distrustful",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "Xbox Series X"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Casual"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "High"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Occasional"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Wait for physical Standard edition discount"
+                }
+              ]
+            },
+            {
+              "age": 37,
+              "gender": "Female",
+              "location": "San Diego, USA",
+              "education": "Master's",
+              "income_bracket": "100-150k",
+              "occupation": "Nurse Practitioner",
+              "household_size": 4,
+              "marital_status": "Married",
+              "children": true,
+              "ethnicity": "Asian",
+              "personality": "Busy and pragmatic, she values short, enjoyable sessions and pays for premium experiences only when they respect her limited free time.",
+              "values": [
+                "health",
+                "family",
+                "convenience",
+                "quality"
+              ],
+              "interests": [
+                "co-op games",
+                "fitness",
+                "cooking",
+                "beach outings"
+              ],
+              "media_habits": "Uses streaming video and podcasts daily, with gaming reviews on YouTube and occasional participation in parent gaming communities.",
+              "shopping_behavior": "Buys digitally during major promotions, favors easy-to-use services, and avoids purchases requiring ongoing attention or grinding.",
+              "tech_adoption": "Mainstream",
+              "brand_loyalty": "Medium",
+              "purchase_frequency": "full-price games: annually, discounted games: quarterly, in-game purchases: occasionally, subscriptions: monthly",
+              "survey_attitude": "Neutral",
+              "trust_level": "Moderate Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "PlayStation 5"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Moderate"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "Medium"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Occasional"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Standard at launch only if reviews confirm accessibility and quality"
+                }
+              ]
+            },
+            {
+              "age": 32,
+              "gender": "Female",
+              "location": "Portland, USA",
+              "education": "Some College",
+              "income_bracket": "25-50k",
+              "occupation": "Freelance Graphic Designer",
+              "household_size": 2,
+              "marital_status": "Partnered",
+              "children": false,
+              "ethnicity": "Mixed",
+              "personality": "Creative and independent-minded, she enjoys exploring game worlds but is wary of corporate claims and recurring monetization models.",
+              "values": [
+                "creativity",
+                "freedom",
+                "fairness",
+                "sustainability"
+              ],
+              "interests": [
+                "digital art",
+                "indie games",
+                "fashion",
+                "live music"
+              ],
+              "media_habits": "Active on TikTok, Instagram, Twitch, and Discord, while following critical commentary about labor and monetization in games.",
+              "shopping_behavior": "Waits for reviews and sales, often buys from digital storefronts, and avoids deluxe editions unless the extras are clearly tangible.",
+              "tech_adoption": "Mainstream",
+              "brand_loyalty": "Low",
+              "purchase_frequency": "full-price games: every 1-2 years, discounted games: every 2 months, in-game purchases: rarely, subscriptions: occasionally",
+              "survey_attitude": "Skeptical",
+              "trust_level": "Low Trust",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "PlayStation 5"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Moderate"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "Medium"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Occasional"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Wait for Standard discount; unlikely to purchase Ultimate"
+                }
+              ]
+            },
+            {
+              "age": 76,
+              "gender": "Female",
+              "location": "Boston, USA",
+              "education": "Master's",
+              "income_bracket": "50-75k",
+              "occupation": "Retired Public Librarian",
+              "household_size": 1,
+              "marital_status": "Widowed",
+              "children": true,
+              "ethnicity": "Caucasian",
+              "personality": "Thoughtful and reserved, she is open to entertainment technology but takes time to understand new products and dislikes pressure-based selling.",
+              "values": [
+                "learning",
+                "simplicity",
+                "financial security",
+                "family"
+              ],
+              "interests": [
+                "mystery novels",
+                "documentaries",
+                "walking",
+                "casual games"
+              ],
+              "media_habits": "Reads online newspapers and library newsletters, watches streaming documentaries, and occasionally uses YouTube for game demonstrations.",
+              "shopping_behavior": "Prefers in-store guidance or recommendations from family, rarely purchases at launch, and avoids recurring digital charges.",
+              "tech_adoption": "Laggard",
+              "brand_loyalty": "Medium",
+              "purchase_frequency": "full-price games: never, discounted games: every 1-2 years, in-game purchases: never, subscriptions: rarely",
+              "survey_attitude": "Contrarian",
+              "trust_level": "Distrustful",
+              "custom_attributes": [
+                {
+                  "name": "primary_platform",
+                  "value": "None; occasional shared PlayStation 5 access"
+                },
+                {
+                  "name": "gaming_intensity",
+                  "value": "Non-player"
+                },
+                {
+                  "name": "rockstar_fandom",
+                  "value": "None"
+                },
+                {
+                  "name": "gta_online_usage",
+                  "value": "Never"
+                },
+                {
+                  "name": "edition_intent",
+                  "value": "Would not purchase either edition"
+                }
+              ]
+            }
+          ],
+          "composition": {
+            "sampled": true,
+            "dimensions": [
+              "gender"
+            ],
+            "invented": [
+              "age",
+              "race",
+              "education",
+              "income"
+            ],
+            "notes": [
+              "gender: no Census counts for this panel; used the US adult split"
+            ],
+            "joint": "independence — marginals matched, correlation not modelled"
+          }
+        },
+        "storage_kind": "inline"
+      },
+      "artifact_id": "01a1fff3-d8d3-7c92-8be6-cbc88a2b4652",
+      "persisted": true
+    },
+    "error": null,
+    "conversation_id": null,
+    "message_id": null,
+    "trace_id": null,
+    "traceparent": null,
+    "completed_at": "2026-11-21T21:12:13.260231",
+    "duration_ms": 36409
+  }
+}

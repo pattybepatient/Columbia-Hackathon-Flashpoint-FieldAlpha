@@ -1,0 +1,139 @@
+{
+  "share_price_evaluated": 210.0,
+  "base_revenue_fy26_bn": 6.4097,
+  "organic_ex_gta6_10y_cum_rev_bn": 89.32,
+  "organic_ex_gta6_y10_rev_bn": 10.71,
+  "reverse_dcf_by_margin": {
+    "minus_2pp_14_56pct": {
+      "ebitda_margin": 0.1456,
+      "forward_dcf_at_organic_growth": 59.9,
+      "implied_10y_cagr": 0.217288,
+      "year1_total_rev_bn": 7.8,
+      "year3_total_rev_bn": 11.56,
+      "year10_total_rev_bn": 45.79,
+      "cum_10y_total_rev_bn": 220.62,
+      "cum_10y_organic_ex_gta6_rev_bn": 89.32,
+      "cum_10y_incremental_gta6_rev_needed_bn": 131.29,
+      "year1_to_3_incremental_gta6_rev_bn": 6.73,
+      "year10_incremental_annual_rev_needed_bn": 35.08
+    },
+    "base_16_56pct": {
+      "ebitda_margin": 0.1656,
+      "forward_dcf_at_organic_growth": 71.92,
+      "implied_10y_cagr": 0.193169,
+      "year1_total_rev_bn": 7.65,
+      "year3_total_rev_bn": 10.89,
+      "year10_total_rev_bn": 37.48,
+      "cum_10y_total_rev_bn": 191.95,
+      "cum_10y_organic_ex_gta6_rev_bn": 89.32,
+      "cum_10y_incremental_gta6_rev_needed_bn": 102.62,
+      "year1_to_3_incremental_gta6_rev_bn": 5.52,
+      "year10_incremental_annual_rev_needed_bn": 26.78
+    },
+    "plus_2pp_18_56pct": {
+      "ebitda_margin": 0.1856,
+      "forward_dcf_at_organic_growth": 83.94,
+      "implied_10y_cagr": 0.17295,
+      "year1_total_rev_bn": 7.52,
+      "year3_total_rev_bn": 10.34,
+      "year10_total_rev_bn": 31.6,
+      "cum_10y_total_rev_bn": 170.81,
+      "cum_10y_organic_ex_gta6_rev_bn": 89.32,
+      "cum_10y_incremental_gta6_rev_needed_bn": 81.49,
+      "year1_to_3_incremental_gta6_rev_bn": 4.54,
+      "year10_incremental_annual_rev_needed_bn": 20.89
+    },
+    "scale_expansion_24pct": {
+      "ebitda_margin": 0.24,
+      "forward_dcf_at_organic_growth": 116.63,
+      "implied_10y_cagr": 0.13032,
+      "year1_total_rev_bn": 7.25,
+      "year3_total_rev_bn": 9.26,
+      "year10_total_rev_bn": 21.82,
+      "cum_10y_total_rev_bn": 133.66,
+      "cum_10y_organic_ex_gta6_rev_bn": 89.32,
+      "cum_10y_incremental_gta6_rev_needed_bn": 44.33,
+      "year1_to_3_incremental_gta6_rev_bn": 2.55,
+      "year10_incremental_annual_rev_needed_bn": 11.11
+    },
+    "bull_operating_leverage_28pct": {
+      "ebitda_margin": 0.28,
+      "forward_dcf_at_organic_growth": 140.67,
+      "implied_10y_cagr": 0.106215,
+      "year1_total_rev_bn": 7.09,
+      "year3_total_rev_bn": 8.68,
+      "year10_total_rev_bn": 17.59,
+      "cum_10y_total_rev_bn": 116.43,
+      "cum_10y_organic_ex_gta6_rev_bn": 89.32,
+      "cum_10y_incremental_gta6_rev_needed_bn": 27.1,
+      "year1_to_3_incremental_gta6_rev_bn": 1.47,
+      "year10_incremental_annual_rev_needed_bn": 6.88
+    }
+  },
+  "blockbuster_frontloaded_gta6_hurdle_for_210": {
+    "at_base_16_56pct_margin": {
+      "ebitda_margin": 0.1656,
+      "tail_ratio_vs_y1": 0.45,
+      "required_y1_gta6_rev_bn": 33.74,
+      "required_3y_cum_gta6_rev_bn": 77.6,
+      "required_10y_cum_gta6_rev_bn": 184.88,
+      "required_steady_annual_tail_y5_y10_bn": 15.18
+    },
+    "at_plus2pp_18_56pct_margin": {
+      "ebitda_margin": 0.1856,
+      "tail_ratio_vs_y1": 0.45,
+      "required_y1_gta6_rev_bn": 26.71,
+      "required_3y_cum_gta6_rev_bn": 61.43,
+      "required_10y_cum_gta6_rev_bn": 146.37,
+      "required_steady_annual_tail_y5_y10_bn": 12.02
+    },
+    "at_expanded_24pct_margin": {
+      "ebitda_margin": 0.24,
+      "tail_ratio_vs_y1": 0.45,
+      "required_y1_gta6_rev_bn": 14.53,
+      "required_3y_cum_gta6_rev_bn": 33.43,
+      "required_10y_cum_gta6_rev_bn": 79.64,
+      "required_steady_annual_tail_y5_y10_bn": 6.54
+    }
+  },
+  "survey_3round_arpu_metrics": {
+    "raw_q3_mean_3y_spend_usd": 91.82,
+    "buyer_adjusted_mean_3y_spend_per_gamer_usd": 80.95,
+    "mean_3y_gross_arpu_per_buyer_usd": 89.05,
+    "launch_full_price_share_r3": 0.3636,
+    "discount_waiter_share_r3": 0.4545,
+    "story_dlc_willingness_share_r2": 0.5455,
+    "standalone_gtaplus_subscription_share_r2": 0.0,
+    "zero_spend_after_y2_share_r3": 0.4545,
+    "partial_ttwo_catalog_cannibalization_share_r2": 0.4
+  },
+  "gta6_explicit_revenue_dcf_cases": [
+    {
+      "case": "Survey Bear (Heavy $59-$69 discount waiting, $0 Y3+ tail for 45% of buyers, catalog cannibalization, 16.56% margin)",
+      "ebitda_margin": 0.1656,
+      "3y_cum_gta6_net_rev_bn": 4.6,
+      "10y_cum_gta6_net_rev_bn": 8.8,
+      "y10_gta6_tail_rev_bn": 0.5,
+      "implied_share_price": 75.86,
+      "upside_downside_vs_210_pct": -63.9
+    },
+    {
+      "case": "Survey Base (~75M 3Y copies, ~$89 gross / ~$72 net 3Y ARPU, Story DLC lift but zero GTA+ uptake, moderate tail, 18.56% margin)",
+      "ebitda_margin": 0.1856,
+      "3y_cum_gta6_net_rev_bn": 6.9,
+      "10y_cum_gta6_net_rev_bn": 13.9,
+      "y10_gta6_tail_rev_bn": 0.9,
+      "implied_share_price": 93.71,
+      "upside_downside_vs_210_pct": -55.4
+    },
+    {
+      "case": "Survey Bull (Story+CrossBuy $99.99 bundle unlocks upgrades, 100M+ 3Y copies, annual Story City DLCs sustain tail, 24% margin)",
+      "ebitda_margin": 0.24,
+      "3y_cum_gta6_net_rev_bn": 11.0,
+      "10y_cum_gta6_net_rev_bn": 25.3,
+      "y10_gta6_tail_rev_bn": 2.0,
+      "implied_share_price": 145.92,
+      "upside_downside_vs_210_pct": -30.5
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+Label,Type,Text and Options
+Quality Score (0-100),data quality,"ReDem composite quality score for the whole response. Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality: Open-Ends (0-100),data quality,"ReDem OES — quality of open-ended text answers (gibberish, copy-paste, off-topic, AI-generated text). Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality: Coherence (0-100),data quality,"ReDem CHS — cross-answer coherence: do this respondent's answers make sense together? Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality: Grids (0-100),data quality,"ReDem GQS — grid answer patterns (straight-lining, zig-zag). Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality: Speed (0-100),data quality,"ReDem TS — interview duration vs the survey's median (speeders). Needs 30+ completes before a median exists; earlier responses are re-scored automatically once it does. Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality Flags,data quality,"Per-question flag categories from ReDem, with the questions they fired on - e.g. 'AI_SUSPECT (Q7, Q8)' means the open-ended answers to Q7 and Q8 look machine-generated. Empty = nothing flagged."
+Quality Excluded / Exclusion Reason,data quality,"'yes' when the response is excluded from analytics, crosstabs and billing - either automatically (score below the survey's auto-exclude threshold, default 40) or manually. The reason column says which."
+Defender Score (0-100),data quality,"Research Defender pre-survey fraud screen at survey entry (bots, duplicates, hyperactive survey-takers). 0-100, higher = cleaner; blocked respondents never enter, so most exported rows show high scores or blank (not screened, e.g. screening off or added later)."
+Q1,single-select,"Are you 18 or older living in the United States, and which primary gaming platform do you play on most?
+
+1: Yes (18+ in US) — PlayStation 5 (including PS5 Pro)
+2: Yes (18+ in US) — Xbox Series X or Series S
+3: Yes (18+ in US) — Gaming PC or gaming laptop
+4: Yes (18+ in US) — Other console or handheld only
+5: No — I do not play video games, am under 18, or live outside the US"
+Q2,single-select,"Suppose GTA VI launches to universal acclaim (90+ review scores) and Rockstar keeps the Standard Edition at $79.99 with zero discounts for the first 9 months. What would you actually do?
+
+1: Buy full price at $79.99 (or $99.99 Ultimate) within the first month anyway
+2: Buy full price at $79.99 within 2 to 6 months once my schedule clears
+3: Wait for a discount until the first sale drops it to $69.99
+4: Wait for a discount until a deeper sale drops it to $59.99 or less
+5: Do not plan to buy the game"
+Q3,single-select,"Which type of paid post-launch GTA VI content would you actually pay money for in your first two years?
+
+1: A major single-player Story Expansion DLC ($29.99–$39.99 one-time)
+2: GTA+ monthly membership ($7.99–$9.99/month) with online perks
+3: One-off GTA Online in-game currency or seasonal passes ($10–$25)
+4: Both a paid Story Expansion DLC and ongoing GTA Online or GTA+ spending
+5: None — I will only pay for the base game"
+Q4,single-select,"Which included bundle perk would make you upgrade from the $79.99 Standard Edition to the $99.99 Ultimate Edition?
+
+1: Guaranteed access to the first single-player Story Expansion DLC
+2: 3 months of GTA+ membership plus starter GTA Online cash and vehicles
+3: 3-day early access before standard launch day
+4: Cross-buy perk (console purchase includes a free or discounted PC upgrade later)
+5: Nothing — I would not pay $99.99 for any edition"
+Q5,single-select,"If you spend $70–$100 on GTA VI, which games lose out in your annual gaming budget?
+
+1: Mostly games from other publishers (EA, Ubisoft, Activision, Sony), not other Take-Two games
+2: Other Take-Two games I might otherwise buy (such as NBA 2K, Civilization, or Borderlands)
+3: Both other Take-Two games and other publishers games equally
+4: Neither — GTA VI is extra entertainment money and does not reduce my other game purchases
+5: Not applicable — I will not buy GTA VI"
