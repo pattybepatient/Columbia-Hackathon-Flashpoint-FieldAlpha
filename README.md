@@ -1,14 +1,16 @@
 # Field Alpha
 
-**Flashpoint AI × Columbia AI Club Hackathon · Engineering & Product track**
-Team: Patrick Xiong, Haotian Jiang, Rong Du
+[**Read the project write-up (PDF)**](docs/Field_Alpha_Project_Writeup_v6.pdf) · [**Download the interactive demo (HTML)**](https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha/raw/refs/heads/main/demo/Field_Alpha_Demo.html)
 
-When GTA VI launched at $79.99, an equity analyst covering Take-Two (NASDAQ: TTWO) could see the share price but not what players planned to do about the price. Field Alpha puts two pieces of evidence side by side before any sales figures exist:
+To run the demo, right-click the HTML link, choose **Save Link As…**, and save it as `Field_Alpha_Demo.html`. Double-click the file to open it in your browser.
 
-- **What the market expected.** FinRobot's valuation code, rerun at the Nov 17 and Nov 18 closes, gives the revenue growth the share price implied.
-- **What players said they would do.** A Flashpoint survey asked US console owners about their purchase plans before and after seeing the prices.
+Five players completed our Flashpoint survey before GTA VI’s New York launch. Three called the $79.99 price “somewhat high,” and all three stuck to their original plans. Two still wanted to wait for a discount. One cited their budget. The other said they had no time to play.
 
-**Start with the write-up:** [`docs/Field_Alpha_Project_Writeup_v6.pdf`](docs/Field_Alpha_Project_Writeup_v6.pdf) (main submission).
+We built Field Alpha so an analyst covering Take-Two (NASDAQ: TTWO) can read those answers alongside a valuation. In the demo, you can follow each player’s answers, then use FinRobot’s model to see how much revenue growth Take-Two’s share price implied on November 17 and 18.
+
+*Flashpoint AI × Columbia AI Club Hackathon · Engineering & Product track*
+
+Patrick Xiong, Haotian Jiang, and Rong Du
 
 ## Repository contents
 
