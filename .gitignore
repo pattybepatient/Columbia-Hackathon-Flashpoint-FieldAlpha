@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.npm-cache/
+.DS_Store
+Survey-Responses-*.xlsx
+gta-count-*.tmp
+/demo/*.mp4

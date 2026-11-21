@@ -1,0 +1,65 @@
+Field Alpha
+
+Engineering & Product
+
+When GTA VI felt expensive, what did players plan to do?
+
+The question before the first sales figures
+
+On the eve of the New York release of Grand Theft Auto VI, Take-Two closed at $216.61. For an equity analyst writing a launch note, a complaint about price leaves a question open. Does the player plan to wait for a sale, choose a cheaper edition, skip the game, or buy it anyway? Those choices have different implications for revenue.
+
+We built Field Alpha to investigate that question before sales figures arrive. We expected committed fans to buy at launch across prices and less committed players to wait and see. Flashpoint let us compare each person’s purchase plans, price rating and reason for buying or waiting. FinRobot estimated how much growth the share price already implied for Take-Two as a whole.
+
+How we used Flashpoint
+
+Rong finalized the questions. Patrick gave them to the Flashpoint agent, which built and published the survey. We shared its public link. Flashpoint screened for US adults with a PlayStation 5 or Xbox Series console, tracked how far respondents got, and exported their timestamped answers. That let us match each player’s plan to their reason and isolate answers completed before the New York release.
+
+We asked for each player’s earlier plan (Q3), maximum Standard edition price (Q4) and prior price awareness (Q5). We then showed $79.99 for Standard and $99.99 for Ultimate and asked what they planned to do (Q6), why (Q7) and how they rated the Standard price (Q8). The table on page two pairs the two purchase-plan answers for every eligible player.
+
+What the stock price required
+
+We reconstructed two market closes using financial information available at each date. November 17 preceded the global rollout. November 18 preceded the New York release, although the game had already unlocked in some overseas markets. At the earlier close of $203.93, FinRobot’s reverse discounted cash flow model implied 18.9% annual revenue growth for ten years. One close later, the implied rate was 19.7%. That would take Take-Two from about $6.4 billion in annual revenue to $38.8 billion in year ten. This figure covers the company’s entire catalog.
+
+We tested EBITDA margins of 14.6%, 16.6% and 18.6% at each close. FinRobot used a broad-market fallback of 16.6% after recent losses. At the November 18 close, raising the margin to 18.6% lowered the required growth to 17.7%. At the base margin, a forward calculation with historical growth slowing from 7.6% to 3% gave $71.92 per share. This scenario illustrates sensitivity to growth. We did not issue a price target.
+
+What we built during the hackathon
+
+During November 13–21, we fielded the survey, analyzed its export, reconstructed both closes and built the offline demo and workbook. The AI4Finance Foundation’s FinRobot supplied the valuation code. We checked all six date-and-margin combinations against the original runs. We joined the analyses after collection so analysts can filter the paired answers and save a note with their selected scenario.
+
+What the five players said
+
+Five eligible players finished after the November 18 market close and before midnight in New York. Each appears once below.
+
+Earlier plan (Q3) | Plan at the listed prices (Q6) | Players
+Already preordered Ultimate | Keep the preorder | 1
+Wait for a discount | Keep waiting | 2
+Wait for a discount | Preorder or buy in launch week | 1
+No purchase planned | Do not buy | 1
+
+Three of the five rated $79.99 “somewhat high.” Two had planned to wait for a discount and still did. Asked why, one cited price or budget and the other lacked time to play. The third had already planned to skip the game and cited lack of interest. All three kept their earlier plans. The one player who moved from waiting toward a launch-week purchase rated the price “about right” and already knew it. These are intentions at the listed prices. Actual purchases remain unknown.
+
+What changed in the research note
+
+Five intentions about one game gave us too little evidence to revise Take-Two’s valuation inputs. The 19.7% figure is the growth implied by the share price under our assumptions. Flashpoint changed our interpretation of a delay. For the analyst, the next check is whether the budget-constrained player buys after a discount and whether the time-constrained player buys later at full price.
+
+Limitations and the next test
+
+The earliest recorded start was November 18 at 5:06 p.m. New York time, less than seven hours before cutoff. Of 73 records, 12 screened out. All 12 selected neither eligible console and had no age or residency answer. Of 53 incomplete records, 51 had no answer to the opening question about which gaming devices they owned. The reason is unknown. Eight finished, three after midnight. Next time we would open recruitment earlier and test the opening screen on mobile.
+
+One player had preordered. None planned to buy at launch without having ordered. Everyone saw the same prices. Next time we would record each player’s initial plan and recruit enough people in each group. Within each group, we would randomly assign different hypothetical Standard prices, keep the Ultimate price and other details fixed, and compare launch-week purchase intent across prices. After launch, we would follow up on actual purchase dates, editions and prices paid.
+
+Tool credits
+
+Flashpoint was our primary research tool. ChatGPT supported planning. Codex helped analyze the export, build the demo and check its calculations. Claude helped draft an earlier research report and reviewed the demo and an earlier version of this write-up.
+
+Sources
+
+Flashpoint survey export, Nov 21 (paired responses above)
+
+FinRobot valuation code — https://github.com/AI4Finance-Foundation/FinRobot/tree/63e1884a42ea7b729551a5424b4bd6a65af636e0/finrobot_desktop/finrobot/engine/compute/operators
+
+Take-Two annual filing — https://www.sec.gov/Archives/edgar/data/946581/000162828026037434/ttwo-20260331.htm
+
+Take-Two interim filing — https://www.sec.gov/Archives/edgar/data/946581/000162828026072254/ttwo-20260930.htm
+
+TTWO closing prices — https://twelvedata.com/markets/908412/stock/nasdaq/ttwo/historical-data

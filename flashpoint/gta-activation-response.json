@@ -1,0 +1,24 @@
+{
+  "conversation_id": "01a1f090-cac5-7643-a44b-a190cb3d0979",
+  "task_id": "01a1f0ad-38b9-7c11-b61e-9b26325afd1d",
+  "task_name": "surveys_agent",
+  "status": "completed",
+  "result": {
+    "conversation_id": "01a1f090-cac5-7643-a44b-a190cb3d0979",
+    "survey_id": "dea63728-28e6-4019-b0ac-68a11b30bb7b",
+    "iterations": 2,
+    "usage": {
+      "input_tokens": 11,
+      "output_tokens": 347,
+      "cache_creation_input_tokens": 13566,
+      "cache_read_input_tokens": 217457
+    },
+    "final_text": "Published. Here are the verified details:\n\n---\n\n**Live respondent link**\n`https://flashpointopinions.com/dea63728-28e6-4019-b0ac-68a11b30bb7b`\n\n**Collection status**\nActive — accepting real responses as of November 18, 2026 at 10:00 PM UTC. No quotas are set; collection is unlimited.\n\n**Shareable link**\nYes — the link above is a standard public URL. Anyone who opens it can take the survey and their response will be recorded. No login, panel membership, or token is required. You can share it directly (email, social, QR code, etc.) and it will collect real responses immediately.\n\n**To close collection** when you are done, let me know and I will mark the survey complete."
+  },
+  "error": null,
+  "message_id": null,
+  "trace_id": null,
+  "traceparent": null,
+  "duration_ms": 8850,
+  "completed_at": "2026-11-18T22:00:55.381304Z"
+}

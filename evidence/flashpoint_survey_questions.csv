@@ -1,0 +1,91 @@
+Label,Type,Text and Options
+Quality Score (0-100),data quality,"ReDem composite quality score for the whole response. Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality: Open-Ends (0-100),data quality,"ReDem OES — quality of open-ended text answers (gibberish, copy-paste, off-topic, AI-generated text). Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality: Coherence (0-100),data quality,"ReDem CHS — cross-answer coherence: do this respondent's answers make sense together? Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality: Grids (0-100),data quality,"ReDem GQS — grid answer patterns (straight-lining, zig-zag). Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality: Speed (0-100),data quality,"ReDem TS — interview duration vs the survey's median (speeders). Needs 30+ completes before a median exists; earlier responses are re-scored automatically once it does. Scale 0-100 (higher = more trustworthy). Official ReDem bands: 0-39 very poor, often fraudulent - remove; 40-59 doubtful, inattentive/low engagement - should be removed; 60-79 acceptable; 80-100 good to very good. ReDem recommends keeping only scores of 60 and above. Blank = not evaluated (e.g. the module had nothing to score, or Speed needs 30+ completes before a survey median exists)."
+Quality Flags,data quality,"Per-question flag categories from ReDem, with the questions they fired on - e.g. 'AI_SUSPECT (Q7, Q8)' means the open-ended answers to Q7 and Q8 look machine-generated. Empty = nothing flagged."
+Quality Excluded / Exclusion Reason,data quality,"'yes' when the response is excluded from analytics, crosstabs and billing - either automatically (score below the survey's auto-exclude threshold, default 40) or manually. The reason column says which."
+Defender Score (0-100),data quality,"Research Defender pre-survey fraud screen at survey entry (bots, duplicates, hyperactive survey-takers). 0-100, higher = cleaner; blocked respondents never enter, so most exported rows show high scores or blank (not screened, e.g. screening off or added later)."
+S1,multi-select,"Which of these gaming devices do you currently own?
+
+1: PlayStation 5, including PS5 Pro
+2: PlayStation 4
+3: Xbox Series X or Series S
+4: Xbox One
+5: Nintendo Switch or Switch 2
+6: A gaming desktop or laptop
+7: Another gaming device
+8: None of these"
+S2,single-select,"Are you 18 or older and currently living in the United States?
+
+1: Yes
+2: No"
+Q3,single-select,"Before starting this survey, which best described your plans for GTA VI?
+
+1: I had pre-ordered Standard
+2: I had pre-ordered Ultimate
+3: I had pre-ordered, but I wasn't sure which edition
+4: I planned to pre-order or buy during launch week
+5: I planned to buy after launch week at the regular price
+6: I was waiting for a discount
+7: I did not plan to buy
+8: I had not decided"
+Q4,single-select,"What is the most you would be willing to pay for a new copy of the Standard Edition, before tax?
+
+1: Less than $40
+2: $40–$59.99
+3: $60–$69.99
+4: $70–$79.99
+5: $80–$99.99
+6: $100 or more
+7: I would not buy the Standard Edition at any price
+8: Not sure"
+Q5,single-select,"Before starting this survey, which US launch prices for GTA VI did you already know?
+
+1: Both the Standard and Ultimate prices
+2: The Standard price only
+3: The Ultimate price only
+4: Neither price
+5: Not sure"
+Q6,single-select,"At these prices, what do you plan to do?
+
+1: Keep my existing pre-order and edition
+2: Place or change a pre-order, or buy during launch week, at the listed price
+3: Buy after launch week at the listed price
+4: Wait for a discount
+5: Not buy the game
+6: Not sure"
+Q7,single-select,"What is the main reason for the purchase plan you just selected?
+
+1: I want to play as soon as the game comes out
+2: The price or my budget
+3: I am waiting for reviews or feedback from other players
+4: I do not have time to play yet
+5: I am not interested enough to buy
+6: I would rather play on another platform
+7: Something else:
+8: Not sure"
+Q8,single-select,"How would you describe the $79.99 price of the Standard Edition?
+
+1: Very low
+2: Somewhat low
+3: About right
+4: Somewhat high
+5: Very high
+6: Not sure"
+Q9,multi-select,"Before this survey, had the prices you already knew about led you to change your plans for GTA VI?
+
+1: I had decided to buy later than I originally planned
+2: I had decided to wait for a discount
+3: I had changed my planned purchase from Ultimate to Standard
+4: I had decided not to buy after previously planning to buy
+5: I had decided to buy sooner than I originally planned
+6: I had made another change:
+7: The prices had not changed my plans
+8: Not sure"
+Q10,single-select,"Have you played a GTA game before, including GTA Online?
+
+1: Yes
+2: No
+3: Not sure"
