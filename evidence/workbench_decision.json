@@ -1,0 +1,20 @@
+{
+  "study": "Assess whether full-price GTA VI demand is likely to arrive at launch or later within this pilot, and identify which missing evidence would change that judgment.",
+  "source": "Redacted November 21 TTWO Round 1 responses",
+  "human_completes": 0,
+  "synthetic_completes": 11,
+  "tool": "tool_survey",
+  "completed_at": "2026-11-22T17:41:11.470Z",
+  "cost_usdc": 0.5,
+  "survey_id": null,
+  "decision": {
+    "action": "WAIT",
+    "rule": "All 11 responses are synthetic (0 human); synthetic-only evidence cannot support an inference about real consumer demand, per explicit constraint against inferring population demand from synthetic data.",
+    "evidence": "11/11 responses flagged source=synthetic; 0 human responses collected. Among synthetic responses: 2/11 indicate launch purchase, 4/11 full-price later, 4/11 discount-only, 1/11 no purchase. 7/11 synthetic respondents stated a WTP ceiling below the $79.99 Standard Edition price.",
+    "finding": "No actionable finding is possible. The synthetic pattern leans toward deferred or discounted purchase over launch-day full-price, but this reflects AI persona priors rather than real respondent behavior. The objective cannot be assessed until human responses are collected against the existing Q2–Q6 instrument.",
+    "limitations": "Zero human responses. Synthetic data cannot proxy consumer intent, willingness-to-pay distributions, or timing of demand. No prior rounds of human data exist to compare against. Any directional read from these 11 responses would be fabricated inference.",
+    "questions": []
+  },
+  "verified_source_counts": "Among 11 synthetic respondents, 8 selected a price ceiling below $70. Of 4 who chose full price later, 3 also selected a ceiling below $70.",
+  "source_check": "The provider reported 7/11 ceilings below $79.99. The original export has 8/11 strictly below $70 alone. Use the verified export counts."
+}

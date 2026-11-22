@@ -2,9 +2,9 @@
 
 [**Download the MCP challenge walkthrough**](https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha/raw/refs/heads/mcp-challenge/demo/Field_Alpha_Agent_Run.html) · [**Read the three-round run log**](evidence/live_challenge_run_log.md) · [**Original project write-up**](docs/Field_Alpha_Project_Writeup_v6.pdf)
 
-## Try a live follow-up
+## Run an adaptive study
 
-Four synthetic respondents planned to buy GTA VI later at full price. Three of those four also set their ceiling below $70. Open the workbench to see the full recorded study, or give the agent an objective and watch it draft its own follow-up to the first round.
+Four synthetic respondents planned to buy GTA VI later at full price. Three of those four also set their ceiling below $70. Open the workbench to see the full recorded study, or give the agent an objective and see which evidence makes it ask another question, wait for replies, or conclude the study.
 
 For a live call, use Node.js 22.19 or later and Python 3 on the computer holding your Flashpoint wallet. Start from this challenge branch:
 
@@ -15,7 +15,14 @@ npm ci --prefix flashpoint
 node demo/server.mjs
 ```
 
-Configure `FLASHPOINT_WALLET_KEY` in your shell or in the ignored `flashpoint/.env` on that computer. Open **http://127.0.0.1:4173**. Enter a research question in the workspace. **Fresh study** starts from the brief alone. **GTA VI follow-up** adds the eleven paired, anonymized Round 1 answers. Select **Generate survey draft** to create an unpublished survey via Flashpoint’s `tool_survey`. The returned draft opens for review with the response options, survey ID when supplied, and measured wallet balance change. Enter a requested change to generate a separate revised copy, or download the current draft as Markdown. Each generation or revision costs up to **0.50 USDC**. Recent drafts can be reopened in the same browser. Reloading the tab recovers the current request. Local run records are stored in ignored `.demo-runs/`.
+Configure `FLASHPOINT_WALLET_KEY` in your shell or the ignored `flashpoint/.env`, then open **http://127.0.0.1:4173**.
+
+1. **Set the objective.** Choose **Fresh study** to generate an unpublished survey from a question and audience. For the GTA VI case, choose **Review Round 1 answers** to start from the eleven paired synthetic responses in the original export.
+2. **Collect replies.** Participants open the same live study on the team workbench and submit one anonymous response per round. For a local installation the server listens on loopback. Pilot submissions enter the workbench directly. The TTWO case library separately documents the original Flashpoint publication, emailed invitations, panel and exports.
+3. **Let the agent decide.** At three replies, the server sends the objective, questionnaire, anonymous answers, their sources and prior decisions to Flashpoint’s `tool_survey`. Three is the pilot review interval. The agent chooses **WAIT** for more answers to the same questions, **ASK** to create an unpublished next-round survey, or **STOP** to give a scoped conclusion. After WAIT, the next answer triggers another review. After ASK, the new round opens in the same study and collects its own replies.
+4. **Read or download the study.** The decision log includes the rule, evidence, source counts, finding, limits, next questions and cost. Reloading a study retrieves its saved result. A manual draft edit is optional before the first response. Drafts, manual revisions and agent reviews each have a 0.50 USDC call cap. Local records are stored in ignored `.demo-runs/`.
+
+In the November 22 decision test, the agent **waited for human responses** after reviewing 11 synthetic and zero human completes. The call cost **0.50 USDC** and created no follow-up survey. The saved receipt includes the agent’s words and a source check correcting its price-ceiling count. [Decision receipt](evidence/workbench_decision.json).
 
 In a live test on November 22, Flashpoint created an unpublished two-question draft for **0.50 USDC**. It asked which signal would trigger a launch-week purchase at $79.99, then tested whether strong reviews would change that choice.
 

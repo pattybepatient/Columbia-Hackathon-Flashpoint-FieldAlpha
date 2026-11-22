@@ -6,6 +6,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 
+import { initialRound, eligible, queueReview, reviewBrief, applyDecision, clientJob } from './adaptive.mjs';
+
 const run = promisify(execFile);
 const demo = path.dirname(fileURLToPath(import.meta.url));
 const root = path.dirname(demo);
@@ -28,6 +30,33 @@ function save(job) {
   fs.renameSync(tmp, record(job.id));
 }
 
+// The disk-backed queue serializes wallet calls with draft creation.
+function pump() {
+  if (active) return;
+  for (const file of fs.readdirSync(directory)) {
+    const id = file.slice(0,-5);
+    if (!file.endsWith('.json') || !validId.test(id)) continue;
+    const job = read(id);
+    if (job.adaptive?.status !== 'queued') continue;
+    active = id;
+    job.adaptive.status = 'reviewing'; save(job);
+    void review(job);
+    return;
+  }
+}
+async function review(job) {
+  const round = job.adaptive;
+  try {
+    const {stdout} = await run(process.execPath,[runner,'survey-step','--run-file',
+      path.join(directory,round.reviewId+'.state.json'),'--round',String(round.number+1),
+      '--step','decision','--brief',reviewBrief(job),'--max-call-usdc','0.50','--max-run-usdc','0.50'],
+      {cwd:root,env:{...process.env,FIELD_ALPHA_REPO:root},timeout:9*60_000,maxBuffer:2**21});
+    applyDecision(job, JSON.parse(stdout));
+  } catch {
+    round.status='failed';
+    round.message='A decision could not be verified. The batch is saved. Check the provider receipt before retrying.';
+  } finally { save(job); active=undefined; pump(); }
+}
 async function draft(job, parent) {
   const instructions = [
     'Create one NEW, unpublished survey draft in Flashpoint. Use draft operations only. Never publish, email, run a panel, or modify an existing survey.',
@@ -62,7 +91,7 @@ async function draft(job, parent) {
       : detail.includes('ERR_MODULE_NOT_FOUND') ? 'Install the Flashpoint dependencies on the server.'
       : 'Flashpoint did not return a usable response. Check the wallet and draft history before making another paid call.';
     save({...job, status:'failed', message:reason});
-  } finally { active = undefined; }
+  } finally { active = undefined; pump(); }
 }
 
 function json(res, status, data) {
@@ -79,12 +108,31 @@ const server = http.createServer(async (req, res) => {
       return res.end(fs.readFileSync(path.join(demo,assets.get(req.url))));
     }
     if (req.method === 'GET' && req.url === '/api/status') return json(res,200,{live:true});
+    if (req.method === 'POST' && req.url === '/api/answers') {
+      if (req.headers.origin !== origin || req.headers['content-type'] !== 'application/json') return json(res,403,{message:'Open the workbench to add responses.'});
+      let body='';
+      for await (const part of req) { body+=part; if (body.length>12000) return json(res,413,{message:'Response too long.'}); }
+      let input;
+      try { input=JSON.parse(body); } catch { return json(res,400,{message:'Invalid response.'}); }
+      if (!validId.test(input?.id) || !validId.test(input?.submissionId) || !fs.existsSync(record(input.id))) return json(res,404,{message:'Unknown study.'});
+      const job=read(input.id);
+      if (job.status!=='returned') return json(res,409,{message:'Wait for the draft.'});
+      if (job.receipts?.includes(input.submissionId)) return json(res,200,clientJob(job));
+      const r=job.adaptive ||= initialRound(job.source==='ttwo'?2:1,job.text);
+      if (r.status!=='waiting' || input.round!==r.number) return json(res,409,{message:'This round has moved on. Refresh to see the latest decision.'});
+      if (typeof input.answer!=='string' || !input.answer.trim() || input.answer.length>1800) return json(res,400,{message:'Enter one anonymous participant’s answers, up to 1,800 characters.'});
+      r.responses.push({source:'human',count:1,answer:input.answer.trim()});
+      (job.receipts ||= []).push(input.submissionId);
+      if (eligible(r)) queueReview(r);
+      save(job); pump();
+      return json(res,200,clientJob(read(job.id)));
+    }
     if (req.method === 'GET' && req.url.startsWith('/api/draft/')) {
       const id = req.url.slice('/api/draft/'.length);
       if (!validId.test(id) || !fs.existsSync(record(id))) return json(res,404,{message:'Unknown request.'});
       const job = read(id);
       if (job.status === 'pending' && active !== id) return json(res,200,{...job,status:'failed',message:'The server restarted. Check the wallet and draft history before another call.'});
-      return json(res,200,job);
+      return json(res,200,clientJob(job));
     }
     if (req.method !== 'POST' || req.url !== '/api/draft') return json(res,404,{message:'Unknown route.'});
     if (req.headers.origin !== origin || req.headers['content-type'] !== 'application/json') return json(res,403,{message:'Open the local demo to draft.'});
@@ -98,7 +146,7 @@ const server = http.createServer(async (req, res) => {
     const id = input?.id;
     let objective = typeof input?.objective === 'string' ? input.objective.trim() : '';
     if (typeof id !== 'string' || !validId.test(id)) return json(res,400,{message:'Invalid request ID.'});
-    if (fs.existsSync(record(id))) return json(res,200,read(id));
+    if (fs.existsSync(record(id))) return json(res,200,clientJob(read(id)));
     let source = input.source ?? 'ttwo'; // Requests from the original client always used TTWO evidence.
     let parent;
     const revision = typeof input.revision === 'string' ? input.revision.trim() : '';
@@ -112,6 +160,16 @@ const server = http.createServer(async (req, res) => {
     }
     if (!['new','ttwo'].includes(source) || !objective || objective.length > 500)
       return json(res,400,{message:'Choose a study source and enter an objective (up to 500 characters).'});
+    if (input.adaptivePilot === true && !parent && source === 'ttwo') {
+      const rows = JSON.parse(evidence);
+      const r = initialRound(1,JSON.stringify(rows.questions));
+      r.responses = rows.paired_answers.map(({source,count,...answer})=>({source,count,answer}));
+      queueReview(r);
+      const stamp=new Date().toISOString();
+      const job={id,objective,source,recordedInput:true,verifiedSeedCounts:rows.verified,status:'returned',started:stamp,finished:stamp,
+        text:'Recorded TTWO round-one questionnaire and complete, paired answers from November 21.',adaptive:r};
+      save(job); pump(); return json(res,202,clientJob(read(id)));
+    }
     if (active) return json(res,409,{message:'A draft is already running. Wait for it to finish.'});
     const job = {id, objective, source, version: (parent?.version || (parent ? 1 : 0)) + 1,
       ...(parent && {parentId: parent.id, revision}), status:'pending', started:new Date().toISOString()};
@@ -121,4 +179,11 @@ const server = http.createServer(async (req, res) => {
     return json(res,202,job);
   } catch { return json(res,500,{message:'Could not read or save the local request.'}); }
 });
-server.listen(port,host,() => console.log('Field Alpha demo: ' + origin));
+for (const name of fs.readdirSync(directory)) {
+  if (!name.endsWith('.json') || !validId.test(name.slice(0,-5))) continue;
+  const job=read(name.slice(0,-5));
+  if (job.adaptive?.status==='reviewing') {
+    job.adaptive.status='failed'; job.adaptive.message='Server restarted during review. Check the saved provider receipt before another call.'; save(job);
+  }
+}
+server.listen(port,host,() => { console.log('Field Alpha demo: ' + origin); pump(); });

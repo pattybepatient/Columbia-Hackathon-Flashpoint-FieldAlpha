@@ -140,7 +140,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 @media(max-width:1000px){.shell{grid-template-columns:160px minmax(0,1fr)}.grid{grid-template-columns:1fr}.rail{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:720px){.shell{display:block}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:6px 12px}.sidebar nav{display:flex;align-items:center;flex-wrap:wrap;gap:3px}.sidebar .navgroup,.sidebar small{display:none}.sidebar button{padding:6px;font-size:13px}.sidebar #recentList{display:flex;overflow-x:auto}.sidebar #recentList button{white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}.desk{padding:18px 14px}.brandrow{min-height:48px}.submit-row{gap:6px}.composer{margin-top:14px}.example-row{gap:5px}}
 .tab-hint{display:none;font-size:12px;font-weight:400;color:var(--muted);margin-left:8px}form:has(textarea:focus:placeholder-shown) .tab-hint{display:inline}
-</style>
+.loop{padding:22px 0 26px;border-bottom:1px solid #c4ccbd;margin-bottom:22px}.loop h2{margin:.35em 0}.loop h3{margin:1em 0 .4em}.loop details{margin:14px 0;padding:14px 16px;background:#edf1e8;border-radius:8px}.loop summary{font-weight:700;cursor:pointer}.loop small{overflow-wrap:anywhere}.loop li{margin-bottom:.6em}.loop .caption{margin:6px 0 12px}.loop p:empty{display:none}</style>
 </head>
 <body>
 <header><div class="brandrow">
@@ -160,14 +160,14 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <div id="compose">
 <p class="workspace-label">Research workspace</p>
 <h1>What do you want to learn?</h1>
-<p class="sub">Give the agent a decision and an audience. Flashpoint will draft a survey you can review and revise here.</p>
+<p class="sub">Give the agent a decision and an audience. Once pilot answers arrive, it decides what to ask next.</p>
 <form id="draftForm" class="composer">
 <label for="objective">Research question <span class="tab-hint" id="tabHint">Tab to fill example</span></label>
 <textarea id="objective" aria-describedby="tabHint" required maxlength="500" rows="3" placeholder="What would make our monthly subscribers switch to an annual plan?"></textarea>
 <div class="evidence-control"><label for="source">Starting evidence</label>
 <select id="source"><option value="new">Fresh study · no prior answers</option><option value="ttwo">GTA VI follow-up · 11 synthetic responses</option></select></div>
-<p id="sourceTip" class="caption" hidden>Round 1: four respondents would pay full price later; three of them capped their price below $70.</p>
-<div class="submit-row"><button class="action" id="sendDraft" disabled>Generate survey draft →</button><span>Up to 0.50 USDC · draft only</span></div></form>
+<p id="sourceTip" class="caption" hidden>The agent reviews 11 paired synthetic answers and decides whether to wait, stop or draft a follow-up.</p>
+<div class="submit-row"><button class="action" id="sendDraft" disabled>Generate survey draft →</button><span>Up to 0.50 USDC · unpublished</span></div></form>
 <div class="example-row"><span>Try an objective</span><button data-example="ttwo">GTA VI purchase timing ↗</button><button data-example="new">Netflix subscriber retention ↗</button></div>
 </div>
 <div id="jobHeader" hidden><p class="workspace-label" id="phaseLabel"></p><h1 id="jobTitle"></h1><p id="jobSource" class="sub"></p></div>
@@ -175,13 +175,25 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <p id="requestState" role="status">Connecting to the workbench…</p>
 <button type="button" class="textbtn" id="check" hidden>Recover this request</button>
 <section id="reply" hidden>
-<div class="output-toolbar"><span id="versionTag"></span><div><button id="reviseJump">Revise draft ↓</button><button id="downloadDraft">Download draft</button></div></div>
+<section id="agentLoop" class="loop" aria-labelledby="loopTitle">
+<p class="workspace-label">Adaptive research · Flashpoint MCP</p>
+<h2 id="loopTitle"></h2><p id="loopStatus" role="status"></p>
+<p id="verifiedSeed" class="caption" hidden></p><div id="decisionLog"></div><button type="button" class="textbtn" id="copyStudy">Copy study link for teammates</button><span id="copyNotice" role="status"></span>
+<div id="nextSurvey" hidden><h3 id="questionSetTitle">Next-round survey · unpublished</h3><ol id="nextQuestions" style="white-space:pre-line"></ol></div>
+<form id="answerForm" class="revision-box">
+<label for="pilotAnswer">Your answers for this round <span class="tab-hint">Tab to fill question labels</span></label>
+<p class="caption" id="intakeHelp"></p>
+<textarea id="pilotAnswer" rows="3" maxlength="1800" required aria-describedby="intakeHelp" placeholder="Q1: "></textarea>
+<div class="submit-row"><button class="action" id="answerSend">Submit my response →</button><span>Automatic agent review · up to 0.50 USDC per review</span></div>
+</form><p id="answerNotice" role="status"></p>
+</section>
+<div class="output-toolbar"><span id="versionTag"></span><div><button id="reviseJump">Revise draft ↓</button><button id="downloadDraft">Download study</button></div></div>
 <div id="draftText"></div><p id="receipt"></p>
-<form id="revisionForm" class="revision-box"><label for="revision">What should the agent change? <span class="tab-hint" id="revisionTabHint">Tab to fill example</span></label><textarea id="revision" aria-describedby="revisionTabHint" maxlength="500" rows="2" required placeholder="For example, add an option for people who would wait for a discount."></textarea>
+<form id="revisionForm" class="revision-box"><label for="revision">Optional edit · What would you change in this draft? <span class="tab-hint" id="revisionTabHint">Tab to fill example</span></label><textarea id="revision" aria-describedby="revisionTabHint" maxlength="500" rows="2" required placeholder="For example, add an option for people who would wait for a discount."></textarea>
 <div class="submit-row"><button class="action">Generate revised copy →</button><span>Up to 0.50 USDC · saves a new version</span></div></form>
 </section>
 <button class="textbtn" id="startOver" hidden>Start another study</button>
-<div class="helper"><b>How the research works</b><span>Flashpoint selects the audience, fields surveys and exports responses. The agent checks what it still needs to learn.</span><button id="helpGuide" class="textbtn">Explore the six steps →</button></div>
+<div class="helper"><b>How the research works</b><span>Set an objective → draft a survey → collect anonymous pilot replies → let the agent wait, ask or finish. Download the evidence and findings here.</span><button id="helpGuide" class="textbtn">Explore the six steps →</button></div>
 </section>
 
 <section hidden class="pipeline" aria-label="Research workflow">
@@ -314,7 +326,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
         <p class="label">What we would build next</p>
         <ul class="plain">
           <li>Field the same rounds to a recruited Flashpoint panel of console owners.</li>
-          <li>Have the agent wait for a set number of human answers before it writes the next round.</li>
+          <li>Connect a published Flashpoint survey to the workbench for automatic human-response imports.</li>
           <li>Field the Netflix draft and evaluate its answers in a second full study.</li>
         </ul>
       </div>
@@ -332,7 +344,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <tr><th>Ticker &amp; filings</th><td>TTWO · case filing inputs</td><td>NFLX · use <code>seed-sec</code> before valuation</td></tr>
 <tr><th>Stop when</th><td>Purchase timing, spend and duration are available</td><td>Draft-only pilot ends after the checked questionnaire</td></tr></tbody></table></div>
 <div class="card"><p class="label">Shared procedure</p><h2>Carry over the survey loop</h2><p>Use the same MCP call order, 0.50 USDC per-call cap, and evidence log with round, tool, timestamp, cost and artifact.</p>
-<p><b>Planned option</b> · Wait for N completed human responses before advancing. This threshold is not implemented.</p></div></div>
+<p><b>Response intake</b> · The live pilot reviews at three replies. Polling external Flashpoint surveys for a configurable human quota is planned.</p></div></div>
 <article class="card case-card"><p class="label">NFLX · unpublished draft · 0.50 USDC</p><h2>Would a $2 increase change a subscriber’s plan?</h2><p>One fresh <code>tool_survey</code> call produced two screeners and two decision questions from the Netflix brief alone. No invitations or responses. No Netflix valuation was run.</p><details><summary>S1 · Do you currently have an active Netflix subscription that you personally pay for?</summary><ol><li>Yes</li><li>No</li></ol></details><details><summary>S2 · Which of the following best describes the Netflix plan you are currently paying for?</summary><ol><li>Standard with Ads (lower monthly price, includes advertisements)</li><li>Standard (no ads)</li><li>Premium (no ads, supports more simultaneous streams)</li><li>I am not sure which plan I have</li></ol></details><details open><summary>Q1 · Imagine — hypothetically — that the monthly price of your current ad-free Netflix plan increased by $2. No such price change has been announced; this is a scenario question only. Which of the following would you most likely do?</summary><ol><li>Keep my current ad-free plan at the new, higher price</li><li>Switch to a lower-cost Netflix plan that includes ads</li><li>Cancel my Netflix subscription entirely</li><li>Pause my subscription temporarily and reassess</li><li>Not sure — it would depend on other factors at the time</li></ol></details><details><summary>Q2 · Which single factor would most influence your decision in that hypothetical scenario?</summary><ol><li>The dollar amount of the increase relative to what I already pay</li><li>My personal tolerance for watching advertisements</li><li>The quality and availability of Netflix content at that time</li><li>Whether competing streaming services offer better value</li><li>My overall household budget and other subscription costs</li><li>Something else or no single factor stands out</li></ol></details><p class="caption">Draft check: 0 blockers, 0 errors. Before fielding, verify age and US residency at recruitment or add an eligibility question. The saved screeners check payment and plan type.</p><p class="caption">Flashpoint survey ID · <code>8f22b84d-c38e-4b1e-91aa-132c09e03e8b</code></p></article>
 </section></div></main>
 
@@ -625,7 +637,7 @@ function drawRecent() {
     const button = document.createElement('button');
     button.textContent = 'v' + item.version + ' · ' + item.objective;
     button.disabled = !local || current?.status === 'pending';
-    button.onclick = async () => { mode(true); current = {id:item.id}; await poll(); };
+    button.onclick = async () => { clearTimeout(timer); mode(true); current = {id:item.id}; await poll(); };
     list.append(button);
   }
 }
@@ -643,6 +655,7 @@ const freshExample = field.placeholder;
 byId('source').onchange = () => {
   const paired = byId('source').value === 'ttwo';
   byId('sourceTip').hidden = !paired;
+  if (local) send.textContent = paired ? 'Review Round 1 answers →' : 'Generate survey draft →';
   field.placeholder = paired ? 'What would make players who plan to wait buy GTA VI at full price?' : freshExample;
 };
 document.addEventListener('keydown', event => {
@@ -667,19 +680,116 @@ document.querySelectorAll('[data-example]').forEach(button => {
 byId('reviseJump').onclick = () => { byId('revision').focus(); };
 byId('downloadDraft').onclick = () => {
   if (current?.status !== 'returned') return;
-  const body = ['# Survey draft',current.objective,current.text,byId('receipt').textContent].join('\n\n');
+  const body = ['# Field Alpha study',current.objective,current.text,byId('receipt').textContent,current.verifiedSeedCounts ? 'Verified source counts: '+current.verifiedSeedCounts : '',current.evidenceNote || '',...(current.adaptive?.history || []).map(decisionText)].join('\n\n');
   const url = URL.createObjectURL(new Blob([body],{type:'text/markdown;charset=utf-8'}));
   const link = document.createElement('a'); link.href = url;
   link.download = 'Field-Alpha-draft-v' + (current.version || 1) + '.md'; link.click();
   setTimeout(() => URL.revokeObjectURL(url),1000);
 };
 byId('startOver').onclick = startNew; byId('sideNew').onclick = startNew;
+
+let lastLoop, displayedRound = '', writingAnswer = false, readSequence = 0;
+function decisionText(entry) {
+  const d = entry.decision;
+  return ['Round ' + entry.round + ' · ' + d.action,
+    entry.counts.human + ' human · ' + entry.counts.synthetic + ' synthetic',
+    'Rule: ' + d.rule, 'Evidence: ' + d.evidence, 'Finding: ' + d.finding,
+    'Limits: ' + d.limitations, ...d.questions, entry.surveyId ? 'Unpublished survey ' + entry.surveyId : '',
+    'Review cost: ' + (entry.cost ?? 'unavailable') + ' USDC'].filter(Boolean).join('\n');
+}
+function displayLoop(job) {
+  const r = job.adaptive || {number:job.source==='ttwo'?2:1,status:'waiting',minimum:3,counts:{human:0,synthetic:0},history:[]};
+  const last = r.history.at(-1);
+  const key = job.id + ':' + r.number;
+  if (displayedRound !== key) {
+    displayedRound = key; byId('copyNotice').textContent = '';
+    byId('pilotAnswer').value = ''; byId('answerNotice').textContent = '';
+  }
+  const total = r.counts.human + r.counts.synthetic;
+  const states = {waiting:'Waiting for pilot answers',queued:'Agent review queued',reviewing:'Agent is reviewing the answers',complete:'Research complete',failed:'Review needs attention'};
+  byId('loopTitle').textContent = 'Round ' + r.number + ' · ' + states[r.status];
+  byId('loopStatus').textContent = r.counts.human + ' human · ' + r.counts.synthetic + ' synthetic. ' +
+    (r.status === 'waiting' ? 'The agent reviews at ' + r.minimum + ' responses (' + Math.max(0,r.minimum-total) + ' more).'
+    : r.status === 'failed' ? r.message : r.status === 'complete' ? 'Read the conclusion below or download the study.' : 'The decision and its supporting evidence will appear here.');
+  const checked = byId('verifiedSeed');
+  checked.hidden = !job.verifiedSeedCounts;
+  checked.textContent = job.verifiedSeedCounts ? 'Checked against the original export · ' + job.verifiedSeedCounts + (job.evidenceNote ? ' '+job.evidenceNote : '') : '';
+  const log = byId('decisionLog'); log.replaceChildren();
+  function node(target,tag,text) {
+    const el = document.createElement(tag); el.textContent = text; target.append(el); return el;
+  }
+  for (const entry of [...r.history].reverse()) {
+    const d = entry.decision, block = document.createElement('details');
+    block.open = entry === last;
+    node(block,'summary','Round ' + entry.round + ' decision · ' + d.action);
+    for (const [label,value] of [['Rule',d.rule],['Agent’s evidence read',d.evidence],['Finding',d.finding],['Limits',d.limitations]]) {
+      const p = node(block,'p',''); node(p,'strong',label + ' · '); p.append(value);
+    }
+    node(block,'small',entry.counts.human + ' human · ' + entry.counts.synthetic + ' synthetic · ' +
+      (entry.cost ?? 'Unreported cost') + ' USDC' + (entry.surveyId ? ' · Unpublished survey ' + entry.surveyId : ''));
+    log.append(block);
+  }
+  const previousAsk = r.history.findLast(entry => entry.decision.action==='ASK' && entry.round===r.number-1);
+  const seeded = job.recordedInput && r.number === 1;
+  const originalQuestions = seeded ? Object.entries(JSON.parse(r.questionnaire)) : [];
+  const questions = seeded ? originalQuestions.map(([label,q]) => label+' · '+q) : previousAsk?.decision.questions || [];
+  byId('questionSetTitle').textContent = seeded ? 'Round 1 · original pilot questions' : 'Next-round survey · unpublished';
+  byId('nextSurvey').hidden = !questions.length;
+  byId('nextQuestions').replaceChildren();
+  for (const q of questions) node(byId('nextQuestions'),'li',q);
+  byId('pilotAnswer').placeholder = seeded ? originalQuestions.map(([q])=>q+': ').join('\n') : Array.from({length:questions.length || 1},(_,i)=>'Q' + (i+1) + ': ').join('\n');
+  const sent = alreadySent(key);
+  byId('answerForm').hidden = r.status !== 'waiting' || sent;
+  byId('intakeHelp').textContent = (questions.length ? 'Use the questions above.' : 'Read the draft below and answer its questions by number.') +
+    ' One response per participant per round. Omit names and contact details. Your answers enter this workbench pilot.';
+  if (sent && r.status === 'waiting') byId('answerNotice').textContent = 'Your response is saved. This page will update as the other replies arrive.';
+  else if (r.status !== 'waiting') byId('answerNotice').textContent = '';
+  const manual = !job.recordedInput && !r.history.length && !total && r.status === 'waiting';
+  byId('revisionForm').hidden = !manual; byId('reviseJump').hidden = !manual;
+}
+byId('copyStudy').onclick = async () => {
+  try {
+    await navigator.clipboard.writeText(location.href);
+    byId('copyNotice').textContent = ' Link copied. Share within your team.';
+  } catch { byId('copyNotice').textContent = ' Copy the address from your browser.'; }
+};
+const submittedHere = new Set();
+function alreadySent(key) {
+  try { return submittedHere.has(key) || localStorage.getItem('pilot-sent:' + key)==='1'; } catch { return submittedHere.has(key); }
+}
+byId('answerForm').onsubmit = async event => {
+  event.preventDefault();
+  if (writingAnswer || !current) return;
+  const input=byId('pilotAnswer'), answer=input.value.trim(), id=current.id;
+  if (!answer.replace(/(^|\n)\s*Q\d+\s*:\s*/gi,'').trim()) {
+    input.setCustomValidity('Add your own answer after the question label.'); input.reportValidity(); return;
+  }
+  const round=current.adaptive?.number || (current.source==='ttwo'?2:1), key=id+':'+round;
+  writingAnswer=true; byId('answerSend').disabled=true;
+  // Retain the same receipt across retries, including after a lost response.
+  let submissionId=crypto.randomUUID();
+  try {
+    submissionId=sessionStorage.getItem('pilot-id:'+key) || submissionId;
+    sessionStorage.setItem('pilot-id:'+key,submissionId);
+  } catch {}
+  try {
+    const job=await readResponse(await fetch('api/answers',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id,round,answer,submissionId})}));
+    submittedHere.add(key); try { localStorage.setItem('pilot-sent:'+key,'1'); } catch {}
+    if (current?.id===id) { readSequence++; input.value=''; showJob(job); }
+  } catch(error) {
+    if (current?.id===id) byId('answerNotice').textContent=error.message || 'Submission unavailable. Try again with the same response.';
+  } finally { writingAnswer=false; byId('answerSend').disabled=false; }
+};
+byId('pilotAnswer').oninput = () => byId('pilotAnswer').setCustomValidity('');
+
 function showJob(job) {
+  const sameJob = current?.id===job.id && current?.status===job.status;
   clearTimeout(timer); remember(job); check.hidden = true;
   const pending = job.status === 'pending', returned = job.status === 'returned';
   busy(pending); byId('compose').hidden = true; byId('jobHeader').hidden = false;
   byId('sideNew').hidden = pending; byId('startOver').hidden = pending; byId('reply').hidden = !returned;
-  byId('phaseLabel').textContent = pending ? 'Draft in progress' : returned ? 'Review your survey' : 'Draft request';
+  byId('phaseLabel').textContent = pending ? 'Draft in progress' : returned ? 'Research workspace' : 'Draft request';
   byId('jobTitle').textContent = job.objective || 'Research objective';
   byId('jobSource').textContent = (job.source || 'ttwo') === 'ttwo' ? 'Based on 11 paired GTA VI responses from the synthetic panel.' : 'Fresh study · based on your research brief.';
   if (pending) {
@@ -689,10 +799,14 @@ function showJob(job) {
       'Your questions and answer options will appear here automatically.');
     timer = setTimeout(poll, 1300);
   } else if (returned) {
-    message.textContent = ''; renderDraft(job.text); byId('revision').value = '';
+    message.textContent = '';
+    if (!sameJob) { renderDraft(job.text); byId('revision').value = ''; }
+    if (!sameJob || !byId('loopTitle').textContent || lastLoop !== JSON.stringify(job.adaptive)) displayLoop(job);
+    lastLoop = JSON.stringify(job.adaptive);
+    if (!['complete','failed'].includes(job.adaptive?.status)) timer=setTimeout(poll,['reviewing','queued'].includes(job.adaptive?.status)?1700:5000);
     const version = job.version || 1;
-    byId('versionTag').textContent = 'Unpublished draft · Version ' + version;
-    byId('receipt').textContent = [new Date(job.finished).toLocaleString(),
+    byId('versionTag').textContent = job.recordedInput ? 'Original study input · November 21' : 'Original unpublished draft · Version ' + version;
+    byId('receipt').textContent = job.recordedInput ? 'Source · TTWO Round 1 redacted export' : [new Date(job.finished).toLocaleString(),
       'Wallet balance change: ' + job.walletDelta + ' USDC',
       job.surveyId ? 'Survey ' + job.surveyId : 'Request ' + job.id].join(' · ');
     recent = [{id:job.id,objective:job.objective,version},...recent.filter(entry => entry.id !== job.id)].slice(0,8);
@@ -701,14 +815,14 @@ function showJob(job) {
   drawRecent();
 }
 async function poll() {
-  const id = current?.id;
+  const id = current?.id, seq=++readSequence;
   if (!id) return;
   try {
     const result = await readResponse(await fetch('api/draft/' + id));
-    if (current?.id === id) showJob(result);
+    if (current?.id === id && seq===readSequence) showJob(result);
   }
   catch (error) {
-    if (current?.id !== id) return;
+    if (current?.id !== id || seq!==readSequence) return;
     if (error.status === 404) {
       current = null; history.replaceState(null, '', location.pathname);
       try { sessionStorage.removeItem(storageKey); } catch {}
@@ -726,6 +840,7 @@ async function submitDraft(parent) {
   if (!objective) { field.setCustomValidity('Enter your research question or choose an example below.'); field.reportValidity(); return; }
   const job = {id:crypto.randomUUID(), objective, source:parent ? (parent.source || 'ttwo') : byId('source').value,
     status:'pending',started:new Date().toISOString()};
+  if (!parent && job.source==='ttwo') job.adaptivePilot=true;
   if (parent) {
     job.parentId = parent.id; job.revision = byId('revision').value.trim();
     if (!job.revision) return;
@@ -780,6 +895,13 @@ async function initLive() {
   try { previous = JSON.parse(sessionStorage.getItem(storageKey) || 'null'); } catch {}
   if (linked || previous?.id) { current = {id:linked ? linked[1] : previous.id}; busy(true); await poll(); }
 }
+window.addEventListener('hashchange', async () => {
+  if (!local) return;
+  const id = new URLSearchParams(location.hash.slice(1)).get('draft');
+  if (id && /^[a-f0-9-]{36}$/.test(id) && current?.id !== id) {
+    clearTimeout(timer); current = {id}; mode(true); await poll();
+  }
+});
 initLive();
 </script>
 </body>
