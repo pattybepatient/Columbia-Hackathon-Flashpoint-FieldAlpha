@@ -1,8 +1,25 @@
 # Field Alpha
 
-[**Read the project write-up (PDF)**](docs/Field_Alpha_Project_Writeup_v6.pdf) · [**Live $1,000 MCP Challenge Run Log**](evidence/live_challenge_run_log.md) · [**Download the interactive demo (HTML)**](https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha/raw/refs/heads/main/demo/Field_Alpha_Demo.html)
+[**Download the MCP challenge walkthrough**](https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha/raw/refs/heads/mcp-challenge/demo/Field_Alpha_Agent_Run.html) · [**Read the three-round run log**](evidence/live_challenge_run_log.md) · [**Original project write-up**](docs/Field_Alpha_Project_Writeup_v6.pdf)
 
-To run the demo, right-click the HTML link, choose **Save Link As…**, and save it as `Field_Alpha_Demo.html`. Double-click the file to open it in your browser.
+## Try a live follow-up
+
+Four synthetic respondents planned to buy GTA VI later at full price. Three of those four also set their ceiling below $70. Open the workbench to see the full recorded study, or give the agent an objective and watch it draft its own follow-up to the first round.
+
+For a live call, use Node.js 22.19 or later and Python 3 on the computer holding your Flashpoint wallet. Start from this challenge branch:
+
+```sh
+git clone --branch mcp-challenge https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha.git
+cd Columbia-Hackathon-Flashpoint-FieldAlpha
+npm ci --prefix flashpoint
+node demo/server.mjs
+```
+
+Configure `FLASHPOINT_WALLET_KEY` in your shell or in the ignored `flashpoint/.env` on that computer. Open **http://127.0.0.1:4173**. Edit the research objective and choose **Draft follow-up via MCP**. The local server passes the objective and paired, anonymized Round 1 choices to Flashpoint’s `tool_survey` through the challenge skill. Flashpoint chooses the question wording and creates a new unpublished draft. Each button press authorizes one call capped at **0.50 USDC**. The result displays Flashpoint’s reply, its survey ID when supplied, and the measured wallet balance change. Reloading the tab recovers the current request. Local run records are stored in ignored `.demo-runs/`.
+
+In a live test on November 22, Flashpoint created an unpublished two-question draft for **0.50 USDC**. It asked which signal would trigger a launch-week purchase at $79.99, then tested whether strong reviews would change that choice.
+
+The **Recorded run** tab replays the original three rounds for free. Double-clicking the downloaded HTML also opens that replay offline. For the business use case, select **Who it is for** in the replay.
 
 Field Alpha pairs **autonomous multi-round consumer surveys via Flashpoint MCP** (paid per call in Base USDC over x402) with **deterministic DCF and Reverse-DCF valuation via FinRobot** to test equity theses from primary consumer behavior.
 
@@ -93,7 +110,7 @@ python3 skills/field-alpha-research/scripts/finrobot_analyze.py valuate \
 
 To launch a brand-new autonomous multi-round study in **Hermes Agent**, **Claude Code**, or **Cursor**, load `skills/field-alpha-research/SKILL.md` and pass a single high-level objective (enforces `$0.50` max per MCP call, configurable total-run USDC ceiling, and write-once `.marker` files so slow worker calls never double-bill).
 
-## Run the demo
+## Run the original pre-launch demo
 
 No installation, accounts or API keys needed. Open `demo/Field_Alpha_Demo.html` in a desktop browser (tested in Chrome). Source links need internet access.
 

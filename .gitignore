@@ -16,3 +16,5 @@ gta-count-*.tmp
 *.local.txt
 *.local.json
 *recipients*.txt
+
+/.demo-runs/
