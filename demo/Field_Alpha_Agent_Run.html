@@ -139,6 +139,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 #requestState{color:var(--muted);margin:10px 0}.grid{grid-template-columns:minmax(0,1.45fr) minmax(240px,1fr)}
 @media(max-width:1000px){.shell{grid-template-columns:160px minmax(0,1fr)}.grid{grid-template-columns:1fr}.rail{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:720px){.shell{display:block}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:6px 12px}.sidebar nav{display:flex;align-items:center;flex-wrap:wrap;gap:3px}.sidebar .navgroup,.sidebar small{display:none}.sidebar button{padding:6px;font-size:13px}.sidebar #recentList{display:flex;overflow-x:auto}.sidebar #recentList button{white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}.desk{padding:18px 14px}.brandrow{min-height:48px}.submit-row{gap:6px}.composer{margin-top:14px}.example-row{gap:5px}}
+#tabHint{display:none;font-size:12px;font-weight:400;color:var(--muted);margin-left:8px}.composer:has(#objective:focus:placeholder-shown) #tabHint{display:inline}
 </style>
 </head>
 <body>
@@ -161,8 +162,8 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <h1>What do you want to learn?</h1>
 <p class="sub">Give the agent a decision and an audience. Flashpoint will draft a survey you can review and revise here.</p>
 <form id="draftForm" class="composer">
-<label for="objective">Research question</label>
-<textarea id="objective" required maxlength="500" rows="3" placeholder="What would make our monthly subscribers switch to an annual plan?"></textarea>
+<label for="objective">Research question <span id="tabHint">Tab to fill example</span></label>
+<textarea id="objective" aria-describedby="tabHint" required maxlength="500" rows="3" placeholder="What would make our monthly subscribers switch to an annual plan?"></textarea>
 <div class="evidence-control"><label for="source">Starting evidence</label>
 <select id="source"><option value="new">Fresh study · no prior answers</option><option value="ttwo">GTA VI follow-up · 11 synthetic responses</option></select></div>
 <p id="sourceTip" class="caption" hidden>Round 1: four respondents would pay full price later; three of them capped their price below $70.</p>
@@ -635,10 +636,23 @@ function startNew() {
   try { sessionStorage.removeItem(storageKey); } catch {}
   for (const key of ['reply','jobHeader','startOver','sideNew','check']) byId(key).hidden = true;
   byId('compose').hidden = false; field.value = ''; byId('source').value = 'new';
-  byId('sourceTip').hidden = true; busy(false); mode(true); message.textContent = '';
+  byId('source').onchange(); busy(false); mode(true); message.textContent = '';
   field.focus(); drawRecent();
 }
-byId('source').onchange = () => { byId('sourceTip').hidden = byId('source').value !== 'ttwo'; };
+const freshExample = field.placeholder;
+byId('source').onchange = () => {
+  const paired = byId('source').value === 'ttwo';
+  byId('sourceTip').hidden = !paired;
+  field.placeholder = paired ? 'What would make players who plan to wait buy GTA VI at full price?' : freshExample;
+};
+field.addEventListener('keydown', event => {
+  if (event.key !== 'Tab' || event.shiftKey || event.ctrlKey || event.altKey || event.metaKey ||
+      event.isComposing || event.repeat || field.value !== '') return;
+  event.preventDefault();
+  field.value = field.placeholder;
+  field.setSelectionRange(field.value.length, field.value.length);
+  field.dispatchEvent(new Event('input', {bubbles:true}));
+});
 document.querySelectorAll('[data-example]').forEach(button => {
   button.onclick = () => {
     const source = button.dataset.example;
