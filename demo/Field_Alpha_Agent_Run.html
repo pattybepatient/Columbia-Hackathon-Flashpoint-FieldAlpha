@@ -117,6 +117,28 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padd
 .rule-jump{background:#f2f5ea;text-align:left;border:1px solid var(--line);padding:10px;display:grid;gap:5px}
 .rule-jump span,.rule-jump small{font-size:13px}.rule-jump small{color:var(--chart)}
 @media(max-width:620px){.rule-nav{grid-template-columns:1fr}.case-card table{font-size:13px}.case-card th{letter-spacing:0}.case-card code{overflow-wrap:anywhere}}
+
+body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0,1fr);max-width:1440px;padding:0;min-height:calc(100vh - 64px)}
+.sidebar{background:#edf1e8;border-right:1px solid var(--line);padding:32px 15px}.sidebar nav,.sidebar #recentList{display:grid;gap:4px}
+.navgroup,.workspace-label,.composer label,.revision-box label{font-size:13px;font-weight:700}
+.navgroup,.workspace-label{letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.navgroup{font-size:11px;margin:22px 9px 7px}.navgroup:first-child{margin-top:0}.sidebar button{border:0;background:transparent;text-align:left;padding:10px;border-radius:5px;line-height:1.35;font-weight:600}
+.sidebar button:hover,.example-row button:hover{background:#e0e8dc}.sidebar button[aria-pressed=true],.sidebar button[aria-expanded=true]{background:#d5e4cf;color:#133d2c}
+.sidebar small{display:block;color:var(--muted);font-weight:400}.sidebar #recentList button{font-size:13px;font-weight:450}
+.desk{min-width:0;padding:clamp(20px,3.6vw,56px);max-width:1200px}.workspace-label{margin-bottom:8px}
+#liveView{max-width:940px}.composer,.revision-box{background:#fffefa;border:1px solid #c1caba;border-radius:9px;padding:clamp(16px,2.2vw,32px);display:grid;gap:12px;margin-top:22px}
+.composer:focus-within{border-color:var(--chart)}.composer textarea,.revision-box textarea{width:100%;resize:vertical;font:inherit;line-height:1.5;color:var(--ink);background:#fcfdf9;border:1px solid #8c9f91;border-radius:5px;padding:12px 14px}
+.composer textarea{font-size:19px}.evidence-control,.submit-row,.output-toolbar,.example-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.evidence-control select{font:inherit;font-size:14px;color:var(--ink);padding:6px;background:white;border:1px solid var(--line);border-radius:4px}
+.submit-row{margin-top:4px}.submit-row span,.example-row span{font-size:13px;color:var(--muted)}
+.example-row{margin:14px 0}.example-row button,.output-toolbar button{border:1px solid var(--line);background:white;border-radius:5px;padding:6px 10px;font-size:13px}
+.helper{margin-top:30px;border-top:1px solid var(--line);padding:16px 0;display:grid;gap:4px;justify-items:start}.helper span{font-size:14px;color:var(--muted)}
+#reply{border:1px solid var(--line);border-radius:8px;background:white;padding:clamp(16px,2.5vw,32px)}
+.output-toolbar{justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px}.output-toolbar span{font-weight:650}.output-toolbar button{margin:3px}
+.revision-box{background:#f3f6ef}.pipeline{margin:0 0 15px}.pipeline>h2{font-size:32px}.pipeline .rail{gap:3px}.pipeline .rail button{padding:7px}
+#requestState{color:var(--muted);margin:10px 0}.grid{grid-template-columns:minmax(0,1.45fr) minmax(240px,1fr)}
+@media(max-width:1000px){.shell{grid-template-columns:160px minmax(0,1fr)}.grid{grid-template-columns:1fr}.rail{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.shell{display:block}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:6px 12px}.sidebar nav{display:flex;align-items:center;flex-wrap:wrap;gap:3px}.sidebar .navgroup,.sidebar small{display:none}.sidebar button{padding:6px;font-size:13px}.sidebar #recentList{display:flex;overflow-x:auto}.sidebar #recentList button{white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}.desk{padding:18px 14px}.brandrow{min-height:48px}.submit-row{gap:6px}.composer{margin-top:14px}.example-row{gap:5px}}
 </style>
 </head>
 <body>
@@ -125,32 +147,47 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padd
   <span class="topnote">Flashpoint MCP Challenge &nbsp;/&nbsp; Research workbench</span>
 </div></header>
 
-<main>
-<section class="pipeline" aria-label="Research workflow">
-<h1>From research question to decision</h1>
+<main class="shell">
+<aside class="sidebar"><nav aria-label="Workbench navigation">
+<p class="navgroup">Research</p><button id="liveTab" aria-pressed="true">Workspace</button><button id="sideNew" hidden>＋ New study</button>
+<button id="guideTab" aria-expanded="false">Workflow guide</button>
+<p class="navgroup">Case library</p>
+<button id="replayTab" aria-pressed="false">TTWO <small>Three-round study</small></button>
+<button id="reuseTab" aria-pressed="false">NFLX <small>Draft pilot</small></button>
+</nav><section id="recentSection" hidden><p class="navgroup">Recent drafts</p><div id="recentList"></div></section></aside>
+<div class="desk"><section id="liveView">
+<div id="compose">
+<p class="workspace-label">Research workspace</p>
+<h1>What do you want to learn?</h1>
+<p class="sub">Give the agent a decision and an audience. Flashpoint will draft a survey you can review and revise here.</p>
+<form id="draftForm" class="composer">
+<label for="objective">Research question</label>
+<textarea id="objective" required maxlength="500" rows="3" placeholder="What would make our monthly subscribers switch to an annual plan?"></textarea>
+<div class="evidence-control"><label for="source">Starting evidence</label>
+<select id="source"><option value="new">Fresh study · no prior answers</option><option value="ttwo">GTA VI follow-up · 11 synthetic responses</option></select></div>
+<p id="sourceTip" class="caption" hidden>Round 1: four respondents would pay full price later; three of them capped their price below $70.</p>
+<div class="submit-row"><button class="action" id="sendDraft" disabled>Generate survey draft →</button><span>Up to 0.50 USDC · draft only</span></div></form>
+<div class="example-row"><span>Try an objective</span><button data-example="ttwo">GTA VI purchase timing ↗</button><button data-example="new">Netflix subscriber retention ↗</button></div>
+</div>
+<div id="jobHeader" hidden><p class="workspace-label" id="phaseLabel"></p><h1 id="jobTitle"></h1><p id="jobSource" class="sub"></p></div>
+<p id="requestState" role="status">Connecting to the workbench…</p>
+<button type="button" class="textbtn" id="check" hidden>Recover this request</button>
+<section id="reply" hidden>
+<div class="output-toolbar"><span id="versionTag"></span><div><button id="reviseJump">Revise draft ↓</button><button id="downloadDraft">Download draft</button></div></div>
+<div id="draftText"></div><p id="receipt"></p>
+<form id="revisionForm" class="revision-box"><label for="revision">What should the agent change?</label><textarea id="revision" maxlength="500" rows="2" required placeholder="For example, add an option for people who would wait for a discount."></textarea>
+<div class="submit-row"><button class="action">Generate revised copy →</button><span>Up to 0.50 USDC · saves a new version</span></div></form>
+</section>
+<button class="textbtn" id="startOver" hidden>Start another study</button>
+<div class="helper"><b>How the research works</b><span>Flashpoint selects the audience, fields surveys and exports responses. The agent checks what it still needs to learn.</span><button id="helpGuide" class="textbtn">Explore the six steps →</button></div>
+</section>
+
+<section hidden class="pipeline" aria-label="Research workflow">
+<h2>From research question to decision</h2>
 <p class="pipeline-intro">Flashpoint MCP selects the audience, fields surveys and exports answers. The agent uses those answers to choose its next question.</p>
 <p id="flowCase" class="label" style="margin-bottom:6px">TTWO · completed study</p><div class="rail" aria-label="Inspect a workflow step"><button type="button" data-stage="1" aria-controls="stage-1" aria-pressed="false"><small>01 · Research brief</small><b>Frame the decision</b><span class="cost">0.00 USDC</span></button><button type="button" data-mcp data-stage="2" aria-controls="stage-2" aria-pressed="false"><small>02 · Flashpoint MCP</small><b>Choose the audience</b><span class="cost">0.55 USDC</span></button><button type="button" data-mcp data-stage="3" aria-controls="stage-3" aria-pressed="false"><small>03 · Flashpoint MCP</small><b>Design &amp; field</b><span class="cost">7.80 USDC</span></button><button type="button" data-mcp data-stage="4" aria-controls="stage-4" aria-pressed="false"><small>04 · Flashpoint MCP</small><b>Export &amp; decide</b><span class="cost">3.00 USDC</span></button><button type="button" data-stage="5" aria-controls="stage-5" aria-pressed="false"><small>05 · FinRobot</small><b>Model scenarios</b><span class="cost">0.00 USDC</span></button><button type="button" data-stage="6" aria-controls="stage-6" aria-pressed="false"><small>06 · Research output</small><b>Deliver the brief</b><span class="cost">0.00 USDC</span></button></div><article class="stage-panel" id="stage-1" hidden><h2>Step 1 · Frame the decision</h2><dl><div><dt>Input</dt><dd>One investment question and a company.</dd></div><div><dt>Output</dt><dd>A decision brief with a target audience and the inputs the analyst needs.</dd></div><div><dt>Tool / action</dt><dd>Agent · no Flashpoint tool</dd></div></dl><small>Brief received at 4:10 pm ET. Scoping duration was not logged.</small></article><article class="stage-panel" id="stage-2" hidden><h2>Step 2 · Choose the audience</h2><dl><div><dt>Input</dt><dd>US adult gamers and the study’s eligibility criteria.</dd></div><div><dt>Output</dt><dd>Census context and a 12-persona synthetic panel for the rapid pilot.</dd></div><div><dt>Tool / action</dt><dd>demographics → panel(create)</dd></div></dl><small>49.5 s of provider time: 13.1 s for demographics and 36.4 s for panel creation.</small></article><article class="stage-panel" id="stage-3" hidden><h2>Step 3 · Design &amp; field</h2><dl><div><dt>Input</dt><dd>An objective or follow-up brief, an audience and a consented email list.</dd></div><div><dt>Output</dt><dd>A checked questionnaire, published survey and invitations. The panel answers each round.</dd></div><div><dt>Tool / action</dt><dd>tool_survey: draft + check → publish + confirm → email + confirm · panel(run)</dd></div></dl><small>Three rounds × 2.60 USDC (draft/check 0.50, publish 1.00, email 1.00, panel run 0.10). Draft receipt to email confirmation: R1 1m 36s · R2 1m 08s · R3 1m 08s. These intervals exclude draft creation and panel execution.</small></article><article class="stage-panel" id="stage-4" hidden><h2>Step 4 · Export &amp; decide</h2><dl><div><dt>Input</dt><dd>The survey ID, completed answers and required model inputs.</dd></div><div><dt>Output</dt><dd>Redacted paired answers and an agent decision: ask again at step 3 or hand off at step 5.</dd></div><div><dt>Tool / action</dt><dd>tool_survey: export_xlsx → agent reviews paired answers</dd></div></dl><small>Six exports × 0.50 USDC (initial and refreshed exports in each round). First panel/export receipts: 4:14:55, 4:21:15 and 4:25:45 pm ET. Export duration and later refresh times were not logged separately.</small></article><article class="stage-panel" id="stage-5" hidden><h2>Step 5 · Model scenarios</h2><dl><div><dt>Input</dt><dd>Observed choices, spend bands, retention assumptions and filing-backed financial inputs.</dd></div><div><dt>Output</dt><dd>Revenue and valuation scenarios with explicit model assumptions.</dd></div><div><dt>Tool / action</dt><dd>FinRobot · DCF and reverse DCF</dd></div></dl><small>Local calculation. Runtime was not recorded.</small></article><article class="stage-panel" id="stage-6" hidden><h2>Step 6 · Deliver the brief</h2><dl><div><dt>Input</dt><dd>Scenario results, sample sources, decision log and survey evidence.</dd></div><div><dt>Output</dt><dd>An analyst brief explaining the decision, the supporting evidence and what remains uncertain.</dd></div><div><dt>Tool / action</dt><dd>Agent · report and evidence log</dd></div></dl><small>Local report. Writing time was not recorded.</small></article>
 <p class="run-total">TTWO · three rounds · 11.35 USDC in Flashpoint calls, including export refreshes · 15m 25s from run start to the third initial export.</p>
 <button type="button" class="case-switch" id="configLink">Switch company: change the question, audience and ticker / filing inputs →</button>
-</section>
-<nav class="modes" aria-label="Research mode">
-<button id="liveTab" aria-pressed="true">TTWO · Live follow-up</button><button id="replayTab" aria-pressed="false">TTWO · Recorded run</button><button id="reuseTab" aria-pressed="false">Switch case · NFLX</button>
-</nav>
-<section id="liveView">
-<div class="livehead"><h1>What should we ask next?</h1>
-<p class="sub">Choose a research objective for the GTA VI panel. The agent reads its round-one answers and drafts a follow-up through Flashpoint MCP.</p></div>
-<div class="livegrid">
-<article class="signal"><p class="label">Evidence from round one</p>
-<h2>Four would pay full price later. Three of them capped their price below $70.</h2>
-<p>The Standard Edition was priced at $79.99.</p><p>11 completed responses · synthetic panel · recorded Nov 21</p></article>
-<form class="card drafter" id="draftForm">
-<label for="objective">GTA VI follow-up objective</label><select id="objective"><option>Find out what would make players who plan to wait buy GTA VI at full price.</option><option>Test whether reviews or a price cut would change GTA VI purchase timing.</option><option>Find out which paid GTA VI content players would buy after launch.</option></select>
-<button class="action" id="sendDraft" disabled>Draft follow-up via MCP</button>
-<p class="caption">One draft · up to 0.50 USDC · no invitations sent</p>
-<p id="requestState" role="status">Checking local connection…</p>
-<button type="button" class="textbtn" id="check" hidden>Check this request</button>
-</form></div>
-<section class="card" id="reply" hidden><p class="label">Flashpoint MCP response</p><h2>Follow-up draft</h2><div id="draftText"></div><p id="receipt"></p></section>
 </section>
 <div id="replayView" hidden>
 <p class="eyebrow">Recorded run · November 21</p>
@@ -295,7 +332,7 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padd
 <div class="card"><p class="label">Shared procedure</p><h2>Carry over the survey loop</h2><p>Use the same MCP call order, 0.50 USDC per-call cap, and evidence log with round, tool, timestamp, cost and artifact.</p>
 <p><b>Planned option</b> · Wait for N completed human responses before advancing. This threshold is not implemented.</p></div></div>
 <article class="card case-card"><p class="label">NFLX · unpublished draft · 0.50 USDC</p><h2>Would a $2 increase change a subscriber’s plan?</h2><p>One fresh <code>tool_survey</code> call produced two screeners and two decision questions from the Netflix brief alone. No invitations or responses. No Netflix valuation was run.</p><details><summary>S1 · Do you currently have an active Netflix subscription that you personally pay for?</summary><ol><li>Yes</li><li>No</li></ol></details><details><summary>S2 · Which of the following best describes the Netflix plan you are currently paying for?</summary><ol><li>Standard with Ads (lower monthly price, includes advertisements)</li><li>Standard (no ads)</li><li>Premium (no ads, supports more simultaneous streams)</li><li>I am not sure which plan I have</li></ol></details><details open><summary>Q1 · Imagine — hypothetically — that the monthly price of your current ad-free Netflix plan increased by $2. No such price change has been announced; this is a scenario question only. Which of the following would you most likely do?</summary><ol><li>Keep my current ad-free plan at the new, higher price</li><li>Switch to a lower-cost Netflix plan that includes ads</li><li>Cancel my Netflix subscription entirely</li><li>Pause my subscription temporarily and reassess</li><li>Not sure — it would depend on other factors at the time</li></ol></details><details><summary>Q2 · Which single factor would most influence your decision in that hypothetical scenario?</summary><ol><li>The dollar amount of the increase relative to what I already pay</li><li>My personal tolerance for watching advertisements</li><li>The quality and availability of Netflix content at that time</li><li>Whether competing streaming services offer better value</li><li>My overall household budget and other subscription costs</li><li>Something else or no single factor stands out</li></ol></details><p class="caption">Draft check: 0 blockers, 0 errors. Before fielding, verify age and US residency at recruitment or add an eligibility question. The saved screeners check payment and plan type.</p><p class="caption">Flashpoint survey ID · <code>8f22b84d-c38e-4b1e-91aa-132c09e03e8b</code></p></article>
-</section></main>
+</section></div></main>
 
 <footer><div>Field Alpha · Patrick Xiong, Haotian Jiang, Rong Du · Flashpoint AI × Columbia AI Club Hackathon. Survey data: redacted Flashpoint exports of November 21, 2026 (<code>evidence/round1..3_responses_redacted.csv</code>). Valuation: FinRobot operators on Take-Two filing inputs. Times are New York time.</div></footer>
 
@@ -498,7 +535,12 @@ function workflowCase(netflix) {
   byId('flowCase').textContent = netflix ? 'NFLX · draft-only pilot' : 'TTWO · completed study';
   timeLabel.textContent = netflix ? 'NFLX · 1 draft call · 0.50 USDC · 0 invitations · 0 responses' : ttwoTotal;
 }
+function guideOpen(open) {
+  document.querySelector('.pipeline').hidden = !open;
+  byId('guideTab').setAttribute('aria-expanded', String(open));
+}
 function mode(live) {
+  guideOpen(!live);
   workflowCase(false);
   byId('reuseView').hidden = true; byId('reuseTab').setAttribute('aria-pressed','false');
   selectStage(live ? 3 : [1,4,4,4,5,6][cur]);
@@ -507,6 +549,7 @@ function mode(live) {
   byId('replayTab').setAttribute('aria-pressed', String(!live));
 }
 function openCase() {
+  guideOpen(true);
   workflowCase(true);
   for (const key of ['live','replay','reuse']) {
     byId(key+'View').hidden = key !== 'reuse';
@@ -514,6 +557,12 @@ function openCase() {
   }
   selectStage(3);
 }
+byId('guideTab').onclick = () => {
+  const guide = document.querySelector('.pipeline');
+  if (guide.hidden) { guideOpen(true); guide.scrollIntoView({block:'start'}); }
+  else { guideOpen(false); if (!byId('liveView').hidden) byId('liveView').scrollIntoView({block:'start'}); }
+};
+byId('helpGuide').onclick = () => { guideOpen(true); document.querySelector('.pipeline').scrollIntoView({block:'start'}); };
 byId('reuseTab').onclick = openCase;
 byId('configLink').onclick = () => { openCase(); byId('reuseView').scrollIntoView({block:'start'}); };
 document.querySelector('.open-config').onclick = byId('configLink').onclick;
@@ -534,7 +583,7 @@ async function readResponse(response) {
   return data;
 }
 function busy(value) {
-  send.disabled = value || !local; field.disabled = value;
+  send.disabled = value || !local; field.disabled = value; byId('source').disabled = value;
 }
 function renderDraft(report) {
   const output = byId('draftText');
@@ -564,47 +613,105 @@ function renderDraft(report) {
     list = null; append('p',clean);
   }
 }
-function showJob(job) {
-  clearTimeout(timer);
-  remember(job);
-  if (![...field.options].some(option => option.value === job.objective)) {
-    field.add(new Option(job.objective, job.objective));
+const recentKey = storageKey + ':recent:' + location.pathname;
+let recent = [];
+try { recent = JSON.parse(localStorage.getItem(recentKey) || '[]'); } catch {}
+function drawRecent() {
+  byId('recentSection').hidden = !recent.length;
+  const list = byId('recentList'); list.replaceChildren();
+  for (const item of recent) {
+    const button = document.createElement('button');
+    button.textContent = 'v' + item.version + ' · ' + item.objective;
+    button.disabled = !local || current?.status === 'pending';
+    button.onclick = async () => { mode(true); current = {id:item.id}; await poll(); };
+    list.append(button);
   }
-  field.value = job.objective; check.hidden = true;
-  const pending = job.status === 'pending';
-  busy(pending); byId('reply').hidden = job.status !== 'returned';
-  send.textContent = pending ? 'Drafting follow-up…' : 'Draft another follow-up via MCP';
+}
+function startNew() {
+  if (current?.status === 'pending') return;
+  clearTimeout(timer); current = null;
+  history.replaceState(null, '', location.pathname);
+  try { sessionStorage.removeItem(storageKey); } catch {}
+  for (const key of ['reply','jobHeader','startOver','sideNew','check']) byId(key).hidden = true;
+  byId('compose').hidden = false; field.value = ''; byId('source').value = 'new';
+  byId('sourceTip').hidden = true; busy(false); mode(true); message.textContent = '';
+  field.focus(); drawRecent();
+}
+byId('source').onchange = () => { byId('sourceTip').hidden = byId('source').value !== 'ttwo'; };
+document.querySelectorAll('[data-example]').forEach(button => {
+  button.onclick = () => {
+    const source = button.dataset.example;
+    byId('source').value = source; byId('source').onchange();
+    field.value = source === 'ttwo' ? 'What would make players who plan to wait buy GTA VI at full price?' :
+      'If the ad-free plan cost $2 more per month, what would make a US Netflix subscriber stay, switch plans, or cancel?';
+    field.focus();
+  };
+});
+byId('reviseJump').onclick = () => { byId('revision').focus(); };
+byId('downloadDraft').onclick = () => {
+  if (current?.status !== 'returned') return;
+  const body = ['# Survey draft',current.objective,current.text,byId('receipt').textContent].join('\n\n');
+  const url = URL.createObjectURL(new Blob([body],{type:'text/markdown;charset=utf-8'}));
+  const link = document.createElement('a'); link.href = url;
+  link.download = 'Field-Alpha-draft-v' + (current.version || 1) + '.md'; link.click();
+  setTimeout(() => URL.revokeObjectURL(url),1000);
+};
+byId('startOver').onclick = startNew; byId('sideNew').onclick = startNew;
+function showJob(job) {
+  clearTimeout(timer); remember(job); check.hidden = true;
+  const pending = job.status === 'pending', returned = job.status === 'returned';
+  busy(pending); byId('compose').hidden = true; byId('jobHeader').hidden = false;
+  byId('sideNew').hidden = pending; byId('startOver').hidden = pending; byId('reply').hidden = !returned;
+  byId('phaseLabel').textContent = pending ? 'Draft in progress' : returned ? 'Review your survey' : 'Draft request';
+  byId('jobTitle').textContent = job.objective || 'Research objective';
+  byId('jobSource').textContent = (job.source || 'ttwo') === 'ttwo' ? 'Based on 11 paired GTA VI responses from the synthetic panel.' : 'Fresh study · based on your research brief.';
   if (pending) {
     const elapsed = Math.max(0, Math.floor((Date.now()-Date.parse(job.started))/1000));
-    message.textContent = 'Waiting for Flashpoint · ' + elapsed + 's elapsed. You can explore the recorded run.';
+    message.textContent = 'Flashpoint is preparing the draft · ' + elapsed + 's elapsed.';
     timer = setTimeout(poll, 1300);
-  } else if (job.status === 'returned') {
-    message.textContent = 'Flashpoint returned a response. Review it below.';
-    renderDraft(job.text);
+  } else if (returned) {
+    message.textContent = ''; renderDraft(job.text); byId('revision').value = '';
+    const version = job.version || 1;
+    byId('versionTag').textContent = 'Unpublished draft · Version ' + version;
     byId('receipt').textContent = [new Date(job.finished).toLocaleString(),
       'Wallet balance change: ' + job.walletDelta + ' USDC',
       job.surveyId ? 'Survey ' + job.surveyId : 'Request ' + job.id].join(' · ');
+    recent = [{id:job.id,objective:job.objective,version},...recent.filter(entry => entry.id !== job.id)].slice(0,8);
+    try { localStorage.setItem(recentKey,JSON.stringify(recent)); } catch {}
   } else message.textContent = job.message;
+  drawRecent();
 }
 async function poll() {
-  try { showJob(await readResponse(await fetch('/api/draft/' + current.id))); }
+  const id = current?.id;
+  if (!id) return;
+  try {
+    const result = await readResponse(await fetch('/api/draft/' + id));
+    if (current?.id === id) showJob(result);
+  }
   catch (error) {
+    if (current?.id !== id) return;
     if (error.status === 404) {
       current = null; history.replaceState(null, '', location.pathname);
       try { sessionStorage.removeItem(storageKey); } catch {}
-      message.textContent = 'This request was not found on this server.'; check.hidden = true; busy(false); return;
+      recent = recent.filter(item => item.id !== id); startNew();
+      message.textContent = 'This request was not found on this server.'; return;
     }
     busy(true); check.hidden = false;
     message.textContent = 'Connection interrupted. Check this request to recover its result.';
   }
 }
 check.onclick = poll;
-form.onsubmit = async event => {
-  event.preventDefault();
-  if (send.disabled || !field.value.trim()) return;
-  busy(true); check.hidden = true; byId('reply').hidden = true;
-  const job = {id:crypto.randomUUID(),objective:field.value.trim(),status:'pending',started:new Date().toISOString()};
-  remember(job); message.textContent = 'Sending the objective and round-one evidence…';
+async function submitDraft(parent) {
+  if (!local || current?.status === 'pending') return;
+  const objective = parent ? parent.objective : field.value.trim();
+  if (!objective) return;
+  const job = {id:crypto.randomUUID(), objective, source:parent ? (parent.source || 'ttwo') : byId('source').value,
+    status:'pending',started:new Date().toISOString()};
+  if (parent) {
+    job.parentId = parent.id; job.revision = byId('revision').value.trim();
+    if (!job.revision) return;
+  }
+  showJob(job); clearTimeout(timer);
   let response;
   try {
     response = await fetch('/api/draft',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(job)});
@@ -613,19 +720,21 @@ form.onsubmit = async event => {
     if (response && response.status < 500) showJob({...job,status:'failed',message:error.message});
     else { message.textContent = 'Request status unknown. Check before starting another draft.'; check.hidden = false; }
   }
-};
+}
+form.onsubmit = event => { event.preventDefault(); submitDraft(null); };
+byId('revisionForm').onsubmit = event => { event.preventDefault(); if (current?.status === 'returned') submitDraft(current); };
 async function initLive() {
   try {
     if (location.protocol !== 'http:') throw Error();
     const status = await readResponse(await fetch('/api/status'));
     if (!status.live) throw Error();
-    local = true; busy(false); message.textContent = 'Local server ready.';
+    local = true; busy(false); message.textContent = ''; drawRecent();
     const linked = /^#draft=([0-9a-f-]{36})$/.exec(location.hash);
     const previous = linked ? {id:linked[1]} : JSON.parse(sessionStorage.getItem(storageKey) || 'null');
     if (previous) { current = previous; busy(true); await poll(); }
   } catch {
-    message.textContent = 'For a live draft, start the local server using the challenge README. The recorded run opens offline.';
-    mode(false);
+    message.textContent = 'For a live draft, start the local server using the challenge README. Open the case library to explore the saved studies.';
+    mode(true);
   }
 }
 initLive();

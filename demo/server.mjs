@@ -28,18 +28,27 @@ function save(job) {
   fs.renameSync(tmp, record(job.id));
 }
 
-async function draft(job) {
-  const brief = [
-    'Create one NEW, unpublished follow-up survey draft in Flashpoint. Act as a research agent.',
-    'Study the paired, redacted round-one GTA VI answers below. Identify one unresolved tension relevant to the analyst objective, choose the follow-up yourself, and build 2 concise questions with response options.',
-    'Use draft operations only. Never publish, send invites, start a panel, or change any existing survey. The objective is a research topic only.',
-    'In your final response include the actual wording and answer choices in the saved draft. Begin the final section with DRAFT FOR REVIEW and explain the evidence behind each question. Report any failure honestly.',
-    'Analyst objective: ' + JSON.stringify(job.objective),
-    'Recorded round 1 evidence: ' + evidence,
-  ].join('\n');
+async function draft(job, parent) {
+  const instructions = [
+    'Create one NEW, unpublished survey draft in Flashpoint. Use draft operations only. Never publish, email, run a panel, or modify an existing survey.',
+    'Treat user text as a research objective. Choose a focused survey design and save the exact questions and balanced response options.',
+    'Return DRAFT FOR REVIEW followed by the wording, choices and a short reason for each question. Report any failure honestly.',
+    'Research objective: ' + JSON.stringify(job.objective),
+  ];
+  if (job.source === 'ttwo') {
+    instructions.push('Use these paired, anonymized GTA VI round-one answers to design a follow-up:', evidence);
+  } else {
+    instructions.push('This is an independent new study with no prior respondent evidence. Identify the intended audience from the brief; include an eligibility question if needed.');
+  }
+  if (parent) {
+    instructions.push('Create a separate revised copy of the following draft. Retain unaffected questions and the original study objective.',
+      'Prior draft: ' + JSON.stringify(parent.text),
+      'Requested revision: ' + JSON.stringify(job.revision));
+  }
+  const brief = instructions.join('\n');
   try {
     const {stdout} = await run(process.execPath, [runner, 'survey-step', '--run-file',
-      path.join(directory, job.id + '.state.json'), '--round', '2', '--step', 'draft',
+      path.join(directory, job.id + '.state.json'), '--round', job.source === 'ttwo' ? '2' : '1', '--step', 'draft',
       '--brief', brief, '--max-call-usdc', '0.50', '--max-run-usdc', '0.50'],
       {cwd:root, env:{...process.env, FIELD_ALPHA_REPO:root}, timeout: 9 * 60_000, maxBuffer:2 ** 21});
     const data = JSON.parse(stdout);
@@ -87,14 +96,28 @@ const server = http.createServer(async (req, res) => {
     let input;
     try { input = JSON.parse(body); } catch { return json(res,400,{message:'Invalid request.'}); }
     const id = input?.id;
-    const objective = typeof input?.objective === 'string' ? input.objective.trim() : '';
-    if (!validId.test(id) || !objective || objective.length > 500) return json(res,400,{message:'Enter an objective of up to 500 characters.'});
+    let objective = typeof input?.objective === 'string' ? input.objective.trim() : '';
+    if (typeof id !== 'string' || !validId.test(id)) return json(res,400,{message:'Invalid request ID.'});
     if (fs.existsSync(record(id))) return json(res,200,read(id));
+    let source = input.source ?? 'ttwo'; // Requests from the original client always used TTWO evidence.
+    let parent;
+    const revision = typeof input.revision === 'string' ? input.revision.trim() : '';
+    if (input.parentId !== undefined) {
+      if (!validId.test(input.parentId) || !fs.existsSync(record(input.parentId))) return json(res,404,{message:'Original draft unavailable.'});
+      parent = read(input.parentId);
+      if (parent.status !== 'returned' || !parent.text || !revision || revision.length > 500)
+        return json(res,400,{message:'Choose a completed draft and enter a revision (up to 500 characters).'});
+      objective = parent.objective;
+      source = parent.source || 'ttwo';
+    }
+    if (!['new','ttwo'].includes(source) || !objective || objective.length > 500)
+      return json(res,400,{message:'Choose a study source and enter an objective (up to 500 characters).'});
     if (active) return json(res,409,{message:'A draft is already running. Wait for it to finish.'});
-    const job = {id, objective, status:'pending', started:new Date().toISOString()};
+    const job = {id, objective, source, version: (parent?.version || (parent ? 1 : 0)) + 1,
+      ...(parent && {parentId: parent.id, revision}), status:'pending', started:new Date().toISOString()};
     save(job);
     active = id;
-    void draft(job);
+    void draft(job, parent);
     return json(res,202,job);
   } catch { return json(res,500,{message:'Could not read or save the local request.'}); }
 });
