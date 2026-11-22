@@ -682,7 +682,9 @@ function showJob(job) {
   byId('jobSource').textContent = (job.source || 'ttwo') === 'ttwo' ? 'Based on 11 paired GTA VI responses from the synthetic panel.' : 'Fresh study · based on your research brief.';
   if (pending) {
     const elapsed = Math.max(0, Math.floor((Date.now()-Date.parse(job.started))/1000));
-    message.textContent = 'Flashpoint is preparing the draft · ' + elapsed + 's elapsed.';
+    message.textContent = 'Waiting for the complete draft from Flashpoint · ' + elapsed + 's. ' +
+      (elapsed >= 60 ? 'Still checking automatically. You can browse the case library and return here.' :
+      'Your questions and answer options will appear here automatically.');
     timer = setTimeout(poll, 1300);
   } else if (returned) {
     message.textContent = ''; renderDraft(job.text); byId('revision').value = '';
