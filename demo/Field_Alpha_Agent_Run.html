@@ -3,10 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Field Alpha · Agent run walkthrough</title>
+<title>Field Alpha · Research workbench</title>
 <style>
+.gap{margin:18px 0 22px;padding:18px 22px;background:var(--nav);color:#f7f8ed;border-left:5px solid var(--gold)}
+.gap .gap-k{margin:0;color:var(--goldsoft);font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.gap .gap-h{margin:4px 0 14px;font-size:22px;line-height:1.3;font-weight:600}
+.gap-line{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:16px;align-items:start;font-size:14px}
+.gap-line b{display:block;font-size:15px}
+.gap-mid{position:relative;border-top:2px dashed var(--goldsoft);text-align:center;padding-top:6px;color:var(--goldsoft)}
+.gap-mid b{color:#fff}
+@media(max-width:640px){.gap-line{grid-template-columns:1fr}.gap-mid{border-top:0;border-left:2px dashed var(--goldsoft);text-align:left;padding:4px 0 4px 10px}}
 :root{--ink:#183c32;--nav:#102b24;--paper:#f6f5ee;--line:#cbcfc2;--soft:#e5e9db;--muted:#56675e;--chart:#32795b;--gold:#c48219;--goldsoft:#e8ad53}
 *{box-sizing:border-box}
+.betick{position:absolute;top:-3px;bottom:-3px;width:2px}
+#anchors .val{grid-template-columns:270px minmax(0,1fr) 60px}@media(max-width:620px){#anchors .val{grid-template-columns:1fr 60px}#anchors .val .vtrack{grid-column:1/-1;grid-row:2}}
+table.calib{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}table.calib th{text-align:left;font-weight:600;color:var(--muted);border-bottom:1px solid var(--line);padding:4px 6px 4px 0}table.calib td{border-bottom:1px solid var(--soft);padding:5px 6px 5px 0;vertical-align:top}table.calib td.n{white-space:nowrap;font-variant-numeric:tabular-nums}table.calib td.ok{color:var(--chart);white-space:nowrap}table.calib td.low{color:var(--gold);font-weight:600}
+.rr-meter{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:16px 0}.rr-meter div{background:#fffefa;border:1px solid var(--line);padding:10px 12px}.rr-meter b{display:block;font-size:24px;font-variant-numeric:tabular-nums}.rr-meter span{font-size:12px;color:var(--muted)}
+.rr-log{list-style:none;padding:0;margin:0 0 14px;border-left:2px solid var(--line)}.rr-log li{display:grid;grid-template-columns:64px minmax(0,1fr) 70px;gap:10px;padding:8px 10px 8px 12px;animation:rrIn .35s ease}.rr-log .t{color:var(--muted);font-size:13px}.rr-log .c{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}.rr-log code{background:var(--soft);padding:1px 5px}
+.rr-log li.decide{background:#fffefa;border:1px solid var(--line);border-left:4px solid var(--gold);margin:6px 0}.rr-log li.human{background:#fbf3e3;border-left:4px solid var(--goldsoft);margin:4px 0}.rr-log li.model,.rr-log li.out{background:#e5eedf;border-left:4px solid var(--chart);margin:6px 0}.rr-log li.round{font-weight:650;padding-top:16px}.rr-log li.update{background:#eef0ea;border:1px dashed var(--muted);margin:2px 0 8px}
+.rr-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;padding:1px 6px;margin-right:6px;background:var(--ink);color:#fff}.rr-tag.stop{background:var(--chart)}
+.rr-controls{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+@keyframes rrIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rr-log li{animation:none}}
+@media(max-width:620px){.rr-meter{grid-template-columns:repeat(2,minmax(0,1fr))}.rr-log li{grid-template-columns:44px minmax(0,1fr) 52px;gap:6px;padding-inline:8px}table.calib{font-size:12px}}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 "Segoe UI",Arial,sans-serif}
 button{font:inherit;color:inherit;cursor:pointer}
 button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
@@ -78,6 +97,33 @@ footer>div{padding-top:14px;padding-bottom:26px}
 code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padding:1px 4px}
 @media (max-width:900px){.grid{grid-template-columns:1fr}.bar{grid-template-columns:1fr 90px 58px}.val{grid-template-columns:130px 1fr 70px}.topnote{margin-left:0}}
 
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:6px 0 14px}
+.tile{background:var(--soft);padding:12px 14px}
+.dark .tile{background:rgba(255,255,255,.08)}
+.tile b{display:block;font-size:26px;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile span{font-size:13px;color:var(--muted)}
+.dark .tile span{color:#cfd8c8}
+.stack-bar{display:flex;height:26px;margin:6px 0 4px}
+.stack-bar>div{display:grid;place-items:center;color:#fff;font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:14px 0 4px;position:relative}
+.tl::before{content:"";position:absolute;left:6px;right:6px;top:6px;border-top:2px solid var(--line)}
+.tl div{position:relative;padding-top:20px;font-size:13px;padding-right:8px}
+.tl div::before{content:"";position:absolute;left:0;top:0;width:14px;height:14px;border-radius:50%;background:var(--chart)}
+.tl b{display:block;font-size:14px}
+.tl em{font-style:normal;color:var(--gold);font-weight:600}
+.rings{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center}
+.ring{width:84px;height:84px;margin:0 auto 6px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--chart) calc(var(--p)*1%),var(--soft) 0)}
+.ring::after{content:attr(data-v);width:62px;height:62px;border-radius:50%;background:#fffefa;display:grid;place-items:center;font-weight:700;font-size:17px}
+.rings small{display:block;font-size:13px;color:var(--muted);line-height:1.35}
+.rings b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.grow{display:flex;align-items:flex-end;gap:18px;height:150px;margin:12px 0 6px;padding-left:4px;border-bottom:1px solid #b9c7a8}
+.grow div{flex:1;background:#5c9e7e;position:relative;min-width:40px}
+.grow div.big{background:var(--goldsoft)}
+.grow div span{position:absolute;top:-22px;left:0;right:0;text-align:center;font-weight:700;font-size:15px}
+.grow-l{display:flex;gap:18px;font-size:13px;color:#cfd8c8;padding-left:4px}
+.grow-l div{flex:1;text-align:center}
+.mix .val,.card .val.sm{grid-template-columns:110px minmax(0,1fr) 56px}
+.chip{display:inline-block;background:var(--soft);padding:2px 8px;font-size:12px;margin:2px 4px 2px 0}
 [hidden]{display:none!important}
 .modes{display:flex;gap:22px;border-bottom:1px solid var(--line);margin:0 0 26px}
 .modes button{border:0;background:transparent;font-size:15px;padding:15px 0 11px;color:var(--muted)}
@@ -118,6 +164,10 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padd
 .rule-jump span,.rule-jump small{font-size:13px}.rule-jump small{color:var(--chart)}
 @media(max-width:620px){.rule-nav{grid-template-columns:1fr}.case-card table{font-size:13px}.case-card th{letter-spacing:0}.case-card code{overflow-wrap:anywhere}}
 
+.mcpfacts{list-style:none;display:flex;flex-wrap:wrap;gap:6px 10px;padding:0;margin:0 0 16px}.mcpfacts li{background:#e5eedf;border-left:3px solid #357451;padding:6px 11px;font-size:14px}.mcpfacts b{font-variant-numeric:tabular-nums}
+.events th:first-child{width:7.5em}.events td small{color:var(--muted);display:block;font-size:12px;margin-top:2px}
+.proof{background:#e5eedf;border-left:3px solid #357451;padding:11px 14px;margin-top:18px;font-size:15px;max-width:none}.proof b{display:block;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}.proof .textbtn{padding:0;font-weight:600}
+@media(max-width:620px){.events thead{display:none}.events tr{display:block;padding:8px 0;border-top:1px solid var(--line)}.events th,.events td{display:block;border:0;padding:2px 0;width:auto}}
 body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0,1fr);max-width:1440px;padding:0;min-height:calc(100vh - 64px)}
 .sidebar{background:#edf1e8;border-right:1px solid var(--line);padding:32px 15px}.sidebar nav,.sidebar #recentList{display:grid;gap:4px}
 .navgroup,.workspace-label,.composer label,.revision-box label{font-size:13px;font-weight:700}
@@ -160,7 +210,9 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <div id="compose">
 <p class="workspace-label">Research workspace</p>
 <h1>What do you want to learn?</h1>
-<p class="sub">Give the agent a decision and an audience. Once pilot answers arrive, it decides what to ask next.</p>
+<p class="sub">State the decision you need to make and who you want to ask. The agent sends your brief to Flashpoint over MCP, and the survey draft comes back here for you to review and revise.</p>
+<div class="gap" role="note"><p class="gap-k">The gap we fill</p><p class="gap-h">The stock reprices on event day. Reported sales arrive a quarter later. Field Alpha gets first-hand customer evidence in between.</p><div class="gap-line"><div><b>Event day</b>Launch, price change or controversy. The share price moves.</div><div class="gap-mid"><b>Field Alpha · minutes</b><br>Agent designs, fields and reads surveys through Flashpoint MCP</div><div><b>Next earnings</b>Weeks to months later. Reported sales confirm or refute.</div></div></div>
+<p class="proof"><b>Completed run · November 21</b>From one question about Take-Two, the agent wrote and fielded three survey rounds through the Flashpoint MCP (26 paid calls, 11.35 USDC) and found that $210 needs about a 33% EBITDA margin even in the survey’s bull case. Take-Two has never been above 21%. <button type="button" class="textbtn" id="proofLink">Open the TTWO study →</button></p>
 <form id="draftForm" class="composer">
 <label for="objective">Research question <span class="tab-hint" id="tabHint">Tab to fill example</span></label>
 <textarea id="objective" aria-describedby="tabHint" required maxlength="500" rows="3" placeholder="What would make our monthly subscribers switch to an annual plan?"></textarea>
@@ -168,12 +220,22 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <select id="source"><option value="new">Fresh study · no prior answers</option><option value="ttwo">GTA VI follow-up · 11 synthetic responses</option></select></div>
 <p id="sourceTip" class="caption" hidden>The agent reviews 11 paired synthetic answers and decides whether to wait, stop or draft a follow-up.</p>
 <div class="submit-row"><button class="action" id="sendDraft" disabled>Generate survey draft →</button><span>Up to 0.50 USDC · unpublished</span></div></form>
-<div class="example-row"><span>Try an objective</span><button data-example="ttwo">GTA VI purchase timing ↗</button><button data-example="new">Netflix subscriber retention ↗</button></div>
+<div class="example-row"><span>Try an example</span><button data-example="ttwo">GTA VI purchase timing</button><button data-example="new">Netflix subscriber retention</button></div>
 </div>
 <div id="jobHeader" hidden><p class="workspace-label" id="phaseLabel"></p><h1 id="jobTitle"></h1><p id="jobSource" class="sub"></p></div>
-<noscript><p>Open the <a href="http://127.0.0.1:4173/">live workbench</a> in your browser to generate a survey.</p></noscript>
+<noscript><p>Open the <a href="https://dear-avoid-over-that.trycloudflare.com/team/02875c8a572b0c8c3d0ce62ae29fe6d4881ac6ac56fe8fc7/">live workbench</a> in your browser to generate a survey.</p></noscript>
 <p id="requestState" role="status">Connecting to the workbench…</p>
 <button type="button" class="textbtn" id="check" hidden>Recover this request</button>
+<p id="replayOffer" hidden><button type="button" class="textbtn" id="replayOfferBtn">Or replay the recorded TTWO run end to end, free and offline →</button></p>
+<section id="runReplay" hidden aria-labelledby="runReplayTitle">
+<p class="workspace-label">Recorded run · November 21 · replayed from the saved receipts, no wallet needed</p>
+<h1 id="runReplayTitle">The agent at work on one question</h1>
+<p class="sub">“Given Take-Two's $210 share price, how much revenue must GTA VI generate to justify the growth rate implied by the stock, and is TTWO cheap, fairly priced, or expensive?”</p>
+<div class="rr-meter" aria-live="off"><div><b id="rrClock">4:10 pm</b><span>New York time</span></div><div><b id="rrRound">Setup</b><span>stage</span></div><div><b id="rrCalls">0</b><span>paid MCP calls</span></div><div><b id="rrSpend">0.00</b><span>USDC spent · cap 0.50 / call</span></div></div>
+<ol id="rrLog" class="rr-log" aria-live="polite"></ol>
+<div class="submit-row" id="rrEnd" hidden><button type="button" class="action" id="rrOpen">Open the full study →</button><span>Every round, answer and valuation case</span></div>
+<div class="rr-controls"><button type="button" class="textbtn" id="rrSkip">Show everything now</button><button type="button" class="textbtn" id="rrAgain" hidden>Replay again</button><button type="button" class="textbtn" id="rrBack">← Back to workspace</button></div>
+</section>
 <section id="reply" hidden>
 <section id="agentLoop" class="loop" aria-labelledby="loopTitle">
 <p class="workspace-label">Adaptive research · Flashpoint MCP</p>
@@ -198,8 +260,9 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 
 <section hidden class="pipeline" aria-label="Research workflow">
 <h2>From research question to decision</h2>
-<p class="pipeline-intro">Flashpoint MCP selects the audience, fields surveys and exports answers. The agent uses those answers to choose its next question.</p>
-<p id="flowCase" class="label" style="margin-bottom:6px">TTWO · completed study</p><div class="rail" aria-label="Inspect a workflow step"><button type="button" data-stage="1" aria-controls="stage-1" aria-pressed="false"><small>01 · Research brief</small><b>Frame the decision</b><span class="cost">0.00 USDC</span></button><button type="button" data-mcp data-stage="2" aria-controls="stage-2" aria-pressed="false"><small>02 · Flashpoint MCP</small><b>Choose the audience</b><span class="cost">0.55 USDC</span></button><button type="button" data-mcp data-stage="3" aria-controls="stage-3" aria-pressed="false"><small>03 · Flashpoint MCP</small><b>Design &amp; field</b><span class="cost">7.80 USDC</span></button><button type="button" data-mcp data-stage="4" aria-controls="stage-4" aria-pressed="false"><small>04 · Flashpoint MCP</small><b>Export &amp; decide</b><span class="cost">3.00 USDC</span></button><button type="button" data-stage="5" aria-controls="stage-5" aria-pressed="false"><small>05 · FinRobot</small><b>Model scenarios</b><span class="cost">0.00 USDC</span></button><button type="button" data-stage="6" aria-controls="stage-6" aria-pressed="false"><small>06 · Research output</small><b>Deliver the brief</b><span class="cost">0.00 USDC</span></button></div><article class="stage-panel" id="stage-1" hidden><h2>Step 1 · Frame the decision</h2><dl><div><dt>Input</dt><dd>One investment question and a company.</dd></div><div><dt>Output</dt><dd>A decision brief with a target audience and the inputs the analyst needs.</dd></div><div><dt>Tool / action</dt><dd>Agent · no Flashpoint tool</dd></div></dl><small>Brief received at 4:10 pm ET. Scoping duration was not logged.</small></article><article class="stage-panel" id="stage-2" hidden><h2>Step 2 · Choose the audience</h2><dl><div><dt>Input</dt><dd>US adult gamers and the study’s eligibility criteria.</dd></div><div><dt>Output</dt><dd>Census context and a 12-persona synthetic panel for the rapid pilot.</dd></div><div><dt>Tool / action</dt><dd>demographics → panel(create)</dd></div></dl><small>49.5 s of provider time: 13.1 s for demographics and 36.4 s for panel creation.</small></article><article class="stage-panel" id="stage-3" hidden><h2>Step 3 · Design &amp; field</h2><dl><div><dt>Input</dt><dd>An objective or follow-up brief, an audience and a consented email list.</dd></div><div><dt>Output</dt><dd>A checked questionnaire, published survey and invitations. The panel answers each round.</dd></div><div><dt>Tool / action</dt><dd>tool_survey: draft + check → publish + confirm → email + confirm · panel(run)</dd></div></dl><small>Three rounds × 2.60 USDC (draft/check 0.50, publish 1.00, email 1.00, panel run 0.10). Draft receipt to email confirmation: R1 1m 36s · R2 1m 08s · R3 1m 08s. These intervals exclude draft creation and panel execution.</small></article><article class="stage-panel" id="stage-4" hidden><h2>Step 4 · Export &amp; decide</h2><dl><div><dt>Input</dt><dd>The survey ID, completed answers and required model inputs.</dd></div><div><dt>Output</dt><dd>Redacted paired answers and an agent decision: ask again at step 3 or hand off at step 5.</dd></div><div><dt>Tool / action</dt><dd>tool_survey: export_xlsx → agent reviews paired answers</dd></div></dl><small>Six exports × 0.50 USDC (initial and refreshed exports in each round). First panel/export receipts: 4:14:55, 4:21:15 and 4:25:45 pm ET. Export duration and later refresh times were not logged separately.</small></article><article class="stage-panel" id="stage-5" hidden><h2>Step 5 · Model scenarios</h2><dl><div><dt>Input</dt><dd>Observed choices, spend bands, retention assumptions and filing-backed financial inputs.</dd></div><div><dt>Output</dt><dd>Revenue and valuation scenarios with explicit model assumptions.</dd></div><div><dt>Tool / action</dt><dd>FinRobot · DCF and reverse DCF</dd></div></dl><small>Local calculation. Runtime was not recorded.</small></article><article class="stage-panel" id="stage-6" hidden><h2>Step 6 · Deliver the brief</h2><dl><div><dt>Input</dt><dd>Scenario results, sample sources, decision log and survey evidence.</dd></div><div><dt>Output</dt><dd>An analyst brief explaining the decision, the supporting evidence and what remains uncertain.</dd></div><div><dt>Tool / action</dt><dd>Agent · report and evidence log</dd></div></dl><small>Local report. Writing time was not recorded.</small></article>
+<p class="pipeline-intro">The agent picks the audience, fields each survey and exports the answers through the Flashpoint MCP. It then uses the answers to decide its next question.</p>
+<ul class="mcpfacts" id="mcpFacts" aria-label="Flashpoint MCP use in the recorded run"><li><b>26</b> paid MCP calls</li><li><b>3</b> Flashpoint tools: <code>demographics</code>, <code>panel</code>, <code>tool_survey</code></li><li><b>11.35 USDC</b> on Base, 0.50 cap per call</li><li><b>3</b> survey rounds, each written by the agent</li></ul>
+<p id="flowCase" class="label" style="margin-bottom:6px">TTWO · completed study</p><div class="rail" aria-label="Inspect a workflow step"><button type="button" data-stage="1" aria-controls="stage-1" aria-pressed="false"><small>01 · Research brief</small><b>Frame the decision</b><span class="cost">0.00 USDC</span></button><button type="button" data-mcp data-stage="2" aria-controls="stage-2" aria-pressed="false"><small>02 · Flashpoint MCP</small><b>Choose the audience</b><span class="cost">0.55 USDC</span></button><button type="button" data-mcp data-stage="3" aria-controls="stage-3" aria-pressed="false"><small>03 · Flashpoint MCP</small><b>Design &amp; field</b><span class="cost">7.80 USDC</span></button><button type="button" data-mcp data-stage="4" aria-controls="stage-4" aria-pressed="false"><small>04 · Flashpoint MCP</small><b>Export &amp; decide</b><span class="cost">3.00 USDC</span></button><button type="button" data-stage="5" aria-controls="stage-5" aria-pressed="false"><small>05 · FinRobot</small><b>Model scenarios</b><span class="cost">0.00 USDC</span></button><button type="button" data-stage="6" aria-controls="stage-6" aria-pressed="false"><small>06 · Research output</small><b>Deliver the brief</b><span class="cost">0.00 USDC</span></button></div><article class="stage-panel" id="stage-1" hidden><h2>Step 1 · Frame the decision</h2><dl><div><dt>Input</dt><dd>One investment question and a company.</dd></div><div><dt>Output</dt><dd>A decision brief with a target audience and the inputs the analyst needs.</dd></div><div><dt>Tool / action</dt><dd>Agent · no Flashpoint tool</dd></div></dl><small>Brief received at 4:10 pm ET. Scoping duration was not logged.</small></article><article class="stage-panel" id="stage-2" hidden><h2>Step 2 · Choose the audience</h2><dl><div><dt>Input</dt><dd>US adult gamers and the study’s eligibility criteria.</dd></div><div><dt>Output</dt><dd>Census context and a 12-persona synthetic panel for the rapid pilot.</dd></div><div><dt>Tool / action</dt><dd>demographics → panel(create)</dd></div></dl><small>49.5 s of Flashpoint processing: 13.1 s for demographics and 36.4 s to create the panel.</small></article><article class="stage-panel" id="stage-3" hidden><h2>Step 3 · Design &amp; field</h2><dl><div><dt>Input</dt><dd>An objective or follow-up brief, an audience and a consented email list.</dd></div><div><dt>Output</dt><dd>A checked questionnaire, published survey and invitations. The panel answers each round.</dd></div><div><dt>Tool / action</dt><dd>tool_survey: draft + check → publish + confirm → email + confirm · panel(run)</dd></div></dl><small>Three rounds × 2.60 USDC: draft/check 0.50 · publish + confirm 2 × 0.50 · email + confirm 2 × 0.50 · panel run 0.10. Every call stays at or under the 0.50 cap. From draft returned to invitations confirmed: R1 1m 36s · R2 1m 08s · R3 1m 08s. Writing the draft and running the panel are not included.</small></article><article class="stage-panel" id="stage-4" hidden><h2>Step 4 · Export &amp; decide</h2><dl><div><dt>Input</dt><dd>The survey ID, completed answers and required model inputs.</dd></div><div><dt>Output</dt><dd>Redacted answers, kept together per respondent, and the agent’s decision: ask again (step 3) or hand off to the model (step 5).</dd></div><div><dt>Tool / action</dt><dd>tool_survey: export_xlsx → agent reads each respondent’s answers together</dd></div></dl><small>Six exports × 0.50 USDC (initial and refreshed exports in each round). First panel/export receipts: 4:14:55, 4:21:15 and 4:25:45 pm ET. Export duration and later refresh times were not logged separately.</small></article><article class="stage-panel" id="stage-5" hidden><h2>Step 5 · Model scenarios</h2><dl><div><dt>Input</dt><dd>Observed choices, spend bands, retention assumptions and filing-backed financial inputs.</dd></div><div><dt>Output</dt><dd>Revenue and valuation scenarios with explicit model assumptions.</dd></div><div><dt>Tool / action</dt><dd>FinRobot · DCF and reverse DCF</dd></div></dl><small>Local calculation. Runtime was not recorded.</small></article><article class="stage-panel" id="stage-6" hidden><h2>Step 6 · Deliver the brief</h2><dl><div><dt>Input</dt><dd>Scenario results, sample sources, decision log and survey evidence.</dd></div><div><dt>Output</dt><dd>An analyst brief explaining the decision, the supporting evidence and what remains uncertain.</dd></div><div><dt>Tool / action</dt><dd>Agent · report and evidence log</dd></div></dl><small>Local report. Writing time was not recorded.</small></article>
 <p class="run-total">TTWO · three rounds · 11.35 USDC in Flashpoint calls, including export refreshes · 15m 25s from run start to the third initial export.</p>
 <button type="button" class="case-switch" id="configLink">Switch company: change the question, audience and ticker / filing inputs →</button>
 </section>
@@ -207,6 +270,8 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <p class="eyebrow">Recorded run · November 21</p>
 <h1>One question, three survey rounds</h1>
 <p class="sub">Explore the original agent decisions, response counts and valuation scenarios.</p>
+<div class="gap" role="note"><p class="gap-k">The gap we fill</p><p class="gap-h">The stock reprices on event day. Reported sales arrive a quarter later. Field Alpha gets first-hand customer evidence in between.</p><div class="gap-line"><div><b>Event day</b>Launch, price change or controversy. The share price moves.</div><div class="gap-mid"><b>Field Alpha · minutes</b><br>Agent designs, fields and reads surveys through Flashpoint MCP</div><div><b>Next earnings</b>Weeks to months later. Reported sales confirm or refute.</div></div></div>
+
 <ol class="steps" id="steps"></ol>
 
 <!-- 0 Objective -->
@@ -221,33 +286,22 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
       <div class="card">
         <p class="label">Before asking anyone</p>
         <h2>How the agent set itself up</h2>
-        <table>
-          <tr><th>Time (ET)</th><th>What it did</th><th class="num">USDC</th></tr>
-          <tr><td>4:10 pm</td><td>Checked the wallet balance and the number of people on the email list (free).</td><td class="num">0.00</td></tr>
-          <tr><td>4:10 pm</td><td>Pulled US Census context through Flashpoint's <code>demographics</code> tool.</td><td class="num">0.05</td></tr>
-          <tr><td>4:12 pm</td><td>Created a 12-persona synthetic panel of US adult gamers through Flashpoint, so each round could return answers within a minute while email replies were still coming in.</td><td class="num">0.50</td></tr>
-          <tr><td>4:13 pm</td><td>Drafted, checked and published the round 1 survey, then emailed a unique tracked link to the 6 people on our list.</td><td class="num">2.50</td></tr>
-        </table>
-        <p class="caption" style="margin-top:10px">Every call went through Flashpoint's MCP server and was paid in USDC on Base. The code caps each call at 0.50 USDC. Flashpoint tools used: <code>demographics</code>, <code>panel</code>, and <code>tool_survey</code> to build, check, publish, email and export each survey.</p>
+        <div class="tl"><div><b>4:10</b>Wallet + list check<br><em>free</em></div><div><b>4:10</b>Census context<br><em>0.05</em></div><div><b>4:12</b>12-persona panel<br><em>0.50</em></div><div><b>4:13</b>Round 1 live, 6 emails<br><em>2.50</em></div></div>
+        <p class="label" style="margin-top:18px">Where the 11.35 USDC went</p>
+        <div class="stack-bar"><div style="flex:0.55;background:#9bbf9f" title="Audience 0.55"></div><div style="flex:7.8;background:var(--chart)">Design &amp; field · 7.80</div><div style="flex:3;background:var(--gold)">Export · 3.00</div></div>
+        <div class="legend"><span><i class="sw" style="background:#9bbf9f"></i>Audience 0.55</span><span><i class="sw" style="background:var(--chart)"></i>Design &amp; field 7.80</span><span><i class="sw" style="background:var(--gold)"></i>Export 3.00</span></div>
+        <p><span class="chip">demographics</span><span class="chip">panel</span><span class="chip">tool_survey</span><span class="chip">≤ 0.50 USDC / call</span></p>
       </div>
     </div>
     <div class="stack">
       <div class="card">
         <p class="label">The run in numbers</p>
-        <p class="metric">3 rounds</p>
-        <p>designed, sent and read by the agent in about 16 minutes.</p>
-        <table>
-          <tr><td>Paid Flashpoint MCP calls</td><td class="num">26</td></tr>
-          <tr><td>Total spend</td><td class="num">11.35 USDC</td></tr>
-          <tr><td>Email invitations per round</td><td class="num">6</td></tr>
-          <tr><td>Completed responses, rounds 1 / 2 / 3</td><td class="num" id="ncomp"></td></tr>
-          <tr><td>Of which from people, rounds 1 / 2 / 3</td><td class="num" id="nhum"></td></tr>
-        </table>
-      </div>
-      <div class="card">
-        <p class="label">Read this first</p>
-        <p>Most answers in this run come from the synthetic panel, and rounds 2 and 3 each received one completed email response. The numbers show how the agent reasons from round to round. They are too few, and too synthetic, to stand as a market forecast.</p>
-      </div>
+        <div class="tiles"><div class="tile"><b>3</b><span>rounds</span></div><div class="tile"><b>15m</b><span>start → 3rd export</span></div><div class="tile"><b>26</b><span>paid MCP calls</span></div><div class="tile"><b>11.35</b><span>USDC total</span></div></div>
+        <p class="label">Completed responses per round</p>
+        <div class="legend"><span><i class="sw" style="background:var(--chart)"></i>Synthetic persona</span><span><i class="sw" style="background:var(--goldsoft)"></i>Person (email)</span></div>
+        <div id="mixbars"></div>
+        <span id="ncomp" hidden></span><span id="nhum" hidden></span>
+        <p class="caption" style="margin-top:8px">Mostly synthetic: a demonstration of the method, not a market forecast.</p>
     </div>
   </div>
 </section>
@@ -263,39 +317,67 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
     <div class="stack">
       <div class="card dark">
         <p class="label">What the agent came back with</p>
-        <p class="metric">Expensive at $210</p>
-        <p>To justify $210 a share, FinRobot's reverse DCF says Take-Two's total revenue has to grow 19.32% a year for ten years, from $6.41B to $37.48B. That is $102.62B more revenue over the decade than the company's path without a GTA VI step-change.</p>
-        <p class="caption" style="margin-top:10px">Inputs: FY2026 and Q2 FY2027 filings, 16.56% EBITDA margin, 8.69% discount rate, 3.0% terminal growth.</p>
+        <p class="metric" style="font-size:42px;letter-spacing:-1px">$210 needs a ~33% EBITDA margin</p>
+        <p style="color:#e6ecdf;margin:8px 0 16px">Even with the survey’s bull-case demand, the price only works if Take-Two earns about a 33% EBITDA margin for ten years, twice the model’s normalized 16.56%. That is Activision Blizzard’s 2012–2021 average. Take-Two’s best year on the same basis was 21%, and GTA V’s launch year was 18%. <b style="color:#fff">Verdict: expensive, unless GTA VI makes Take-Two as profitable as Activision Blizzard at its peak, for a decade.</b> The disagreement is about margin, and the survey narrows the demand side.</p>
+        <p class="label" style="color:#cfd8c8">Revenue the $210 price requires at today’s margin (reverse DCF)</p>
+        <div class="grow"><div style="height:17%"><span>$6.41B</span></div><div class="big" style="height:100%"><span>$37.48B</span></div></div>
+        <div class="grow-l"><div>Today</div><div>Year 10 · +19.32% / yr</div></div>
+        <div class="tiles" style="margin-top:14px"><div class="tile"><b>5.8×</b><span>today's revenue</span></div><div class="tile"><b>$102.6B</b><span>extra 10-yr revenue vs. no GTA VI step-change</span></div></div>
+        <p class="caption" style="margin-top:6px;color:#cfd8c8">16.56% EBITDA margin · 8.69% discount rate · 3.0% terminal growth · FY2026 + Q2 FY2027 filings</p>
       </div>
       <div class="card">
         <p class="label">Value per share when the survey answers drive the GTA VI revenue case</p>
         <h2>Every survey-based case lands below the share price</h2>
         <div id="vals"></div>
-        <p class="caption" style="margin-top:8px">The three survey cases differ in units sold over three years, spend per buyer and margin. Full bridge: <code>evidence/gta6_revenue_bridge.json</code> and <code>evidence/finrobot_valuation_output.json</code>.</p>
+        <p class="caption" style="margin-top:8px">Bull −31% · Base −55% · Bear −64% vs. $210. Bridge: <code>evidence/gta6_revenue_bridge.json</code> and <code>evidence/finrobot_valuation_output.json</code>.</p>
+      </div>
+      <div class="card">
+        <p class="label">Break-even margin · the EBITDA margin at which each case is worth $210</p>
+        <h2>Survey demand lowers the hurdle by only 3 to 7 points</h2>
+        <div id="breakeven"></div>
+        <div class="legend" style="margin-top:6px"><span><i class="sw" style="background:var(--ink)"></i>Model’s normalized margin 16.56%</span><span><i class="sw" style="background:var(--gold)"></i>Highest margin FinRobot ran: 28%</span></div>
+        <p class="caption" style="margin-top:8px">Method: FinRobot ran margins from 14.56% to 28%, and its value per share rises in a straight line across them (+$6.01 per point), as it should when the revenue path is fixed. The break-evens above 28% extrapolate that line; they are not separate model runs. Scaling each case’s GTA VI increment with margin slightly flatters the survey cases, so read these break-evens as lower bounds.</p>
+      </div>
+      <div class="card">
+        <p class="label">Is 33% realistic? · what game publishers have actually earned</p>
+        <h2>Take-Two has never been above 21%. Only Activision Blizzard ran at 33%</h2>
+        <div id="anchors"></div>
+        <div class="legend" style="margin-top:6px"><span><i class="sw" style="background:var(--gold)"></i>$210 break-even, survey bull case: 32.9%</span></div>
+        <p class="caption" style="margin-top:8px">Same basis for every company: (operating income + depreciation + amortization of acquired intangibles) ÷ revenue, from each 10-K in SEC XBRL data. Take-Two’s FY2023–25 loss years with Zynga impairments are left out of “best year”. This basis is not FinRobot’s normalized 16.56% input (Take-Two FY2026 is 11.8% here), and it runs a few points lower, so the comparable break-even would be a little lower too: still above anything Take-Two has posted. Data: <code>evidence/margin_anchors.json</code>.</p>
       </div>
     </div>
     <div class="stack">
       <div class="card">
-        <p class="label">How the three rounds fed the valuation</p>
-        <ul class="plain">
-          <li><b>Round 1</b> set the starting point: few launch buyers, most price ceilings under $70.</li>
-          <li><b>Round 2</b> showed the waiting is firm, and that people would pay for story content but not for a subscription on its own.</li>
-          <li><b>Round 3</b> turned that into dollars: about $86 per buyer over three years, and half of respondents spending nothing after year two.</li>
-        </ul>
+        <p class="label">What each round fed into the valuation</p>
+        <div class="rings">
+          <div><b>Round 1</b><div class="ring" style="--p:73" data-v="8/11"></div><small>price ceiling under $70</small></div>
+          <div><b>Round 2</b><div class="ring" style="--p:67" data-v="8/12"></div><small>still wait 9 months at full price</small></div>
+          <div><b>Round 3</b><div class="ring" style="--p:50" data-v="$86"></div><small>per buyer over 3 yrs · 6/12 spend $0 after yr 2</small></div>
+        </div>
       </div>
       <div class="card">
-        <p class="label">How much margin would have to help</p>
-        <table>
-          <tr><th>EBITDA margin</th><th class="num">Growth needed</th><th class="num">Extra 10-yr revenue</th></tr>
-          <tr><td>16.56% (base)</td><td class="num">19.32% / yr</td><td class="num">$102.62B</td></tr>
-          <tr><td>18.56%</td><td class="num">17.30% / yr</td><td class="num">$81.49B</td></tr>
-          <tr><td>24.00%</td><td class="num">13.03% / yr</td><td class="num">$44.33B</td></tr>
-          <tr><td>28.00%</td><td class="num">10.62% / yr</td><td class="num">$27.10B</td></tr>
-        </table>
+        <p class="label">Growth the price needs, by EBITDA margin</p>
+        <div class="val sm"><span>16.56% (base)</span><div class="vtrack"><div class="vfill mkt" style="width:100%"></div></div><span class="n">19.3%</span></div>
+        <div class="val sm"><span>18.56%</span><div class="vtrack"><div class="vfill" style="width:89.5%"></div></div><span class="n">17.3%</span></div>
+        <div class="val sm"><span>24.00%</span><div class="vtrack"><div class="vfill" style="width:67.4%"></div></div><span class="n">13.0%</span></div>
+        <div class="val sm"><span>28.00%</span><div class="vtrack"><div class="vfill" style="width:55%"></div></div><span class="n">10.6%</span></div>
+        <p class="caption">Annual revenue growth for 10 years. Extra 10-yr revenue: $102.6B → $81.5B → $44.3B → $27.1B.</p>
+      </div>
+      <div class="card">
+        <p class="label">Calibration · synthetic panel vs. the one real person</p>
+        <h2>Where the person disagreed, they were more cautious</h2>
+        <div id="calib"></div>
+        <p class="caption" style="margin-top:8px">Rounds 2 and 3 decision questions (screeners left out). “Panel” counts the 11 synthetic personas who answered that round. One person proves nothing on its own. The point is that the agent runs this check every round, and here it pushes in the same direction as the verdict, not against it.</p>
+      </div>
+      <div class="card">
+        <p class="label">Guardrail · added after this run, tested Nov 22</p>
+        <h2>Today’s agent would have waited after round 1</h2>
+        <p>In the Nov 21 run, the agent went from round 1 to round 2 with 0 human answers. We then made it check the source of every answer before deciding. Given the same 11 round-1 answers (11 synthetic, 0 human), the updated agent returned <b>WAIT</b> and wrote no follow-up survey: synthetic-only evidence “cannot support an inference about real consumer demand.” The review cost 0.50 USDC. A source check also corrected the agent’s price-ceiling count from 7/11 to the export’s 8/11.</p>
+        <p class="caption">Receipt: <code>evidence/workbench_decision.json</code></p>
       </div>
       <div class="card">
         <p class="label">Limits</p>
-        <p>Every completed response in round 1, and eleven of the twelve in rounds 2 and 3, come from synthetic personas. Rounds 2 and 3 each received one completed email response. So this is a demonstration of the method. A real study would put the same three rounds in front of a recruited panel of console owners.</p>
+        <p><b>33 of 35</b> completed responses are synthetic. Next: the same three rounds on a recruited panel of console owners.</p>
       </div>
     </div>
   </div>
@@ -307,12 +389,23 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
     <div class="stack">
       <div class="card">
         <p class="label">Reuse the workflow</p><h2>Run the next company brief</h2><p>Change the research question, target audience and ticker with its filing inputs. Review the stopping rule with the analyst.</p><button type="button" class="textbtn open-config">Compare the Netflix draft →</button></div>
+      <div class="card">
+        <p class="label">Same steps, other events</p>
+        <h2>One procedure for three kinds of news</h2>
+        <p>Only the brief changes between cases. The six steps, the Flashpoint MCP call order and the evidence log stay the same.</p>
+        <table class="events"><thead><tr><th>Event</th><th>Case</th><th>What the agent would ask</th></tr></thead><tbody>
+        <tr><th>Product launch</th><td>GTA VI · TTWO<small>Three rounds fielded, valuation run</small></td><td>Who pays full price, who waits, and what they spend over three years.</td></tr>
+        <tr><th>Price increase</th><td>Netflix · NFLX<small>Questionnaire drafted, not fielded</small></td><td>Would subscribers keep the plan, move to the ad tier, or cancel?</td></tr>
+        <tr><th>Price increase</th><td>Disney+ and Hulu · DIS<small>On our Nov 14 shortlist, not run</small></td><td>Do the subscribers who say they will cancel actually cancel?</td></tr>
+        <tr><th>Controversy</th><td>Converse · NKE<small>On our Nov 14 shortlist, not run</small></td><td>Has the backlash changed what buyers plan to purchase?</td></tr>
+        </tbody></table>
+      </div>
     </div>
     <div class="stack">
       <div class="card dark">
         <p class="label">Why someone would pay for this</p>
-        <p>After a price change, a launch or a controversy, the share price moves at once, but reported sales arrive with the next earnings release. An analyst covering the stock has to take a view in between.</p>
-        <p>In this run the agent designed, fielded and read three survey rounds in about 16 minutes, and the whole run cost 11.35 USDC. What limits a real study is how fast people answer, and that is the part Flashpoint's panels supply.</p>
+        <div class="tiles"><div class="tile"><b>~90 days</b><span>until reported sales</span></div><div class="tile"><b>15 min</b><span>for three survey rounds</span></div><div class="tile"><b>11.35</b><span>USDC per run</span></div></div>
+        <p class="caption" style="color:#cfd8c8">The bottleneck is how fast people answer, and Flashpoint's panels supply that.</p>
       </div>
       <div class="card">
         <p class="label">Where we think it fits</p>
@@ -328,6 +421,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
           <li>Field the same rounds to a recruited Flashpoint panel of console owners.</li>
           <li>Connect a published Flashpoint survey to the workbench for automatic human-response imports.</li>
           <li>Field the Netflix draft and evaluate its answers in a second full study.</li>
+          <li>Check the TTWO call against Take-Two’s reported results once they are published.</li>
         </ul>
       </div>
     </div>
@@ -341,11 +435,11 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <table><thead><tr><th>Change</th><th>Take-Two</th><th>Netflix</th></tr></thead><tbody>
 <tr><th>Question</th><td>When will players buy at full price?</td><td>Would a hypothetical $2 increase change a subscriber’s plan?</td></tr>
 <tr><th>Audience</th><td>US adult gamers</td><td>US adults paying for ad-free Netflix</td></tr>
-<tr><th>Ticker &amp; filings</th><td>TTWO · case filing inputs</td><td>NFLX · use <code>seed-sec</code> before valuation</td></tr>
+<tr><th>Ticker &amp; filings</th><td>TTWO · case filing inputs</td><td>NFLX · filing inputs not pulled yet (<code>seed-sec</code>)</td></tr>
 <tr><th>Stop when</th><td>Purchase timing, spend and duration are available</td><td>Draft-only pilot ends after the checked questionnaire</td></tr></tbody></table></div>
 <div class="card"><p class="label">Shared procedure</p><h2>Carry over the survey loop</h2><p>Use the same MCP call order, 0.50 USDC per-call cap, and evidence log with round, tool, timestamp, cost and artifact.</p>
-<p><b>Response intake</b> · The live pilot reviews at three replies. Polling external Flashpoint surveys for a configurable human quota is planned.</p></div></div>
-<article class="card case-card"><p class="label">NFLX · unpublished draft · 0.50 USDC</p><h2>Would a $2 increase change a subscriber’s plan?</h2><p>One fresh <code>tool_survey</code> call produced two screeners and two decision questions from the Netflix brief alone. No invitations or responses. No Netflix valuation was run.</p><details><summary>S1 · Do you currently have an active Netflix subscription that you personally pay for?</summary><ol><li>Yes</li><li>No</li></ol></details><details><summary>S2 · Which of the following best describes the Netflix plan you are currently paying for?</summary><ol><li>Standard with Ads (lower monthly price, includes advertisements)</li><li>Standard (no ads)</li><li>Premium (no ads, supports more simultaneous streams)</li><li>I am not sure which plan I have</li></ol></details><details open><summary>Q1 · Imagine — hypothetically — that the monthly price of your current ad-free Netflix plan increased by $2. No such price change has been announced; this is a scenario question only. Which of the following would you most likely do?</summary><ol><li>Keep my current ad-free plan at the new, higher price</li><li>Switch to a lower-cost Netflix plan that includes ads</li><li>Cancel my Netflix subscription entirely</li><li>Pause my subscription temporarily and reassess</li><li>Not sure — it would depend on other factors at the time</li></ol></details><details><summary>Q2 · Which single factor would most influence your decision in that hypothetical scenario?</summary><ol><li>The dollar amount of the increase relative to what I already pay</li><li>My personal tolerance for watching advertisements</li><li>The quality and availability of Netflix content at that time</li><li>Whether competing streaming services offer better value</li><li>My overall household budget and other subscription costs</li><li>Something else or no single factor stands out</li></ol></details><p class="caption">Draft check: 0 blockers, 0 errors. Before fielding, verify age and US residency at recruitment or add an eligibility question. The saved screeners check payment and plan type.</p><p class="caption">Flashpoint survey ID · <code>8f22b84d-c38e-4b1e-91aa-132c09e03e8b</code></p></article>
+<p><b>Planned, not built</b> · Wait for a set number of human responses before the agent writes the next round.</p></div></div>
+<article class="card case-card"><p class="label">NFLX · unpublished draft · 0.50 USDC</p><h2>Would a $2 increase change a subscriber’s plan?</h2><p>One fresh <code>tool_survey</code> call produced two screeners and two decision questions from the Netflix brief alone. No invitations or responses. No Netflix valuation was run.</p><details><summary>S1 · Do you currently have an active Netflix subscription that you personally pay for?</summary><ol><li>Yes</li><li>No</li></ol></details><details><summary>S2 · Which of the following best describes the Netflix plan you are currently paying for?</summary><ol><li>Standard with Ads (lower monthly price, includes advertisements)</li><li>Standard (no ads)</li><li>Premium (no ads, supports more simultaneous streams)</li><li>I am not sure which plan I have</li></ol></details><details open><summary>Q1 · Imagine — hypothetically — that the monthly price of your current ad-free Netflix plan increased by $2. No such price change has been announced; this is a scenario question only. Which of the following would you most likely do?</summary><ol><li>Keep my current ad-free plan at the new, higher price</li><li>Switch to a lower-cost Netflix plan that includes ads</li><li>Cancel my Netflix subscription entirely</li><li>Pause my subscription temporarily and reassess</li><li>Not sure — it would depend on other factors at the time</li></ol></details><details><summary>Q2 · Which single factor would most influence your decision in that hypothetical scenario?</summary><ol><li>The dollar amount of the increase relative to what I already pay</li><li>My personal tolerance for watching advertisements</li><li>The quality and availability of Netflix content at that time</li><li>Whether competing streaming services offer better value</li><li>My overall household budget and other subscription costs</li><li>Something else or no single factor stands out</li></ol></details><p class="caption">Draft check: 0 blockers, 0 errors, 1 warning (no quota set, expected for an unpublished draft). Before fielding, verify age and US residency at recruitment or add an eligibility question. The saved screeners check payment and plan type.</p><p class="caption">Flashpoint survey ID · <code>8f22b84d-c38e-4b1e-91aa-132c09e03e8b</code></p></article>
 </section></div></main>
 
 <footer><div>Field Alpha · Patrick Xiong, Haotian Jiang, Rong Du · Flashpoint AI × Columbia AI Club Hackathon. Survey data: redacted Flashpoint exports of November 21, 2026 (<code>evidence/round1..3_responses_redacted.csv</code>). Valuation: FinRobot operators on Take-Two filing inputs. Times are New York time.</div></footer>
@@ -412,7 +506,7 @@ const NOTES = {
   3: {
     learned: [
       "With the bundle on offer, 4 of 12 buy at launch (1 Ultimate bundle, 3 Standard), up from 2 of 11 in round 1. 6 of 12 still wait for $59.99 to $69.99.",
-      "Expected three-year spend averages $86.36 per buyer (run log figure; it corresponds to band midpoints of $54.50 and $84.50, with $225 for the one “$200 or more” answer).",
+      "Expected three-year spend averages $86.36 per buyer, 8% more than one Standard copy at $79.99 (run log figure; it corresponds to band midpoints of $54.50 and $84.50, with $225 for the one “$200 or more” answer).",
       "6 of 12 say they spend nothing after year two. What keeps the rest paying is new story chapters, a second copy on PC or a newer console, and online passes."
     ],
     whyHead: "Why it stopped here",
@@ -422,6 +516,10 @@ const NOTES = {
     ]
   }
 };
+
+(function(){const box=document.getElementById('mixbars');if(!box)return;const max=Math.max(...ROUNDS.map(r=>r.complete));
+for(const r of ROUNDS){const syn=r.complete-r.human;const row=document.createElement('div');row.className='val';row.style.gridTemplateColumns='70px minmax(0,1fr) 48px';
+row.innerHTML='<span>Round '+r.n+'</span><div class="vtrack" style="display:flex;background:none"><div style="width:'+(syn/max*100)+'%;background:var(--chart)"></div><div style="width:'+(r.human/max*100)+'%;background:var(--goldsoft);margin-left:'+(r.human?2:0)+'px"></div></div><span class="n">'+syn+' + '+r.human+'</span>';box.append(row);}})();
 const VALS = [
   ["Share price", 210.00, true],
   ["Survey bull case", 145.92],
@@ -431,6 +529,29 @@ const VALS = [
 ];
 const el = (t, c, h) => { const e = document.createElement(t); if (c) e.className = c; if (h !== undefined) e.innerHTML = h; return e; };
 const esc = s => s.replace(/[&<>]/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[m]));
+
+// Calibration: compare the one human answer per question with the 11 synthetic personas.
+const CALIB_SHORT = {"2-Q2":"Price holdout","2-Q3":"Paid add-ons","2-Q4":"Ultimate upgrade","2-Q5":"Budget source","3-Q2":"Bundle choice","3-Q3":"3-year spend","3-Q4":"Years 3–6"};
+const CALIB_DIR = {"2-Q2":"waits for a deeper discount","2-Q3":"pays for no add-ons","3-Q3":"spends less over 3 years"};
+(function(){
+  const box = document.getElementById("calib"); if (!box) return;
+  let same = 0, total = 0;
+  const table = el("table", "calib");
+  table.innerHTML = "<thead><tr><th>Question</th><th>The person chose</th><th>Panel</th><th></th></tr></thead>";
+  const body = el("tbody");
+  for (const r of ROUNDS) for (const q of r.questions) {
+    const key = r.n + "-" + q.label, h = q.options.find(o => o.hum);
+    if (!h || !CALIB_SHORT[key]) continue;
+    const top = Math.max(...q.options.map(o => o.syn)), synN = r.complete - r.human, match = h.syn === top;
+    total++; if (match) same++;
+    const tr = el("tr");
+    tr.innerHTML = `<td>R${r.n} · ${CALIB_SHORT[key]}</td><td>${esc(h.text)}</td><td class="n">${h.syn} of ${synN}</td>` +
+      `<td class="${match ? "ok" : "low"}">${match ? (q.options.filter(o => o.syn === top).length > 1 ? "tied for panel’s top" : "panel’s top answer") :"↓ " + (CALIB_DIR[key] || "differs")}</td>`;
+    body.append(tr);
+  }
+  table.append(body);
+  box.append(el("p", "", `<b>${same} of ${total}</b> answers matched the panel’s most common choice. The other ${total - same} were all more cautious than the panel.`), table);
+})();
 
 document.getElementById("ncomp").textContent = ROUNDS.map(r => r.complete).join(" / ");
 document.getElementById("nhum").textContent = ROUNDS.map(r => r.human).join(" / ");
@@ -492,6 +613,57 @@ for (const [name, v, mkt] of VALS) {
   vals.append(row);
 }
 
+// Break-even margin. FinRobot organic runs: V(m) = 6.01·m − 27.6 (m in points; exact at 14.56/16.56/18.56/24/28).
+// Survey case: V = organic(m) + GTA increment, increment scaled in proportion to margin.
+const BE = [
+  ["Survey bull case", 145.92, 24.00],
+  ["Survey base case", 93.71, 18.56],
+  ["Survey bear case", 75.86, 16.56],
+  ["No GTA VI step-change", null, null]
+];
+(function(){
+  const box = document.getElementById("breakeven"); if (!box) return;
+  const slope = 6.0103, icpt = 59.9 - slope * 14.56, organic = m => slope * m + icpt, scale = 40;
+  for (const [name, v, m0] of BE) {
+    const incSlope = v ? (v - organic(m0)) / m0 : 0;
+    const be = (210 - icpt) / (slope + incSlope);
+    const row = el("div", "val");
+    row.append(el("span", "", name));
+    const t = el("span", "vtrack");
+    const f = el("span", "vfill"); f.style.width = (100 * be / scale) + "%"; t.append(f);
+    for (const [at, c] of [[16.56, "var(--ink)"], [28, "var(--gold)"]]) {
+      const tick = el("span", "betick"); tick.style.left = (100 * at / scale) + "%"; tick.style.background = c; t.append(tick);
+    }
+    row.append(t); row.append(el("span", "n", be.toFixed(1) + "%"));
+    box.append(row);
+  }
+})();
+
+// Margin anchors from SEC XBRL 10-K data (see evidence/margin_anchors.json).
+const ANCHORS = [
+  ["Take-Two · GTA V launch year (FY2014)", 18.4],
+  ["Take-Two · best year (FY2021)", 21.3],
+  ["EA · 10-yr average (FY2016–25)", 24.7],
+  ["EA · best year (FY2018)", 30.3],
+  ["Activision Blizzard · 10-yr avg (2012–21)", 32.7],
+  ["Activision Blizzard · best year (2021)", 38.3]
+];
+(function(){
+  const box = document.getElementById("anchors"); if (!box) return;
+  const scale = 40;
+  for (const [name, m] of ANCHORS) {
+    const row = el("div", "val");
+    row.append(el("span", "", name));
+    const t = el("span", "vtrack");
+    const f = el("span", "vfill"); f.style.width = (100 * m / scale) + "%";
+    if (name.startsWith("Take-Two")) f.style.background = "var(--ink)";
+    t.append(f);
+    const tick = el("span", "betick"); tick.style.left = (100 * 32.9 / scale) + "%"; tick.style.background = "var(--gold)"; t.append(tick);
+    row.append(t); row.append(el("span", "n", m.toFixed(1) + "%"));
+    box.append(row);
+  }
+})();
+
 const views = [...document.querySelectorAll(".view")];
 const steps = document.getElementById("steps");
 let cur = 0;
@@ -546,6 +718,7 @@ function workflowCase(netflix) {
     panel.querySelector('small').textContent = stage.time;
   });
   ruleNav.hidden = netflix;
+  byId('mcpFacts').hidden = netflix;
   byId('flowCase').textContent = netflix ? 'NFLX · draft-only pilot' : 'TTWO · completed study';
   timeLabel.textContent = netflix ? 'NFLX · 1 draft call · 0.50 USDC · 0 invitations · 0 responses' : ttwoTotal;
 }
@@ -582,6 +755,7 @@ byId('configLink').onclick = () => { openCase(); byId('reuseView').scrollIntoVie
 document.querySelector('.open-config').onclick = byId('configLink').onclick;
 selectStage(3);
 byId('liveTab').onclick = () => mode(true);
+byId('proofLink').onclick = () => mode(false);
 byId('replayTab').onclick = () => mode(false);
 function remember(job) {
   current = job;
@@ -791,7 +965,7 @@ function showJob(job) {
   byId('sideNew').hidden = pending; byId('startOver').hidden = pending; byId('reply').hidden = !returned;
   byId('phaseLabel').textContent = pending ? 'Draft in progress' : returned ? 'Research workspace' : 'Draft request';
   byId('jobTitle').textContent = job.objective || 'Research objective';
-  byId('jobSource').textContent = (job.source || 'ttwo') === 'ttwo' ? 'Based on 11 paired GTA VI responses from the synthetic panel.' : 'Fresh study · based on your research brief.';
+  byId('jobSource').textContent = (job.source || 'ttwo') === 'ttwo' ? 'Based on the 11 round-one GTA VI answers from the synthetic panel.' : 'Fresh study · based on your brief alone.';
   if (pending) {
     const elapsed = Math.max(0, Math.floor((Date.now()-Date.parse(job.started))/1000));
     message.textContent = 'Waiting for the complete draft from Flashpoint · ' + elapsed + 's. ' +
@@ -859,13 +1033,84 @@ field.addEventListener('input', () => field.setCustomValidity(''));
 form.addEventListener('click', () => field.setCustomValidity(''));
 form.onsubmit = event => { event.preventDefault(); submitDraft(null); };
 byId('revisionForm').onsubmit = event => { event.preventDefault(); if (current?.status === 'returned') submitDraft(current); };
+// ---- Offline replay of the recorded TTWO run (every figure from the Nov 21 run log) ----
+const RR = [
+  {t:'4:10 pm', s:'Setup', k:'agent', x:'Reads the objective and picks the three inputs the valuation needs: the share who pay full price, spend per buyer, and how long the spending lasts.'},
+  {t:'4:10 pm', s:'Setup', k:'agent', x:'Checks the wallet (18.50 USDC on Base) and the consented email list (6 people). Free.'},
+  {t:'4:10 pm', s:'Setup', tool:'demographics', c:0.05, n:1, x:'Pulls US Census context for adult gamers.'},
+  {t:'4:12 pm', s:'Setup', tool:'panel · create', c:0.50, n:1, x:'Builds a 12-persona synthetic panel of US adult gamers, so each round can return in about a minute while email replies come in.'},
+  {t:'4:13 pm', s:'Round 1', k:'round', x:'Round 1 · baseline demand, price ceiling and extra spend'},
+  {t:'4:13 pm', s:'Round 1', tool:'tool_survey · draft + check', c:0.50, n:1, x:'Writes and checks a 6-question survey.'},
+  {t:'4:13 pm', s:'Round 1', tool:'tool_survey · publish + confirm', c:1.00, n:2, x:'Publishes survey 446278e5.'},
+  {t:'4:13 pm', s:'Round 1', tool:'tool_survey · email + confirm', c:1.00, n:2, x:'Sends a unique tracked link to each of the 6 people.'},
+  {t:'4:14 pm', s:'Round 1', tool:'panel · run', c:0.10, n:1, x:'Runs the panel on the live survey.'},
+  {t:'4:14 pm', s:'Round 1', tool:'tool_survey · export_xlsx', c:0.50, n:1, x:'Exports 11 completes: 11 synthetic, 0 people.'},
+  {t:'after export', s:'Round 1', k:'decide', a:'ASK', x:'8 of 11 put their price ceiling under $70, yet 4 say they will pay full price later. Next question: would they really pay $79.99 with no discount for nine months? And is the $0 extra spend a rejection of all paid content, or only of subscriptions?'},
+  {t:'since Nov 22', s:'Round 1', k:'update', x:'Given these same 11 answers (all synthetic), the updated agent returns WAIT and writes no follow-up until people answer. The replay continues with the Nov 21 run as recorded.'},
+  {t:'4:19 pm', s:'Round 2', k:'round', x:'Round 2 · would they really wait, what would they pay for'},
+  {t:'4:19 pm', s:'Round 2', tool:'tool_survey · draft → publish → email', c:2.50, n:5, x:'Writes, checks, publishes and emails survey bcb9282c.'},
+  {t:'4:21 pm', s:'Round 2', tool:'panel · run + export_xlsx', c:0.60, n:2, x:'Exports 12 completes: 11 synthetic, 1 person.'},
+  {t:'4:21 pm', s:'Round 2', k:'human', x:'Calibration: the person waits for $59.99 or less. The panel’s most common answer was $69.99. Same as the panel on 2 of the 4 decision questions; more cautious on the other 2.'},
+  {t:'after export', s:'Round 2', k:'decide', a:'ASK', x:'8 of 12 still wait even with 90+ reviews. Nobody wants GTA+ on its own, but 6 of 12 would pay for a story expansion. These are preferences, and the model needs dollars. Next: three-year spend and the bundle choice.'},
+  {t:'4:24 pm', s:'Round 3', k:'round', x:'Round 3 · dollars over three years and what keeps people paying'},
+  {t:'4:24 pm', s:'Round 3', tool:'tool_survey · draft → publish → email', c:2.50, n:5, x:'Writes, checks, publishes and emails survey fcaee07b.'},
+  {t:'4:25 pm', s:'Round 3', tool:'panel · run + export_xlsx', c:0.60, n:2, x:'Exports 12 completes: 11 synthetic, 1 person.'},
+  {t:'4:25 pm', s:'Round 3', k:'human', x:'Calibration: the person expects to spend $40–$69 over three years. The panel’s most common answer was $70–$99. Matches the panel on the other 2 decision questions.'},
+  {t:'after export', s:'Round 3', k:'decide', a:'STOP', x:'It now has all three inputs: 4 of 12 buy at launch, $86 per buyer over three years, and 6 of 12 spend nothing after year two. It hands the numbers to FinRobot.'},
+  {t:'later', s:'Refresh', tool:'tool_survey · export_xlsx × 3', c:1.50, n:3, x:'Refreshes each round’s export as email replies arrive.'},
+  {t:'—', s:'Model', k:'model', x:'FinRobot reverse DCF: at a 16.56% margin, $210 needs 19.3% revenue growth a year for ten years. The survey cases are worth $75.86, $93.71 and $145.92.'},
+  {t:'—', s:'Brief', k:'out', x:'Answer: $210 needs about a 33% EBITDA margin even with bull-case demand. That is Activision Blizzard’s 2012–2021 average; Take-Two’s best year was 21%. Expensive, unless GTA VI makes Take-Two that profitable for a decade.'}
+];
+let rrTimer = null, rrI = 0, rrSpend = 0, rrCalls = 0;
+function rrStep() {
+  const e = RR[rrI++]; if (!e) return rrDone();
+  const li = document.createElement('li'); if (e.k) li.className = e.k;
+  const label = e.tool ? '<code>' + e.tool + '</code> ' : e.a ? '<span class="rr-tag' + (e.a === 'STOP' ? ' stop' : '') + '">' + e.a + '</span>' : e.k === 'human' ? '<span class="rr-tag" style="background:var(--gold)">PERSON vs PANEL</span>' : e.k === 'update' ? '<span class="rr-tag" style="background:var(--muted)">GUARDRAIL · NOW WAIT</span>' : '';
+  li.innerHTML = '<span class="t">' + e.t + '</span><span>' + label + e.x + '</span><span class="c">' + (e.c ? e.c.toFixed(2) : '') + '</span>';
+  byId('rrLog').append(li);
+  if (e.c) { rrSpend += e.c; rrCalls += e.n; }
+  byId('rrSpend').textContent = rrSpend.toFixed(2); byId('rrCalls').textContent = rrCalls;
+  byId('rrRound').textContent = e.s; if (/pm$/.test(e.t)) byId('rrClock').textContent = e.t;
+  return e;
+}
+function rrNext() {
+  const e = rrStep(); if (!e) return;
+  li_scroll();
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  rrTimer = setTimeout(rrNext, reduce ? 150 : e.k === 'decide' || e.k === 'out' ? 2200 : e.k === 'human' || e.k === 'update' ? 1700 : 800);
+}
+function li_scroll() { const last = byId('rrLog').lastElementChild; if (last && last.getBoundingClientRect().bottom > innerHeight) last.scrollIntoView({block:'end', behavior:'smooth'}); }
+function rrDone() { clearTimeout(rrTimer); byId('rrEnd').hidden = false; byId('rrSkip').hidden = true; byId('rrAgain').hidden = false; byId('rrRound').textContent = 'Done'; }
+function rrStart() {
+  clearTimeout(rrTimer); rrI = 0; rrSpend = 0; rrCalls = 0; byId('rrLog').replaceChildren();
+  byId('rrEnd').hidden = true; byId('rrSkip').hidden = false; byId('rrAgain').hidden = true;
+  mode(true); guideOpen(false);
+  for (const id of ['compose','requestState','replayOffer','reply','jobHeader']) byId(id).hidden = true;
+  document.querySelector('#liveView .helper').hidden = true;
+  byId('runReplay').hidden = false; byId('runReplay').scrollIntoView({block:'start'});
+  rrNext();
+}
+function rrClose() {
+  clearTimeout(rrTimer); byId('runReplay').hidden = true;
+  byId('compose').hidden = false; byId('requestState').hidden = false; byId('replayOffer').hidden = !!local || !byId('sendDraft').textContent.startsWith('Reconnect');
+  document.querySelector('#liveView .helper').hidden = false;
+}
+byId('rrSkip').onclick = () => { clearTimeout(rrTimer); while (rrStep()); };
+byId('rrAgain').onclick = rrStart;
+byId('rrBack').onclick = rrClose;
+byId('rrOpen').onclick = () => { rrClose(); mode(false); show(views.length - 2); byId('replayView').scrollIntoView({block:'start'}); };
+byId('replayOfferBtn').onclick = rrStart;
+function offerReplay() { byId('replayOffer').hidden = false; }
+
 async function initLive() {
-  if (location.protocol === 'file:') {
+  if (location.protocol === 'file:' || location.origin !== new URL("https://dear-avoid-over-that.trycloudflare.com/team/02875c8a572b0c8c3d0ce62ae29fe6d4881ac6ac56fe8fc7/").origin) {
     send.type = 'button'; send.disabled = false;
-    send.textContent = 'Open live workbench →';
-    message.textContent = "Start the local server from the challenge README, then open the live workbench.";
-    send.onclick = () => {
-      const target = new URL("http://127.0.0.1:4173/");
+    send.textContent = 'Replay the recorded run →';
+    send.nextElementSibling.textContent = 'Free · offline · the Nov 21 TTWO run, call by call';
+    message.innerHTML = 'Writing a new survey needs the team workbench and its Flashpoint wallet. <button type="button" class="textbtn" id="openLiveBench">Open the live workbench</button> (your question carries over).';
+    send.onclick = rrStart;
+    byId('openLiveBench').onclick = () => {
+      const target = new URL("https://dear-avoid-over-that.trycloudflare.com/team/02875c8a572b0c8c3d0ce62ae29fe6d4881ac6ac56fe8fc7/");
       target.hash = new URLSearchParams({compose:'1', objective:field.value.trim(), source:byId('source').value});
       location.assign(target.href);
     };
@@ -878,6 +1123,7 @@ async function initLive() {
     send.disabled = false; send.type = 'button'; send.textContent = 'Reconnect to workbench';
     send.onclick = () => { send.disabled = true; initLive(); };
     message.textContent = 'The draft service is unavailable. Reconnect to try again.';
+    offerReplay();
     return;
   }
   local = true; send.type = 'submit'; send.onclick = null; send.textContent = 'Generate survey draft →';

@@ -1,0 +1,417 @@
+{
+ "source": "SEC XBRL company facts API (data.sec.gov), 10-K annual values, latest filed value per fiscal year",
+ "definition": "(OperatingIncomeLoss + Depreciation + AmortizationOfIntangibleAssets) / revenue. Software development amortization stays in as an operating cost. Not the same measure as FinRobot's normalized 16.56% input.",
+ "retrieved": "2026-11-22",
+ "rows": [
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2012-03-31",
+   "revenue_musd": 825.8,
+   "operating_income_musd": -84.3,
+   "depreciation_musd": 11.5,
+   "amortization_intangibles_musd": 1.6,
+   "margin": -0.0862,
+   "accn": "0001047469-14-004898"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2013-03-31",
+   "revenue_musd": 1214.5,
+   "operating_income_musd": 5.2,
+   "depreciation_musd": 10.2,
+   "amortization_intangibles_musd": 7.4,
+   "margin": 0.0188,
+   "accn": "0001047469-15-004959"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2014-03-31",
+   "revenue_musd": 2350.6,
+   "operating_income_musd": 415.3,
+   "depreciation_musd": 13.2,
+   "amortization_intangibles_musd": 3.7,
+   "margin": 0.1839,
+   "accn": "0001047469-16-013278"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2015-03-31",
+   "revenue_musd": 1082.9,
+   "operating_income_musd": -258.5,
+   "depreciation_musd": 21.1,
+   "amortization_intangibles_musd": 0.3,
+   "margin": -0.2189,
+   "accn": "0001628280-17-005833"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2016-03-31",
+   "revenue_musd": 1413.7,
+   "operating_income_musd": -10.8,
+   "depreciation_musd": 28.8,
+   "amortization_intangibles_musd": 0.2,
+   "margin": 0.0128,
+   "accn": "0001628280-18-006877"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2017-03-31",
+   "revenue_musd": 1779.7,
+   "operating_income_musd": 91.3,
+   "depreciation_musd": 30.7,
+   "amortization_intangibles_musd": 6.8,
+   "margin": 0.0724,
+   "accn": "0001628280-19-006691"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2018-03-31",
+   "revenue_musd": 1792.9,
+   "operating_income_musd": 135.6,
+   "depreciation_musd": 32.2,
+   "amortization_intangibles_musd": 34.8,
+   "margin": 0.113,
+   "accn": "0001628280-20-008291"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2019-03-31",
+   "revenue_musd": 2668.4,
+   "operating_income_musd": 206.7,
+   "depreciation_musd": 39.7,
+   "amortization_intangibles_musd": 23.9,
+   "margin": 0.1013,
+   "accn": "0001628280-21-010627"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2020-03-31",
+   "revenue_musd": 3089.0,
+   "operating_income_musd": 425.3,
+   "depreciation_musd": 47.6,
+   "amortization_intangibles_musd": 21.0,
+   "margin": 0.1599,
+   "accn": "0001628280-22-014580"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2021-03-31",
+   "revenue_musd": 3372.8,
+   "operating_income_musd": 629.4,
+   "depreciation_musd": 56.3,
+   "amortization_intangibles_musd": 32.2,
+   "margin": 0.2128,
+   "accn": "0001628280-23-019851"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2022-03-31",
+   "revenue_musd": 3504.8,
+   "operating_income_musd": 473.6,
+   "depreciation_musd": 61.2,
+   "amortization_intangibles_musd": 64.8,
+   "margin": 0.1711,
+   "accn": "0001628280-24-024623"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2023-03-31",
+   "revenue_musd": 5349.9,
+   "operating_income_musd": -1165.2,
+   "depreciation_musd": 90.3,
+   "amortization_intangibles_musd": 1506.7,
+   "margin": 0.0807,
+   "accn": "0001628280-25-026694"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2024-03-31",
+   "revenue_musd": 5349.6,
+   "operating_income_musd": -3590.6,
+   "depreciation_musd": 135.5,
+   "amortization_intangibles_musd": 1418.9,
+   "margin": -0.3806,
+   "accn": "0001628280-26-037434"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2025-03-31",
+   "revenue_musd": 5633.6,
+   "operating_income_musd": -4391.1,
+   "depreciation_musd": 153.9,
+   "amortization_intangibles_musd": 922.6,
+   "margin": -0.5884,
+   "accn": "0001628280-26-037434"
+  },
+  {
+   "company": "TTWO",
+   "fiscal_year_end": "2026-03-31",
+   "revenue_musd": 6656.4,
+   "operating_income_musd": -104.2,
+   "depreciation_musd": 166.4,
+   "amortization_intangibles_musd": 725.7,
+   "margin": 0.1184,
+   "accn": "0001628280-26-037434"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2012-03-31",
+   "revenue_musd": 4143.0,
+   "operating_income_musd": 35.0,
+   "depreciation_musd": 102.0,
+   "amortization_intangibles_musd": 43.0,
+   "margin": 0.0434,
+   "accn": "0000712515-14-000024"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2013-03-31",
+   "revenue_musd": 3797.0,
+   "operating_income_musd": 121.0,
+   "depreciation_musd": 118.0,
+   "amortization_intangibles_musd": 30.0,
+   "margin": 0.0708,
+   "accn": "0000712515-15-000033"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2014-03-31",
+   "revenue_musd": 3575.0,
+   "operating_income_musd": 33.0,
+   "depreciation_musd": 126.0,
+   "amortization_intangibles_musd": 16.0,
+   "margin": 0.049,
+   "accn": "0000712515-16-000111"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2015-03-31",
+   "revenue_musd": 4515.0,
+   "operating_income_musd": 948.0,
+   "depreciation_musd": 126.0,
+   "amortization_intangibles_musd": 14.0,
+   "margin": 0.241,
+   "accn": "0000712515-17-000035"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2016-03-31",
+   "revenue_musd": 4396.0,
+   "operating_income_musd": 898.0,
+   "depreciation_musd": 119.0,
+   "amortization_intangibles_musd": 7.0,
+   "margin": 0.2329,
+   "accn": "0000712515-18-000024"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2017-03-31",
+   "revenue_musd": 4845.0,
+   "operating_income_musd": 1224.0,
+   "depreciation_musd": 115.0,
+   "amortization_intangibles_musd": 6.0,
+   "margin": 0.2776,
+   "accn": "0000712515-19-000019"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2018-03-31",
+   "revenue_musd": 5150.0,
+   "operating_income_musd": 1434.0,
+   "depreciation_musd": 120.0,
+   "amortization_intangibles_musd": 9.0,
+   "margin": 0.3035,
+   "accn": "0000712515-20-000019"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2019-03-31",
+   "revenue_musd": 4950.0,
+   "operating_income_musd": 996.0,
+   "depreciation_musd": 121.0,
+   "amortization_intangibles_musd": 23.0,
+   "margin": 0.2303,
+   "accn": "0000712515-21-000064"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2020-03-31",
+   "revenue_musd": 5537.0,
+   "operating_income_musd": 1445.0,
+   "depreciation_musd": 120.0,
+   "amortization_intangibles_musd": 22.0,
+   "margin": 0.2866,
+   "accn": "0000712515-22-000011"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2021-03-31",
+   "revenue_musd": 5629.0,
+   "operating_income_musd": 1046.0,
+   "depreciation_musd": 138.0,
+   "amortization_intangibles_musd": 30.0,
+   "margin": 0.2157,
+   "accn": "0000712515-23-000028"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2022-03-31",
+   "revenue_musd": 6991.0,
+   "operating_income_musd": 1129.0,
+   "depreciation_musd": 162.0,
+   "amortization_intangibles_musd": 183.0,
+   "margin": 0.2108,
+   "accn": "0000712515-24-000023"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2023-03-31",
+   "revenue_musd": 7426.0,
+   "operating_income_musd": 1332.0,
+   "depreciation_musd": 193.0,
+   "amortization_intangibles_musd": 158.0,
+   "margin": 0.2266,
+   "accn": "0000712515-25-000022"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2024-03-31",
+   "revenue_musd": 7562.0,
+   "operating_income_musd": 1518.0,
+   "depreciation_musd": 196.0,
+   "amortization_intangibles_musd": 142.0,
+   "margin": 0.2454,
+   "accn": "0001628280-26-033617"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2025-03-31",
+   "revenue_musd": 7463.0,
+   "operating_income_musd": 1520.0,
+   "depreciation_musd": 204.0,
+   "amortization_intangibles_musd": 67.0,
+   "margin": 0.24,
+   "accn": "0001628280-26-033617"
+  },
+  {
+   "company": "EA",
+   "fiscal_year_end": "2026-03-31",
+   "revenue_musd": 7531.0,
+   "operating_income_musd": 1162.0,
+   "depreciation_musd": 216.0,
+   "amortization_intangibles_musd": 66.0,
+   "margin": 0.1917,
+   "accn": "0001628280-26-033617"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2012-12-31",
+   "revenue_musd": 4856.0,
+   "operating_income_musd": 1451.0,
+   "depreciation_musd": 90.0,
+   "amortization_intangibles_musd": 30.0,
+   "margin": 0.3235,
+   "accn": "0001047469-15-001298"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2013-12-31",
+   "revenue_musd": 4583.0,
+   "operating_income_musd": 1372.0,
+   "depreciation_musd": 84.0,
+   "amortization_intangibles_musd": 24.0,
+   "margin": 0.3229,
+   "accn": "0001047469-16-010584"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2014-12-31",
+   "revenue_musd": 4408.0,
+   "operating_income_musd": 1183.0,
+   "depreciation_musd": 76.0,
+   "amortization_intangibles_musd": 13.0,
+   "margin": 0.2886,
+   "accn": "0001047469-17-001072"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2015-12-31",
+   "revenue_musd": 4664.0,
+   "operating_income_musd": 1319.0,
+   "depreciation_musd": 82.0,
+   "amortization_intangibles_musd": 13.0,
+   "margin": 0.3032,
+   "accn": "0001047469-18-001114"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2016-12-31",
+   "revenue_musd": 6608.0,
+   "operating_income_musd": 1412.0,
+   "depreciation_musd": 121.0,
+   "amortization_intangibles_musd": 708.0,
+   "margin": 0.3391,
+   "accn": "0001047469-19-000788"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2017-12-31",
+   "revenue_musd": 7017.0,
+   "operating_income_musd": 1309.0,
+   "depreciation_musd": 130.0,
+   "amortization_intangibles_musd": 759.0,
+   "margin": 0.3132,
+   "accn": "0000718877-20-000003"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2018-12-31",
+   "revenue_musd": 7500.0,
+   "operating_income_musd": 1988.0,
+   "depreciation_musd": 138.0,
+   "amortization_intangibles_musd": 371.0,
+   "margin": 0.3329,
+   "accn": "0001628280-21-002828"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2019-12-31",
+   "revenue_musd": 6489.0,
+   "operating_income_musd": 1607.0,
+   "depreciation_musd": 124.0,
+   "amortization_intangibles_musd": 204.0,
+   "margin": 0.2982,
+   "accn": "0001628280-22-003992"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2020-12-31",
+   "revenue_musd": 8086.0,
+   "operating_income_musd": 2734.0,
+   "depreciation_musd": 117.0,
+   "amortization_intangibles_musd": 80.0,
+   "margin": 0.3625,
+   "accn": "0001628280-23-004842"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2021-12-31",
+   "revenue_musd": 8803.0,
+   "operating_income_musd": 3259.0,
+   "depreciation_musd": 105.0,
+   "amortization_intangibles_musd": 11.0,
+   "margin": 0.3834,
+   "accn": "0001628280-23-004842"
+  },
+  {
+   "company": "ATVI",
+   "fiscal_year_end": "2022-12-31",
+   "revenue_musd": 7528.0,
+   "operating_income_musd": 1670.0,
+   "depreciation_musd": 91.0,
+   "amortization_intangibles_musd": 0.0,
+   "margin": 0.2339,
+   "accn": "0001628280-23-004842"
+  }
+ ]
+}
