@@ -15,11 +15,13 @@ npm ci --prefix flashpoint
 node demo/server.mjs
 ```
 
-Configure `FLASHPOINT_WALLET_KEY` in your shell or in the ignored `flashpoint/.env` on that computer. Open **http://127.0.0.1:4173**. Edit the research objective and choose **Draft follow-up via MCP**. The local server passes the objective and paired, anonymized Round 1 choices to Flashpoint’s `tool_survey` through the challenge skill. Flashpoint chooses the question wording and creates a new unpublished draft. Each button press authorizes one call capped at **0.50 USDC**. The result displays Flashpoint’s reply, its survey ID when supplied, and the measured wallet balance change. Reloading the tab recovers the current request. Local run records are stored in ignored `.demo-runs/`.
+Configure `FLASHPOINT_WALLET_KEY` in your shell or in the ignored `flashpoint/.env` on that computer. Open **http://127.0.0.1:4173**. Select a GTA VI research objective and choose **Draft follow-up via MCP**. The local server passes the objective and paired, anonymized Round 1 choices to Flashpoint’s `tool_survey` through the challenge skill. Flashpoint chooses the question wording and creates a new unpublished draft. Each button press authorizes one call capped at **0.50 USDC**. The result displays Flashpoint’s reply, its survey ID when supplied, and the measured wallet balance change. Reloading the tab recovers the current request. Local run records are stored in ignored `.demo-runs/`.
 
 In a live test on November 22, Flashpoint created an unpublished two-question draft for **0.50 USDC**. It asked which signal would trigger a launch-week purchase at $79.99, then tested whether strong reviews would change that choice.
 
-The **Recorded run** tab replays the original three rounds for free. Double-clicking the downloaded HTML also opens that replay offline. For the business use case, select **Who it is for** in the replay.
+The six-step workbench shows where the Flashpoint MCP fits: **2. Choose the audience** (0.55 USDC), **3. Design & field** (7.80 USDC), and **4. Export & decide** (3.00 USDC). Costs reconcile to the original three-round run. Step 4 pairs each continue/stop rule with its triggering evidence. The **TTWO · Recorded run** tab replays the three rounds for free, including when the downloaded HTML is opened offline.
+
+Select **Switch case · NFLX** to compare the question, audience, ticker/filings and stopping rule. This separate November 22 call used a fresh Netflix objective with no GTA responses. Flashpoint drafted and checked two screeners and two decision questions for 0.50 USDC. It stopped before distribution. [Saved Netflix draft and provider review](evidence/nflx_draft.json).
 
 Field Alpha pairs **autonomous multi-round consumer surveys via Flashpoint MCP** (paid per call in Base USDC over x402) with **deterministic DCF and Reverse-DCF valuation via FinRobot** to test equity theses from primary consumer behavior.
 

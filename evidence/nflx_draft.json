@@ -1,0 +1,56 @@
+{
+  "ticker": "NFLX",
+  "objective": "How would US ad-free Netflix subscribers respond to a hypothetical $2 monthly price increase?",
+  "audience": "US adults paying for an ad-free Netflix plan",
+  "prior_responses": [],
+  "tool": "tool_survey",
+  "status": "Unpublished draft",
+  "fielded": false,
+  "cost_usdc": 0.5,
+  "completed_at": "2026-11-22T16:30:30.002Z",
+  "survey_id": "8f22b84d-c38e-4b1e-91aa-132c09e03e8b",
+  "questions": [
+    {
+      "label": "S1",
+      "question": "Do you currently have an active Netflix subscription that you personally pay for?",
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "label": "S2",
+      "question": "Which of the following best describes the Netflix plan you are currently paying for?",
+      "options": [
+        "Standard with Ads (lower monthly price, includes advertisements)",
+        "Standard (no ads)",
+        "Premium (no ads, supports more simultaneous streams)",
+        "I am not sure which plan I have"
+      ]
+    },
+    {
+      "label": "Q1",
+      "question": "Imagine — hypothetically — that the monthly price of your current ad-free Netflix plan increased by $2. No such price change has been announced; this is a scenario question only. Which of the following would you most likely do?",
+      "options": [
+        "Keep my current ad-free plan at the new, higher price",
+        "Switch to a lower-cost Netflix plan that includes ads",
+        "Cancel my Netflix subscription entirely",
+        "Pause my subscription temporarily and reassess",
+        "Not sure — it would depend on other factors at the time"
+      ]
+    },
+    {
+      "label": "Q2",
+      "question": "Which single factor would most influence your decision in that hypothetical scenario?",
+      "options": [
+        "The dollar amount of the increase relative to what I already pay",
+        "My personal tolerance for watching advertisements",
+        "The quality and availability of Netflix content at that time",
+        "Whether competing streaming services offer better value",
+        "My overall household budget and other subscription costs",
+        "Something else or no single factor stands out"
+      ]
+    }
+  ],
+  "provider_review": "**Survey title:** Netflix Ad-Free Plan Price Sensitivity Study\n**Survey ID:** `8f22b84d-c38e-4b1e-91aa-132c09e03e8b`\n**Status:** Draft (unpublished) · 4 questions · 2 blocks\n**Estimated LOI:** ~0.4 min (median) for qualifiers\n\n---\n\n### Block A — Screener\n\n**S1.** Do you currently have an active Netflix subscription that you personally pay for?\n\n| Code | Option |\n|------|--------|\n| 1 | Yes |\n| 2 | No |\n\n*Logic: Code 2 → disqualify immediately.*\n\n---\n\n**S2.** Which of the following best describes the Netflix plan you are currently paying for?\n*(Please select one.)*\n\n| Code | Option |\n|------|--------|\n| 1 | Standard with Ads (lower monthly price, includes advertisements) |\n| 2 | Standard (no ads) |\n| 3 | Premium (no ads, supports more simultaneous streams) |\n| 4 | I am not sure which plan I have |\n\n*Logic: Code 1 → disqualify (already on ad-supported). Code 4 → disqualify (can't confirm ad-free status). Codes 2–3 continue.*\n\n---\n\n### Block B — Price Response\n\n**Q1.** Imagine — hypothetically — that the monthly price of your current ad-free Netflix plan increased by $2. No such price change has been announced; this is a scenario question only. Which of the following would you most likely do?\n*(Please select one.)*\n\n| Code | Option |\n|------|--------|\n| 1 | Keep my current ad-free plan at the new, higher price |\n| 2 | Switch to a lower-cost Netflix plan that includes ads |\n| 3 | Cancel my Netflix subscription entirely |\n| 4 | Pause my subscription temporarily and reassess |\n| 5 | Not sure — it would depend on other factors at the time |\n\n*No skip logic — all qualifiers answer.*\n\n---\n\n**Q2.** Which single factor would most influence your decision in that hypothetical scenario?\n*(Please select one.)*\n\n| Code | Option |\n|------|--------|\n| 1 | The dollar amount of the increase relative to what I already pay |\n| 2 | My personal tolerance for watching advertisements |\n| 3 | The quality and availability of Netflix content at that time |\n| 4 | Whether competing streaming services offer better value |\n| 5 | My overall household budget and other subscription costs |\n| 6 | Something else or no single factor stands out |\n\n---\n\n### Survey Check Results\n\n| Severity | Count | Rule | Note |\n|----------|-------|------|------|\n| Blocker | 0 | — | — |\n| Error | 0 | — | — |\n| Warning | 1 | `publish.no_quotas` | No quota cap set — expected for a draft with no panel yet |\n| Recommendation | 1 | `launch.defender_off` | Bot screening off — relevant only when a paid panel is attached |\n\n**Flow proof:** 1 complete path confirmed, 3 disqualify exits (S1=No; S2=Ads; S2=Not sure). Survey is logically sound and publishable once you decide on distribution.\n\n---\n\n### Design notes\n\n- The hypothetical framing is stated twice (Q1 stem + parenthetical) to prevent misreading as a real announcement.\n- Code 5 on Q1 (\"Not sure — it would depend\") and Code 6 on Q2 (\"Something else or no single factor\") preserve honest uncertainty without anchoring respondents toward a forced choice.\n- Disqualifying \"Not sure which plan\" (S2 Code 4) keeps the base clean — only confirmed ad-free subscribers reach Q1.\n- No quotas, no panel, no emails, no publishing — draft only, as requested."
+}

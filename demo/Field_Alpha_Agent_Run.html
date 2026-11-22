@@ -95,28 +95,56 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padd
 #draftText h3{font:500 24px Georgia,serif;margin:22px 0 10px}#draftText p{margin:8px 0}#draftText ol{padding-left:1.6rem}#draftText li{padding:3px 0}#draftText details{border-left:3px solid var(--line);padding:3px 12px;margin:10px 0;color:var(--muted)}#draftText summary{cursor:pointer;font-weight:600}#receipt{overflow-wrap:anywhere;font-size:13px;color:var(--muted);margin-top:16px}
 #requestState{font-size:14px}.textbtn{background:none;border:0;color:var(--ink);text-decoration:underline;padding:5px 0}
 @media(max-width:740px){.livegrid{grid-template-columns:1fr}.topnote{font-size:12px}.brandrow{padding-block:10px}.signal h2{margin:8px 0}}
+
+.pipeline{margin:24px 0 12px}.pipeline h1{font-size:clamp(30px,3.7vw,48px)}
+.pipeline-intro{margin:6px 0 16px;color:var(--muted)}
+.rail{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.rail button{background:#eeefe7;border:1px solid var(--line);border-top:3px solid #b8c2b3;text-align:left;padding:10px 11px;display:grid;align-content:start;gap:4px}
+.rail button[data-mcp]{background:#e5eedf;border-top-color:#357451}.rail button[aria-pressed=true]{outline:2px solid var(--ink);outline-offset:-2px;background:#fffef8}
+.rail small{font-size:11px;letter-spacing:.04em;font-weight:700;color:#425748}.rail b{font-size:15px}
+.rail .cost{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.stage-panel{padding:13px 16px;border:1px solid var(--line);background:#fffefa;margin-top:8px}
+.stage-panel h2{line-height:1.3;font-family:inherit;font-size:17px;font-weight:650}
+.stage-panel dl{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:13px;margin:8px 0}.stage-panel dt{font-size:12px;font-weight:700;color:var(--muted)}.stage-panel dd{margin:1px 0;font-size:14px}
+.stage-panel small,.run-total{color:var(--muted);font-size:12px}.run-total{margin:8px 0}
+.case-switch{padding:8px 0;border:0;text-align:left;text-decoration:underline;text-underline-offset:3px;background:none;font-size:14px}
+.rule-line{background:#edf1e0;border-left:3px solid var(--chart);padding:13px 16px;margin:12px 0;font-size:15px}
+.rule-line b,.case-card strong{display:block}.case-card{margin:12px 0}.case-card details{margin:12px 0}.case-card summary{cursor:pointer;font-weight:600}
+.drafter select{width:100%;padding:12px 8px;font:inherit;color:var(--ink);background:white;border:1px solid #94a79b}
+@media(max-width:850px){.rail{grid-template-columns:repeat(3,1fr)}.stage-panel dl{grid-template-columns:1fr 1fr}.modes{gap:12px;flex-wrap:wrap}}
+@media(max-width:520px){.rail button{padding:7px}.rail b{font-size:13px}.rail small{font-size:10px}.stage-panel dl{grid-template-columns:1fr;gap:4px}.modes button{padding:8px 0;font-size:13px}}
+.rule-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.rule-jump{background:#f2f5ea;text-align:left;border:1px solid var(--line);padding:10px;display:grid;gap:5px}
+.rule-jump span,.rule-jump small{font-size:13px}.rule-jump small{color:var(--chart)}
+@media(max-width:620px){.rule-nav{grid-template-columns:1fr}.case-card table{font-size:13px}.case-card th{letter-spacing:0}.case-card code{overflow-wrap:anywhere}}
 </style>
 </head>
 <body>
 <header><div class="brandrow">
   <span class="logo" aria-hidden="true">α</span><span class="brand">Field Alpha</span>
-  <span class="topnote">Flashpoint MCP Challenge &nbsp;/&nbsp; NASDAQ · TTWO</span>
+  <span class="topnote">Flashpoint MCP Challenge &nbsp;/&nbsp; Research workbench</span>
 </div></header>
 
 <main>
+<section class="pipeline" aria-label="Research workflow">
+<h1>From research question to decision</h1>
+<p class="pipeline-intro">Flashpoint MCP selects the audience, fields surveys and exports answers. The agent uses those answers to choose its next question.</p>
+<p id="flowCase" class="label" style="margin-bottom:6px">TTWO · completed study</p><div class="rail" aria-label="Inspect a workflow step"><button type="button" data-stage="1" aria-controls="stage-1" aria-pressed="false"><small>01 · Research brief</small><b>Frame the decision</b><span class="cost">0.00 USDC</span></button><button type="button" data-mcp data-stage="2" aria-controls="stage-2" aria-pressed="false"><small>02 · Flashpoint MCP</small><b>Choose the audience</b><span class="cost">0.55 USDC</span></button><button type="button" data-mcp data-stage="3" aria-controls="stage-3" aria-pressed="false"><small>03 · Flashpoint MCP</small><b>Design &amp; field</b><span class="cost">7.80 USDC</span></button><button type="button" data-mcp data-stage="4" aria-controls="stage-4" aria-pressed="false"><small>04 · Flashpoint MCP</small><b>Export &amp; decide</b><span class="cost">3.00 USDC</span></button><button type="button" data-stage="5" aria-controls="stage-5" aria-pressed="false"><small>05 · FinRobot</small><b>Model scenarios</b><span class="cost">0.00 USDC</span></button><button type="button" data-stage="6" aria-controls="stage-6" aria-pressed="false"><small>06 · Research output</small><b>Deliver the brief</b><span class="cost">0.00 USDC</span></button></div><article class="stage-panel" id="stage-1" hidden><h2>Step 1 · Frame the decision</h2><dl><div><dt>Input</dt><dd>One investment question and a company.</dd></div><div><dt>Output</dt><dd>A decision brief with a target audience and the inputs the analyst needs.</dd></div><div><dt>Tool / action</dt><dd>Agent · no Flashpoint tool</dd></div></dl><small>Brief received at 4:10 pm ET. Scoping duration was not logged.</small></article><article class="stage-panel" id="stage-2" hidden><h2>Step 2 · Choose the audience</h2><dl><div><dt>Input</dt><dd>US adult gamers and the study’s eligibility criteria.</dd></div><div><dt>Output</dt><dd>Census context and a 12-persona synthetic panel for the rapid pilot.</dd></div><div><dt>Tool / action</dt><dd>demographics → panel(create)</dd></div></dl><small>49.5 s of provider time: 13.1 s for demographics and 36.4 s for panel creation.</small></article><article class="stage-panel" id="stage-3" hidden><h2>Step 3 · Design &amp; field</h2><dl><div><dt>Input</dt><dd>An objective or follow-up brief, an audience and a consented email list.</dd></div><div><dt>Output</dt><dd>A checked questionnaire, published survey and invitations. The panel answers each round.</dd></div><div><dt>Tool / action</dt><dd>tool_survey: draft + check → publish + confirm → email + confirm · panel(run)</dd></div></dl><small>Three rounds × 2.60 USDC (draft/check 0.50, publish 1.00, email 1.00, panel run 0.10). Draft receipt to email confirmation: R1 1m 36s · R2 1m 08s · R3 1m 08s. These intervals exclude draft creation and panel execution.</small></article><article class="stage-panel" id="stage-4" hidden><h2>Step 4 · Export &amp; decide</h2><dl><div><dt>Input</dt><dd>The survey ID, completed answers and required model inputs.</dd></div><div><dt>Output</dt><dd>Redacted paired answers and an agent decision: ask again at step 3 or hand off at step 5.</dd></div><div><dt>Tool / action</dt><dd>tool_survey: export_xlsx → agent reviews paired answers</dd></div></dl><small>Six exports × 0.50 USDC (initial and refreshed exports in each round). First panel/export receipts: 4:14:55, 4:21:15 and 4:25:45 pm ET. Export duration and later refresh times were not logged separately.</small></article><article class="stage-panel" id="stage-5" hidden><h2>Step 5 · Model scenarios</h2><dl><div><dt>Input</dt><dd>Observed choices, spend bands, retention assumptions and filing-backed financial inputs.</dd></div><div><dt>Output</dt><dd>Revenue and valuation scenarios with explicit model assumptions.</dd></div><div><dt>Tool / action</dt><dd>FinRobot · DCF and reverse DCF</dd></div></dl><small>Local calculation. Runtime was not recorded.</small></article><article class="stage-panel" id="stage-6" hidden><h2>Step 6 · Deliver the brief</h2><dl><div><dt>Input</dt><dd>Scenario results, sample sources, decision log and survey evidence.</dd></div><div><dt>Output</dt><dd>An analyst brief explaining the decision, the supporting evidence and what remains uncertain.</dd></div><div><dt>Tool / action</dt><dd>Agent · report and evidence log</dd></div></dl><small>Local report. Writing time was not recorded.</small></article>
+<p class="run-total">TTWO · three rounds · 11.35 USDC in Flashpoint calls, including export refreshes · 15m 25s from run start to the third initial export.</p>
+<button type="button" class="case-switch" id="configLink">Switch company: change the question, audience and ticker / filing inputs →</button>
+</section>
 <nav class="modes" aria-label="Research mode">
-<button id="liveTab" aria-pressed="true">Live follow-up</button><button id="replayTab" aria-pressed="false">Recorded run</button>
+<button id="liveTab" aria-pressed="true">TTWO · Live follow-up</button><button id="replayTab" aria-pressed="false">TTWO · Recorded run</button><button id="reuseTab" aria-pressed="false">Switch case · NFLX</button>
 </nav>
 <section id="liveView">
 <div class="livehead"><h1>What should we ask next?</h1>
-<p class="sub">Give the agent a research objective. It reads the paired answers from round one and drafts a follow-up through Flashpoint MCP.</p></div>
+<p class="sub">Choose a research objective for the GTA VI panel. The agent reads its round-one answers and drafts a follow-up through Flashpoint MCP.</p></div>
 <div class="livegrid">
 <article class="signal"><p class="label">Evidence from round one</p>
 <h2>Four would pay full price later. Three of them capped their price below $70.</h2>
 <p>The Standard Edition was priced at $79.99.</p><p>11 completed responses · synthetic panel · recorded Nov 21</p></article>
 <form class="card drafter" id="draftForm">
-<label for="objective">Research objective</label>
-<textarea rows="3" maxlength="500" required id="objective">Find out what would make players who plan to wait buy GTA VI at full price.</textarea>
+<label for="objective">GTA VI follow-up objective</label><select id="objective"><option>Find out what would make players who plan to wait buy GTA VI at full price.</option><option>Test whether reviews or a price cut would change GTA VI purchase timing.</option><option>Find out which paid GTA VI content players would buy after launch.</option></select>
 <button class="action" id="sendDraft" disabled>Draft follow-up via MCP</button>
 <p class="caption">One draft · up to 0.50 USDC · no invitations sent</p>
 <p id="requestState" role="status">Checking local connection…</p>
@@ -227,18 +255,7 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padd
   <div class="grid">
     <div class="stack">
       <div class="card">
-        <p class="label">The repeatable procedure</p>
-        <h2>The same six steps work for any consumer company</h2>
-        <ol class="sop">
-          <li><b>One question in.</b> An analyst states the decision they need to make about a company.</li>
-          <li><b>The agent writes the survey.</b> It picks the audience and four to seven questions that map to revenue drivers, and Flashpoint checks the logic.</li>
-          <li><b>The agent fields it.</b> Flashpoint emails unique links to a consented list, or runs a panel.</li>
-          <li><b>The agent reads the answers and decides what is still unclear.</b> It writes the next round around those gaps. In this run it did so twice.</li>
-          <li><b>Answers become model inputs.</b> Conversion, price ceilings and spend per buyer go into FinRobot's DCF and reverse DCF.</li>
-          <li><b>A verdict with its evidence.</b> The output is a call, the cases behind it, and a log of every survey, payment and decision.</li>
-        </ol>
-        <p class="caption" style="margin-top:10px">To point it at another company, change the question and the filing inputs (<code>finrobot_analyze.py seed-sec</code> pulls them for a US ticker).</p>
-      </div>
+        <p class="label">Reuse the workflow</p><h2>Run the next company brief</h2><p>Change the research question, target audience and ticker with its filing inputs. Review the stopping rule with the analyst.</p><button type="button" class="textbtn open-config">Compare the Netflix draft →</button></div>
     </div>
     <div class="stack">
       <div class="card dark">
@@ -259,7 +276,7 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padd
         <ul class="plain">
           <li>Field the same rounds to a recruited Flashpoint panel of console owners.</li>
           <li>Have the agent wait for a set number of human answers before it writes the next round.</li>
-          <li>Run it on a second company to show the steps carry over.</li>
+          <li>Field the Netflix draft and evaluate its answers in a second full study.</li>
         </ul>
       </div>
     </div>
@@ -268,11 +285,49 @@ code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--soft);padd
 
 <div class="navrow"><button id="prev">← Back</button><button id="next">Next →</button></div>
 </div>
-</main>
+<section id="reuseView" hidden><h2>Configure the next study</h2>
+<div class="grid case-card"><div class="card"><p class="label">Case configuration</p>
+<table><thead><tr><th>Change</th><th>Take-Two</th><th>Netflix</th></tr></thead><tbody>
+<tr><th>Question</th><td>When will players buy at full price?</td><td>Would a hypothetical $2 increase change a subscriber’s plan?</td></tr>
+<tr><th>Audience</th><td>US adult gamers</td><td>US adults paying for ad-free Netflix</td></tr>
+<tr><th>Ticker &amp; filings</th><td>TTWO · case filing inputs</td><td>NFLX · use <code>seed-sec</code> before valuation</td></tr>
+<tr><th>Stop when</th><td>Purchase timing, spend and duration are available</td><td>Draft-only pilot ends after the checked questionnaire</td></tr></tbody></table></div>
+<div class="card"><p class="label">Shared procedure</p><h2>Carry over the survey loop</h2><p>Use the same MCP call order, 0.50 USDC per-call cap, and evidence log with round, tool, timestamp, cost and artifact.</p>
+<p><b>Planned option</b> · Wait for N completed human responses before advancing. This threshold is not implemented.</p></div></div>
+<article class="card case-card"><p class="label">NFLX · unpublished draft · 0.50 USDC</p><h2>Would a $2 increase change a subscriber’s plan?</h2><p>One fresh <code>tool_survey</code> call produced two screeners and two decision questions from the Netflix brief alone. No invitations or responses. No Netflix valuation was run.</p><details><summary>S1 · Do you currently have an active Netflix subscription that you personally pay for?</summary><ol><li>Yes</li><li>No</li></ol></details><details><summary>S2 · Which of the following best describes the Netflix plan you are currently paying for?</summary><ol><li>Standard with Ads (lower monthly price, includes advertisements)</li><li>Standard (no ads)</li><li>Premium (no ads, supports more simultaneous streams)</li><li>I am not sure which plan I have</li></ol></details><details open><summary>Q1 · Imagine — hypothetically — that the monthly price of your current ad-free Netflix plan increased by $2. No such price change has been announced; this is a scenario question only. Which of the following would you most likely do?</summary><ol><li>Keep my current ad-free plan at the new, higher price</li><li>Switch to a lower-cost Netflix plan that includes ads</li><li>Cancel my Netflix subscription entirely</li><li>Pause my subscription temporarily and reassess</li><li>Not sure — it would depend on other factors at the time</li></ol></details><details><summary>Q2 · Which single factor would most influence your decision in that hypothetical scenario?</summary><ol><li>The dollar amount of the increase relative to what I already pay</li><li>My personal tolerance for watching advertisements</li><li>The quality and availability of Netflix content at that time</li><li>Whether competing streaming services offer better value</li><li>My overall household budget and other subscription costs</li><li>Something else or no single factor stands out</li></ol></details><p class="caption">Draft check: 0 blockers, 0 errors. Before fielding, verify age and US residency at recruitment or add an eligibility question. The saved screeners check payment and plan type.</p><p class="caption">Flashpoint survey ID · <code>8f22b84d-c38e-4b1e-91aa-132c09e03e8b</code></p></article>
+</section></main>
 
 <footer><div>Field Alpha · Patrick Xiong, Haotian Jiang, Rong Du · Flashpoint AI × Columbia AI Club Hackathon. Survey data: redacted Flashpoint exports of November 21, 2026 (<code>evidence/round1..3_responses_redacted.csv</code>). Valuation: FinRobot operators on Take-Two filing inputs. Times are New York time.</div></footer>
 
 <script>
+function selectStage(number) {
+  document.querySelectorAll('[data-stage]').forEach(button => {
+    const selected = Number(button.dataset.stage) === number;
+    button.setAttribute('aria-pressed', String(selected));
+    document.getElementById(button.getAttribute('aria-controls')).hidden = !selected;
+  });
+}
+document.querySelectorAll('[data-stage]').forEach(button => {
+  button.onclick = () => selectStage(Number(button.dataset.stage));
+});
+const roundRules = [["Ask again when answers conflict.", "Three of four synthetic respondents who chose \u201cfull price later\u201d set a ceiling below $70.", "Round 2 tested a nine-month wait at $79.99."], ["Ask again when a model input is missing.", "Round 2 identified interest in story content, but did not measure total three-year spend.", "Round 3 asked for spend bands and spending duration."], ["Stop when the required inputs are available.", "Round 3 supplied purchase timing, spend bands and when spending would end.", "The agent handed those inputs to FinRobot for scenario analysis."]];
+const decisionBox = document.getElementById('stage-4');
+const ruleNav = document.createElement('div');
+ruleNav.className = 'rule-nav';
+roundRules.forEach(([rule, evidence, action], index) => {
+  const link = document.createElement('button');
+  link.type = 'button'; link.className = 'rule-jump';
+  const title = document.createElement('strong');
+  title.textContent = rule;
+  const proof = document.createElement('span');
+  proof.textContent = evidence;
+  const next = document.createElement('small');
+  next.textContent = 'View round ' + (index+1) + ' →';
+  link.append(title, proof, next);
+  link.onclick = () => { mode(false); show(index+1); };
+  ruleNav.append(link);
+});
+decisionBox.append(ruleNav);
 const ROUNDS = [{"n": 1, "complete": 11, "human": 0, "terminated": 1, "incomplete": 1, "questions": [{"label": "Q1", "text": "Are you 18 or older living in the United States, and which primary gaming platform do you play on most?", "options": [{"text": "Yes (18+ in US) — PlayStation 5 (including PS5 Pro)", "syn": 5, "hum": 0}, {"text": "Yes (18+ in US) — Xbox Series X or Series S", "syn": 3, "hum": 0}, {"text": "Yes (18+ in US) — Gaming PC or gaming laptop", "syn": 2, "hum": 0}, {"text": "Yes (18+ in US) — Other console or handheld only", "syn": 1, "hum": 0}, {"text": "No — I do not play video games, am under 18, or live outside the US", "syn": 0, "hum": 0}]}, {"label": "Q2", "text": "With Grand Theft Auto VI priced at $79.99 for the Standard Edition and $99.99 for the Ultimate Edition, what best describes your purchase plan?", "options": [{"text": "Buy at launch — Ultimate Edition ($99.99)", "syn": 1, "hum": 0}, {"text": "Buy at launch — Standard Edition ($79.99)", "syn": 1, "hum": 0}, {"text": "Buy later (within 3–12 months) at the regular full price", "syn": 4, "hum": 0}, {"text": "Wait for a discount before buying", "syn": 4, "hum": 0}, {"text": "Do not plan to buy the game", "syn": 1, "hum": 0}]}, {"label": "Q3", "text": "What is the highest price before tax you would be willing to pay for a new copy of the GTA VI Standard Edition?", "options": [{"text": "Less than $50", "syn": 1, "hum": 0}, {"text": "$50–$59.99", "syn": 2, "hum": 0}, {"text": "$60–$69.99", "syn": 5, "hum": 0}, {"text": "$70–$79.99", "syn": 2, "hum": 0}, {"text": "$80–$99.99", "syn": 1, "hum": 0}, {"text": "$100 or more", "syn": 0, "hum": 0}, {"text": "I would not buy it at any price", "syn": 0, "hum": 0}]}, {"label": "Q4", "text": "What is the main reason behind your GTA VI purchase plan?", "options": [{"text": "I want to play day one as soon as possible", "syn": 1, "hum": 0}, {"text": "The price or my budget", "syn": 4, "hum": 0}, {"text": "I am waiting for reviews or player word-of-mouth", "syn": 4, "hum": 0}, {"text": "I do not have time to play right now", "syn": 0, "hum": 0}, {"text": "I am waiting for a PC release", "syn": 1, "hum": 0}, {"text": "I am not interested in GTA VI", "syn": 1, "hum": 0}]}, {"label": "Q5", "text": "Over your first 12 months after getting GTA VI (if you buy or play it), roughly how much extra do you expect to spend on GTA Online currency, a GTA+ membership, or paid story/online add-ons?", "options": [{"text": "$0 (no extra post-launch spending)", "syn": 7, "hum": 0}, {"text": "$1–$25", "syn": 1, "hum": 0}, {"text": "$26–$60", "syn": 1, "hum": 0}, {"text": "$61–$120", "syn": 1, "hum": 0}, {"text": "More than $120", "syn": 1, "hum": 0}, {"text": "Not applicable — I will not buy or play GTA VI", "syn": 0, "hum": 0}]}, {"label": "Q6", "text": "Which statement best describes whether you might buy a second copy later (such as on PC) and how GTA VI affects your overall gaming budget?", "options": [{"text": "Likely to buy a second copy later, and GTA VI is extra money on top of my normal gaming budget", "syn": 0, "hum": 0}, {"text": "Likely to buy a second copy later, but it replaces spending on other games", "syn": 1, "hum": 0}, {"text": "Single copy only, and GTA VI is extra money on top of my normal gaming budget", "syn": 3, "hum": 0}, {"text": "Single copy only, and it replaces spending on other games", "syn": 6, "hum": 0}, {"text": "Will not buy GTA VI", "syn": 1, "hum": 0}]}], "title": "Round 1: baseline demand, price ceiling and extra spend", "sid": "446278e5-7baf-4205-97f3-1dff8d56f2d8", "drafted": "4:13 pm", "answered": "4:14 pm"}, {"n": 2, "complete": 12, "human": 1, "terminated": 1, "incomplete": 1, "questions": [{"label": "Q1", "text": "Are you 18 or older living in the United States, and which primary gaming platform do you play on most?", "options": [{"text": "Yes (18+ in US) — PlayStation 5 (including PS5 Pro)", "syn": 5, "hum": 0}, {"text": "Yes (18+ in US) — Xbox Series X or Series S", "syn": 3, "hum": 0}, {"text": "Yes (18+ in US) — Gaming PC or gaming laptop", "syn": 3, "hum": 1}, {"text": "Yes (18+ in US) — Other console or handheld only", "syn": 0, "hum": 0}, {"text": "No — I do not play video games, am under 18, or live outside the US", "syn": 0, "hum": 0}]}, {"label": "Q2", "text": "Suppose GTA VI launches to universal acclaim (90+ review scores) and Rockstar keeps the Standard Edition at $79.99 with zero discounts for the first 9 months. What would you actually do?", "options": [{"text": "Buy full price at $79.99 (or $99.99 Ultimate) within the first month anyway", "syn": 0, "hum": 0}, {"text": "Buy full price at $79.99 within 2 to 6 months once my schedule clears", "syn": 3, "hum": 0}, {"text": "Wait for a discount until the first sale drops it to $69.99", "syn": 4, "hum": 0}, {"text": "Wait for a discount until a deeper sale drops it to $59.99 or less", "syn": 3, "hum": 1}, {"text": "Do not plan to buy the game", "syn": 1, "hum": 0}]}, {"label": "Q3", "text": "Which type of paid post-launch GTA VI content would you actually pay money for in your first two years?", "options": [{"text": "A major single-player Story Expansion DLC ($29.99–$39.99 one-time)", "syn": 3, "hum": 0}, {"text": "GTA+ monthly membership ($7.99–$9.99/month) with online perks", "syn": 0, "hum": 0}, {"text": "One-off GTA Online in-game currency or seasonal passes ($10–$25)", "syn": 3, "hum": 0}, {"text": "Both a paid Story Expansion DLC and ongoing GTA Online or GTA+ spending", "syn": 3, "hum": 0}, {"text": "None — I will only pay for the base game", "syn": 2, "hum": 1}]}, {"label": "Q4", "text": "Which included bundle perk would make you upgrade from the $79.99 Standard Edition to the $99.99 Ultimate Edition?", "options": [{"text": "Guaranteed access to the first single-player Story Expansion DLC", "syn": 3, "hum": 0}, {"text": "3 months of GTA+ membership plus starter GTA Online cash and vehicles", "syn": 0, "hum": 0}, {"text": "3-day early access before standard launch day", "syn": 0, "hum": 0}, {"text": "Cross-buy perk (console purchase includes a free or discounted PC upgrade later)", "syn": 3, "hum": 0}, {"text": "Nothing — I would not pay $99.99 for any edition", "syn": 5, "hum": 1}]}, {"label": "Q5", "text": "If you spend $70–$100 on GTA VI, which games lose out in your annual gaming budget?", "options": [{"text": "Mostly games from other publishers (EA, Ubisoft, Activision, Sony), not other Take-Two games", "syn": 3, "hum": 0}, {"text": "Other Take-Two games I might otherwise buy (such as NBA 2K, Civilization, or Borderlands)", "syn": 3, "hum": 0}, {"text": "Both other Take-Two games and other publishers games equally", "syn": 1, "hum": 0}, {"text": "Neither — GTA VI is extra entertainment money and does not reduce my other game purchases", "syn": 3, "hum": 1}, {"text": "Not applicable — I will not buy GTA VI", "syn": 1, "hum": 0}]}], "title": "Round 2: would they really wait, what would they pay for, and whose sales suffer", "sid": "bcb9282c-e360-4eb3-9f6d-9fb430541a39", "drafted": "4:19 pm", "answered": "4:21 pm"}, {"n": 3, "complete": 12, "human": 1, "terminated": 1, "incomplete": 0, "questions": [{"label": "Q1", "text": "Are you 18 or older living in the United States, and which primary gaming platform do you play on most?", "options": [{"text": "Yes (18+ in US) — PlayStation 5 (including PS5 Pro)", "syn": 5, "hum": 0}, {"text": "Yes (18+ in US) — Xbox Series X or Series S", "syn": 3, "hum": 0}, {"text": "Yes (18+ in US) — Gaming PC or gaming laptop", "syn": 3, "hum": 1}, {"text": "Yes (18+ in US) — Other console or handheld only", "syn": 0, "hum": 0}, {"text": "No — I do not play video games, am under 18, or live outside the US", "syn": 0, "hum": 0}]}, {"label": "Q2", "text": "If Rockstar offered these GTA VI purchase options at launch (replacing monthly subscriptions with tangible Story DLC and Cross-Buy perks), which would you choose?", "options": [{"text": "Buy at launch — $99.99 Ultimate Bundle (includes first Story Expansion DLC plus discounted/free PC Cross-Buy upgrade)", "syn": 1, "hum": 0}, {"text": "Buy at launch — $79.99 Standard Edition now, and decide on $39.99 Story DLC later", "syn": 3, "hum": 0}, {"text": "Buy later within 6 months at full price ($79.99) once I have time to play", "syn": 1, "hum": 0}, {"text": "Wait for a discount to $59.99–$69.99 because of the price or my budget", "syn": 5, "hum": 1}, {"text": "Do not plan to buy the game", "syn": 1, "hum": 0}]}, {"label": "Q3", "text": "Across your first 3 years after GTA VI releases (combining the base game, any Story Expansion DLC, any second copy on PC, and any GTA Online purchases), roughly how much total money do you realistically expect to spend on GTA VI?", "options": [{"text": "$0 (will not buy)", "syn": 0, "hum": 0}, {"text": "$40–$69 total (discounted base game only)", "syn": 3, "hum": 1}, {"text": "$70–$99 total (base game or discounted bundle only)", "syn": 6, "hum": 0}, {"text": "$100–$139 total (for example, base game plus Story DLC or online passes)", "syn": 1, "hum": 0}, {"text": "$140–$199 total (for example, Ultimate bundle plus extras or a second copy)", "syn": 0, "hum": 0}, {"text": "$200 or more total across 3 years", "syn": 1, "hum": 0}]}, {"label": "Q4", "text": "Looking further ahead to Years 3 through 6 after release, what would realistically keep you spending money in the GTA VI ecosystem?", "options": [{"text": "Paid Story Expansion chapters or new map cities ($29.99–$39.99 each)", "syn": 2, "hum": 0}, {"text": "Ongoing GTA Online seasonal passes or roleplay/creator servers ($20–$50 per year)", "syn": 1, "hum": 0}, {"text": "A discounted PC or next-generation console second copy only", "syn": 2, "hum": 0}, {"text": "Nothing — after Years 1–2 I move on to new games and spend $0 more on GTA VI", "syn": 5, "hum": 1}, {"text": "Not applicable — I will not buy GTA VI", "syn": 1, "hum": 0}]}], "title": "Round 3: dollars over three years and what keeps people paying", "sid": "fcaee07b-9da2-4cc2-92fb-36dacd8bd706", "drafted": "4:24 pm", "answered": "4:25 pm"}];
 const NOTES = {
   1: {
@@ -370,7 +425,8 @@ for (const r of ROUNDS) {
   else meta.append(el("p", "meta", "One person completed this round by email a few minutes after the panel. Their answer is counted in the bars."));
   right.append(learned, why, meta);
   grid.append(left, right);
-  sec.append(grid);
+  const [rule, evidence, action] = roundRules[r.n - 1];
+  sec.append(el("div", "rule-line", '<b>Steps 3–4 · ' + rule + '</b>' + evidence + ' ' + action), grid);
 }
 
 const vals = document.getElementById("vals");
@@ -396,11 +452,12 @@ views.forEach((v, i) => {
 });
 function show(i) {
   cur = i;
+  selectStage([1,4,4,4,5,6][i]);
   views.forEach((v, j) => v.hidden = j !== i);
   [...steps.querySelectorAll("button")].forEach((b, j) => j === i ? b.setAttribute("aria-current", "step") : b.removeAttribute("aria-current"));
   document.getElementById("prev").disabled = i === 0;
   document.getElementById("next").disabled = i === views.length - 1;
-  window.scrollTo(0, 0);
+  if (!document.getElementById("replayView").hidden) document.getElementById("steps").scrollIntoView({block:"nearest"});
 }
 document.getElementById("prev").onclick = () => show(cur - 1);
 document.getElementById("next").onclick = () => show(cur + 1);
@@ -412,11 +469,55 @@ const form = byId('draftForm'), send = byId('sendDraft'), message = byId('reques
 const field = byId('objective'), check = byId('check');
 const storageKey = 'field-alpha-follow-up';
 let local = false, current = null, timer = null;
+const railCosts = [...document.querySelectorAll('.rail .cost')];
+const stagePanels = [...document.querySelectorAll('.stage-panel')];
+const timeLabel = document.querySelector('.run-total');
+const ttwoTotal = timeLabel.textContent;
+const ttwoStages = stagePanels.map((panel, i) => ({
+  cost: railCosts[i].textContent,
+  fields: [...panel.querySelectorAll('dd')].map(node => node.textContent),
+  time: panel.querySelector('small').textContent
+}));
+const netflixStages = [
+  {cost:'Brief only',fields:['Hypothetical $2 plan increase.', 'Decision brief for a subscriber study.', 'Analyst'],time:'Brief preparation was not timed.'},
+  {cost:'Audience specified',fields:['US adults paying for ad-free Netflix.', 'Targeting criteria in the brief.', 'No demographics or panel call in this pilot.'],time:'Audience specified before the draft call.'},
+  {cost:'0.50 USDC',fields:['Fresh NFLX objective and targeting criteria.', 'Four checked questions in an unpublished draft.', 'tool_survey: draft + check'],time:'1m 02s from runner start to saved response, including connection and balance checks.'},
+  {cost:'Not run',fields:['Would require completed responses.', 'No exports or evidence to review.', 'Pilot stopped after drafting.'],time:'No fieldwork or export time.'},
+  {cost:'Not run',fields:['Would require filing inputs and consumer evidence.', 'No NFLX valuation.', 'FinRobot was not run.'],time:'No calculation time.'},
+  {cost:'Not run',fields:['Would require a completed study.', 'Saved survey design only.', 'No investment recommendation.'],time:'No report time.'}
+];
+function workflowCase(netflix) {
+  const stages = netflix ? netflixStages : ttwoStages;
+  stages.forEach((stage, i) => {
+    const panel = stagePanels[i];
+    railCosts[i].textContent = stage.cost;
+    [...panel.querySelectorAll('dd')].forEach((node,j) => node.textContent = stage.fields[j]);
+    panel.querySelector('small').textContent = stage.time;
+  });
+  ruleNav.hidden = netflix;
+  byId('flowCase').textContent = netflix ? 'NFLX · draft-only pilot' : 'TTWO · completed study';
+  timeLabel.textContent = netflix ? 'NFLX · 1 draft call · 0.50 USDC · 0 invitations · 0 responses' : ttwoTotal;
+}
 function mode(live) {
+  workflowCase(false);
+  byId('reuseView').hidden = true; byId('reuseTab').setAttribute('aria-pressed','false');
+  selectStage(live ? 3 : [1,4,4,4,5,6][cur]);
   byId('liveView').hidden = !live; byId('replayView').hidden = live;
   byId('liveTab').setAttribute('aria-pressed', String(live));
   byId('replayTab').setAttribute('aria-pressed', String(!live));
 }
+function openCase() {
+  workflowCase(true);
+  for (const key of ['live','replay','reuse']) {
+    byId(key+'View').hidden = key !== 'reuse';
+    byId(key+'Tab').setAttribute('aria-pressed', String(key === 'reuse'));
+  }
+  selectStage(3);
+}
+byId('reuseTab').onclick = openCase;
+byId('configLink').onclick = () => { openCase(); byId('reuseView').scrollIntoView({block:'start'}); };
+document.querySelector('.open-config').onclick = byId('configLink').onclick;
+selectStage(3);
 byId('liveTab').onclick = () => mode(true);
 byId('replayTab').onclick = () => mode(false);
 function remember(job) {
@@ -433,7 +534,7 @@ async function readResponse(response) {
   return data;
 }
 function busy(value) {
-  send.disabled = value || !local; field.readOnly = value;
+  send.disabled = value || !local; field.disabled = value;
 }
 function renderDraft(report) {
   const output = byId('draftText');
@@ -465,7 +566,11 @@ function renderDraft(report) {
 }
 function showJob(job) {
   clearTimeout(timer);
-  remember(job); field.value = job.objective; check.hidden = true;
+  remember(job);
+  if (![...field.options].some(option => option.value === job.objective)) {
+    field.add(new Option(job.objective, job.objective));
+  }
+  field.value = job.objective; check.hidden = true;
   const pending = job.status === 'pending';
   busy(pending); byId('reply').hidden = job.status !== 'returned';
   send.textContent = pending ? 'Drafting follow-up…' : 'Draft another follow-up via MCP';
