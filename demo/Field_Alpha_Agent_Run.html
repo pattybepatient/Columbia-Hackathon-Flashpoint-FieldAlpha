@@ -170,6 +170,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <div class="example-row"><span>Try an objective</span><button data-example="ttwo">GTA VI purchase timing ↗</button><button data-example="new">Netflix subscriber retention ↗</button></div>
 </div>
 <div id="jobHeader" hidden><p class="workspace-label" id="phaseLabel"></p><h1 id="jobTitle"></h1><p id="jobSource" class="sub"></p></div>
+<noscript><p>Open the <a href="http://127.0.0.1:4173/">live workbench</a> in your browser to generate a survey.</p></noscript>
 <p id="requestState" role="status">Connecting to the workbench…</p>
 <button type="button" class="textbtn" id="check" hidden>Recover this request</button>
 <section id="reply" hidden>
@@ -685,7 +686,7 @@ async function poll() {
   const id = current?.id;
   if (!id) return;
   try {
-    const result = await readResponse(await fetch('/api/draft/' + id));
+    const result = await readResponse(await fetch('api/draft/' + id));
     if (current?.id === id) showJob(result);
   }
   catch (error) {
@@ -704,7 +705,7 @@ check.onclick = poll;
 async function submitDraft(parent) {
   if (!local || current?.status === 'pending') return;
   const objective = parent ? parent.objective : field.value.trim();
-  if (!objective) return;
+  if (!objective) { field.setCustomValidity('Enter your research question or choose an example below.'); field.reportValidity(); return; }
   const job = {id:crypto.randomUUID(), objective, source:parent ? (parent.source || 'ttwo') : byId('source').value,
     status:'pending',started:new Date().toISOString()};
   if (parent) {
@@ -714,28 +715,52 @@ async function submitDraft(parent) {
   showJob(job); clearTimeout(timer);
   let response;
   try {
-    response = await fetch('/api/draft',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(job)});
+    response = await fetch('api/draft',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(job)});
     showJob(await readResponse(response));
   } catch (error) {
     if (response && response.status < 500) showJob({...job,status:'failed',message:error.message});
     else { message.textContent = 'Request status unknown. Check before starting another draft.'; check.hidden = false; }
   }
 }
+field.addEventListener('input', () => field.setCustomValidity(''));
+form.addEventListener('click', () => field.setCustomValidity(''));
 form.onsubmit = event => { event.preventDefault(); submitDraft(null); };
 byId('revisionForm').onsubmit = event => { event.preventDefault(); if (current?.status === 'returned') submitDraft(current); };
 async function initLive() {
-  try {
-    if (location.protocol !== 'http:') throw Error();
-    const status = await readResponse(await fetch('/api/status'));
-    if (!status.live) throw Error();
-    local = true; busy(false); message.textContent = ''; drawRecent();
-    const linked = /^#draft=([0-9a-f-]{36})$/.exec(location.hash);
-    const previous = linked ? {id:linked[1]} : JSON.parse(sessionStorage.getItem(storageKey) || 'null');
-    if (previous) { current = previous; busy(true); await poll(); }
-  } catch {
-    message.textContent = 'For a live draft, start the local server using the challenge README. Open the case library to explore the saved studies.';
-    mode(true);
+  if (location.protocol === 'file:') {
+    send.type = 'button'; send.disabled = false;
+    send.textContent = 'Open live workbench →';
+    message.textContent = "Start the local server from the challenge README, then open the live workbench.";
+    send.onclick = () => {
+      const target = new URL("http://127.0.0.1:4173/");
+      target.hash = new URLSearchParams({compose:'1', objective:field.value.trim(), source:byId('source').value});
+      location.assign(target.href);
+    };
+    return;
   }
+  try {
+    const status = await readResponse(await fetch('api/status', {signal:globalThis.AbortSignal?.timeout?.(10000)}));
+    if (!status.live) throw Error();
+  } catch {
+    send.disabled = false; send.type = 'button'; send.textContent = 'Reconnect to workbench';
+    send.onclick = () => { send.disabled = true; initLive(); };
+    message.textContent = 'The draft service is unavailable. Reconnect to try again.';
+    return;
+  }
+  local = true; send.type = 'submit'; send.onclick = null; send.textContent = 'Generate survey draft →';
+  busy(false); message.textContent = ''; drawRecent();
+  const incoming = new URLSearchParams(location.hash.slice(1));
+  if (incoming.get('compose') === '1') {
+    startNew();
+    field.value = (incoming.get('objective') || '').slice(0,500);
+    byId('source').value = incoming.get('source') === 'ttwo' ? 'ttwo' : 'new';
+    byId('source').onchange();
+    return;
+  }
+  const linked = /^#draft=([0-9a-f-]{36})$/.exec(location.hash);
+  let previous;
+  try { previous = JSON.parse(sessionStorage.getItem(storageKey) || 'null'); } catch {}
+  if (linked || previous?.id) { current = {id:linked ? linked[1] : previous.id}; busy(true); await poll(); }
 }
 initLive();
 </script>
