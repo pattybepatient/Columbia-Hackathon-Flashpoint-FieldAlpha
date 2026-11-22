@@ -1,0 +1,789 @@
+{
+  "fetched_at": "2026-11-21T21:10:36.824Z",
+  "cost_usdc": 0.05,
+  "balance_before_usdc": 18.5,
+  "balance_after_usdc": 18.45,
+  "result": {
+    "task_id": "01a1fff2-2a80-7921-ad20-cce10a96498c",
+    "task_name": "get_demographics",
+    "status": "completed",
+    "result": {
+      "demographics": {
+        "location": {
+          "query": "us:1"
+        },
+        "age": {
+          "under18": 73213705,
+          "age18to24": 31282896,
+          "age25to34": 45388153,
+          "age35to44": 42810359,
+          "age45to54": 41087357,
+          "age55to64": 42577475,
+          "age65to74": 32260679,
+          "age75andOver": 22476969,
+          "medianAge": 38.5,
+          "totalPopulation": 331097593
+        },
+        "race": {
+          "totalPopulation": 331097593,
+          "white": 194886464,
+          "blackOrAfricanAmerican": 40146392,
+          "americanIndianAndAlaskaNative": 1826286,
+          "asian": 18873442,
+          "nativeHawaiianAndPacificIslander": 561561,
+          "otherRace": 1418481,
+          "twoOrMoreRaces": 11629101,
+          "hispanicOrLatino": 61755866
+        },
+        "gender": {
+          "totalPopulation": 331097593,
+          "male": 164200298,
+          "female": 166897295
+        },
+        "education": {
+          "totalPopulation25AndOver": 226600992,
+          "lessThanHighSchool": 24599698,
+          "highSchoolGraduate": 59741825,
+          "someCollege": 44692390,
+          "associateDegree": 19815732,
+          "bachelorsDegree": 47391673,
+          "graduateDegree": 30359674
+        },
+        "income": {
+          "totalHouseholds": 125736353,
+          "medianHouseholdIncome": 75149,
+          "meanHouseholdIncome": 13307060156700,
+          "lessThan10k": 6192080,
+          "_10kTo15k": 4743710,
+          "_15kTo25k": 8823088,
+          "_25kTo35k": 9309426,
+          "_35kTo50k": 13463922,
+          "_50kTo75k": 20228418,
+          "_75kTo100k": 16085302,
+          "_100kTo150k": 21466924,
+          "_150kTo200k": 11075396,
+          "_200kOrMore": 14348087
+        },
+        "metadata": {
+          "source": "US Census Bureau",
+          "year": "2022",
+          "surveyType": "ACS 5-Year Estimates"
+        }
+      },
+      "geographicDistribution": {
+        "level": "national",
+        "weights": [
+          {
+            "name": "Alabama",
+            "fips": "01",
+            "share": 0.01518613274847939
+          },
+          {
+            "name": "Alaska",
+            "fips": "02",
+            "share": 0.0022193486619517646
+          },
+          {
+            "name": "Arizona",
+            "fips": "04",
+            "share": 0.02166213875194194
+          },
+          {
+            "name": "Arkansas",
+            "fips": "05",
+            "share": 0.009117157792204185
+          },
+          {
+            "name": "California",
+            "fips": "06",
+            "share": 0.11886556964489924
+          },
+          {
+            "name": "Colorado",
+            "fips": "08",
+            "share": 0.01742927197903248
+          },
+          {
+            "name": "Connecticut",
+            "fips": "09",
+            "share": 0.010907107379666152
+          },
+          {
+            "name": "Delaware",
+            "fips": "10",
+            "share": 0.003001033595553804
+          },
+          {
+            "name": "District of Columbia",
+            "fips": "11",
+            "share": 0.002025345439463826
+          },
+          {
+            "name": "Florida",
+            "fips": "12",
+            "share": 0.06534184922328928
+          },
+          {
+            "name": "Georgia",
+            "fips": "13",
+            "share": 0.03238418287142305
+          },
+          {
+            "name": "Hawaii",
+            "fips": "15",
+            "share": 0.0043811523570936985
+          },
+          {
+            "name": "Idaho",
+            "fips": "16",
+            "share": 0.00559988667752109
+          },
+          {
+            "name": "Illinois",
+            "fips": "17",
+            "share": 0.038531340214243114
+          },
+          {
+            "name": "Indiana",
+            "fips": "18",
+            "share": 0.02049064427961577
+          },
+          {
+            "name": "Iowa",
+            "fips": "19",
+            "share": 0.009631105956122127
+          },
+          {
+            "name": "Kansas",
+            "fips": "20",
+            "share": 0.008867240541975187
+          },
+          {
+            "name": "Kentucky",
+            "fips": "21",
+            "share": 0.013600023362296083
+          },
+          {
+            "name": "Louisiana",
+            "fips": "22",
+            "share": 0.014015644021912294
+          },
+          {
+            "name": "Maine",
+            "fips": "23",
+            "share": 0.004128538016886158
+          },
+          {
+            "name": "Maryland",
+            "fips": "24",
+            "share": 0.018609941993749258
+          },
+          {
+            "name": "Massachusetts",
+            "fips": "25",
+            "share": 0.0210940977755764
+          },
+          {
+            "name": "Michigan",
+            "fips": "26",
+            "share": 0.03037751168429666
+          },
+          {
+            "name": "Minnesota",
+            "fips": "27",
+            "share": 0.017201248575672973
+          },
+          {
+            "name": "Mississippi",
+            "fips": "28",
+            "share": 0.008936476925702085
+          },
+          {
+            "name": "Missouri",
+            "fips": "29",
+            "share": 0.01858793941760851
+          },
+          {
+            "name": "Montana",
+            "fips": "30",
+            "share": 0.003297637986755162
+          },
+          {
+            "name": "Nebraska",
+            "fips": "31",
+            "share": 0.005916500274890249
+          },
+          {
+            "name": "Nevada",
+            "fips": "32",
+            "share": 0.009377346938308911
+          },
+          {
+            "name": "New Hampshire",
+            "fips": "33",
+            "share": 0.004166777497533786
+          },
+          {
+            "name": "New Jersey",
+            "fips": "34",
+            "share": 0.02793455221524368
+          },
+          {
+            "name": "New Mexico",
+            "fips": "35",
+            "share": 0.006380182292657138
+          },
+          {
+            "name": "New York",
+            "fips": "36",
+            "share": 0.06038817382764845
+          },
+          {
+            "name": "North Carolina",
+            "fips": "37",
+            "share": 0.03162274272407652
+          },
+          {
+            "name": "North Dakota",
+            "fips": "38",
+            "share": 0.002346359552061135
+          },
+          {
+            "name": "Ohio",
+            "fips": "39",
+            "share": 0.03556257505019072
+          },
+          {
+            "name": "Oklahoma",
+            "fips": "40",
+            "share": 0.01199192348100217
+          },
+          {
+            "name": "Oregon",
+            "fips": "41",
+            "share": 0.0127737986908289
+          },
+          {
+            "name": "Pennsylvania",
+            "fips": "42",
+            "share": 0.03923075333259822
+          },
+          {
+            "name": "Rhode Island",
+            "fips": "44",
+            "share": 0.0033049168074139397
+          },
+          {
+            "name": "South Carolina",
+            "fips": "45",
+            "share": 0.015532429436900195
+          },
+          {
+            "name": "South Dakota",
+            "fips": "46",
+            "share": 0.002689062134015574
+          },
+          {
+            "name": "Tennessee",
+            "fips": "47",
+            "share": 0.020911574551978094
+          },
+          {
+            "name": "Texas",
+            "fips": "48",
+            "share": 0.08832242401713866
+          },
+          {
+            "name": "Utah",
+            "fips": "49",
+            "share": 0.009917948874971133
+          },
+          {
+            "name": "Vermont",
+            "fips": "50",
+            "share": 0.0019444901250006974
+          },
+          {
+            "name": "Virginia",
+            "fips": "51",
+            "share": 0.026048244331392648
+          },
+          {
+            "name": "Washington",
+            "fips": "53",
+            "share": 0.023221398048641206
+          },
+          {
+            "name": "West Virginia",
+            "fips": "54",
+            "share": 0.0054152220913306365
+          },
+          {
+            "name": "Wisconsin",
+            "fips": "55",
+            "share": 0.01776554141243787
+          },
+          {
+            "name": "Wyoming",
+            "fips": "56",
+            "share": 0.001745494416807796
+          }
+        ]
+      },
+      "metadata": {
+        "location": "United States",
+        "country": "United States",
+        "source": "Cache",
+        "confidence": "high",
+        "responseTime": 0
+      },
+      "aiInsights": {
+        "summary": "Targeted analysis for \"Adults age 18+ who own a gaming console (PS5, Xbox Series X|S) or gaming PC\" regarding \"Age, gender, household income distribution, and video game spending habits\" in United States: ## 1. KEY INSIGHTS:\n\n- The addressable audience is primarily working-age adults: ages 18–64 represent 183.7 million people, or approximately 71% of the total population after excluding children and adults 65+.\n- The largest adult age groups are 25–34 at 45.4 million, 35–44 at 42.8 million, 55–64 at 42.6 million, and 45–54 at 41.1 million.\n- Gender is nearly balanced, with women representing 50.4% ",
+        "insights": "## 1. KEY INSIGHTS:\n\n- The addressable audience is primarily working-age adults: ages 18–64 represent 183.7 million people, or approximately 71% of the total population after excluding children and adults 65+.\n- The largest adult age groups are 25–34 at 45.4 million, 35–44 at 42.8 million, 55–64 at 42.6 million, and 45–54 at 41.1 million.\n- Gender is nearly balanced, with women representing 50.4% of the population and men 49.6%; gaming outreach should not assume a predominantly male audience.\n- Household income supports a broad gaming market, but purchasing power is concentrated among middle- and upper-income households. Approximately 56.8% of households earn at least $75,000 annually.\n- External gaming research indicates that 61% of Americans play weekly, 53% of players identify as male and 46% as female, and 29% of players are age 50 or older.[2] These figures support an inclusive, multigenerational audience rather than a narrowly defined young-male segment.\n\n## 2. SPECIFIC DATA POINTS:\n\n- Adults 18+ total approximately 257.9 million, or 77.9% of the supplied population; this is the relevant base for console and gaming-PC targeting.\n- Adults ages 18–34 total 76.7 million, representing approximately 29.7% of adults; this group is especially relevant for premium console launches, competitive gaming, and PC hardware.\n- The male/female population split is 164.2 million men versus 166.9 million women, a difference of only 2.7 million; gender-neutral creative and segmentation are justified.\n- Household income counts are concentrated in the $50,000–$150,000 range: 20.2 million households earn $50,000–$75,000, 16.1 million earn $75,000–$100,000, and 21.5 million earn $100,000–$150,000.\n- The supplied mean household income appears to be an aggregate total—approximately $13.3 trillion—not a per-household mean. Dividing it by 125.7 million households produces roughly $105,844, so it should not be interpreted as the reported mean without verification.\n\n## 3. ACTIONABLE RECOMMENDATIONS:\n\n- Prioritize adults 25–44 for premium hardware, major releases, subscriptions, and gaming-PC upgrades; this segment totals approximately 88.2 million people.\n- Use income-tiered offers: premium bundles for households earning $100,000+, financing or trade-in programs for $50,000–$100,000 households, and value-focused subscriptions for lower-income households.\n- Build gender-inclusive campaigns because the population is nearly evenly divided and gaming participation is also broadly balanced by gender.[2]\n- Retain older adults in the media plan: 65+ adults total approximately 54.7 million, while 29% of players are reportedly age 50 or older.[2]\n- Emphasize total cost of ownership—hardware, accessories, games, subscriptions, and upgrades—because high-income households are more likely to support premium purchases; households earning $100,000+ accounted for 36% of US video-game hardware purchases in Q3 2024.[1]\n\n## 4. NOTABLE TRENDS:\n\n- Gaming should be treated as a mainstream adult activity: 56% of US adults reportedly played games regularly, and the average player age was reported as 36.[9]\n- Younger adults remain the strongest console ownership opportunity; historical Pew data found console ownership substantially higher among adults ages 18–49 than among adults 50+.[4]\n- Income increasingly influences hardware purchasing: the share of hardware purchased by households earning $100,000+ rose from 29% in Q1 2020 to 36% in Q3 2024.[1]\n- Lower-income households remain important for reach but show greater price sensitivity; households earning $50,000 or less represented 35% of hardware purchases in Q3 2024, down from 41% in Q1 2020.[1]\n- The audience is aging and diversifying, with 29% of players age 50+ and women representing 46% of players in recent ESA data.[2]\n\n## 5. AGREES WITH (regarding: Age, gender, household income distribution, and video game spending habits):\n\n- **Adults 25–44 are a core gaming market:** Their large population base and high likelihood of technology adoption support prioritizing them for console and gaming-PC campaigns.\n- **Gaming is not exclusively male:** The nearly even US gender split and ESA’s 46% female player share support inclusive messaging and balanced media allocation.[2]\n- **Higher-income households are more valuable for premium hardware:** The concentration of households above $75,000 and the 36% hardware-purchase share from $100,000+ households support premium positioning.[1]\n- **Middle-income households require value messaging:** The large number of households earning $50,000–$100,000 supports bundles, subscriptions, discounts, and installment options.\n- **Older adults should not be excluded:** The 50+ population is substantial, and 29% of players are reportedly 50 or older.[2]\n- **Gaming spending can extend beyond the console:** Higher-income households are more capable of purchasing accessories, extra controllers, monitors, headsets, games, downloadable content, and recurring subscriptions.\n- **Audience segmentation should combine age and income:** A 25–44-year-old household earning $100,000+ is likely to have different purchase capacity and motivations than a similarly aged household earning below $50,000.\n\n## 6. DISAGREES WITH (regarding: Age, gender, household income distribution, and video game spending habits):\n\n- **The audience is only teenagers or young adults:** Adults 35–64 account for approximately 121.6 million people, and older adults constitute a meaningful player segment.\n- **The audience is overwhelmingly male:** The supplied population is nearly gender-balanced, while recent player data shows women comprise 46% of players.[2]\n- **All gamers have equal purchasing power:** Household income varies substantially, and lower-income households are less represented in recent hardware-purchase data than higher-income households.[1]\n- **Premium hardware should be marketed identically to every household:** The data supports differentiated pricing, financing, bundles, and subscription strategies.\n- **Gaming purchases are limited to console hardware:** Spending opportunities also include PCs, displays, peripherals, software, subscriptions, downloadable content, and services.\n- **Older adults are irrelevant to gaming marketing:** The 50+ population and reported older-player share contradict an exclusive focus on adults under 35.[2]\n- **Population size alone predicts ownership or spending:** The supplied Census data describes the total population, not the number of people who own a PS5, Xbox Series X|S, or gaming PC; ownership, platform preference, employment, household composition, and actual spending require additional survey or behavioral data.",
+        "insightsList": [
+          {
+            "category": "Age Distribution",
+            "insight": "Adults ages 25–44 are a core segment for premium hardware, major releases, and gaming-PC upgrades, representing approximately 88.2 million people.",
+            "priority": "high"
+          },
+          {
+            "category": "Gender Balance",
+            "insight": "The gaming audience is nearly gender-balanced, with women representing 46% of players and the general population split almost evenly; campaigns should be gender-inclusive.",
+            "priority": "high"
+          },
+          {
+            "category": "Household Income",
+            "insight": "Purchasing power is concentrated among middle- and upper-income households, with 56.8% earning at least $75,000 annually and households earning $100,000+ accounting for 36% of hardware purchases.",
+            "priority": "high"
+          },
+          {
+            "category": "Spending Habits",
+            "insight": "Gaming spending extends beyond hardware to include accessories, games, subscriptions, and upgrades, especially among higher-income households.",
+            "priority": "medium"
+          },
+          {
+            "category": "Audience Diversity",
+            "insight": "Older adults (age 50+) are a significant and growing segment, comprising 29% of players; gaming is a mainstream, multigenerational activity.",
+            "priority": "medium"
+          }
+        ],
+        "agreesWithList": [
+          "Adults 25–44 are a core gaming market: Their large population base and high likelihood of technology adoption support prioritizing them for console and gaming-PC campaigns.",
+          "Gaming is not exclusively male: The nearly even US gender split and 46% female player share support inclusive messaging and balanced media allocation.",
+          "Higher-income households are more valuable for premium hardware: The concentration of households above $75,000 and the 36% hardware-purchase share from $100,000+ households support premium positioning.",
+          "Middle-income households require value messaging: The large number of households earning $50,000–$100,000 supports bundles, subscriptions, discounts, and installment options.",
+          "Older adults should not be excluded: The 50+ population is substantial, and 29% of players are reportedly 50 or older.",
+          "Gaming spending can extend beyond the console: Higher-income households are more capable of purchasing accessories, extra controllers, monitors, headsets, games, downloadable content, and recurring subscriptions.",
+          "Audience segmentation should combine age and income: A 25–44-year-old household earning $100,000+ is likely to have different purchase capacity and motivations than a similarly aged household earning below $50,000."
+        ],
+        "disagreesWithList": [
+          "The audience is only teenagers or young adults: Adults 35–64 account for approximately 121.6 million people, and older adults constitute a meaningful player segment.",
+          "The audience is overwhelmingly male: The supplied population is nearly gender-balanced, while recent player data shows women comprise 46% of players.",
+          "All gamers have equal purchasing power: Household income varies substantially, and lower-income households are less represented in recent hardware-purchase data than higher-income households.",
+          "Premium hardware should be marketed identically to every household: The data supports differentiated pricing, financing, bundles, and subscription strategies.",
+          "Gaming purchases are limited to console hardware: Spending opportunities also include PCs, displays, peripherals, software, subscriptions, downloadable content, and services.",
+          "Older adults are irrelevant to gaming marketing: The 50+ population and reported older-player share contradict an exclusive focus on adults under 35.",
+          "Population size alone predicts ownership or spending: The supplied Census data describes the total population, not the number of people who own a PS5, Xbox Series X|S, or gaming PC; ownership, platform preference, employment, household composition, and actual spending require additional survey or behavioral data."
+        ],
+        "targetedFor": {
+          "audience": "Adults age 18+ who own a gaming console (PS5, Xbox Series X|S) or gaming PC",
+          "question": "Age, gender, household income distribution, and video game spending habits"
+        }
+      },
+      "artifact": {
+        "type": "demographics",
+        "title": "United States Demographics",
+        "summary": "Population 331,097,593, source: Cache",
+        "storage": {
+          "demographics": {
+            "location": {
+              "query": "us:1"
+            },
+            "age": {
+              "under18": 73213705,
+              "age18to24": 31282896,
+              "age25to34": 45388153,
+              "age35to44": 42810359,
+              "age45to54": 41087357,
+              "age55to64": 42577475,
+              "age65to74": 32260679,
+              "age75andOver": 22476969,
+              "medianAge": 38.5,
+              "totalPopulation": 331097593
+            },
+            "race": {
+              "totalPopulation": 331097593,
+              "white": 194886464,
+              "blackOrAfricanAmerican": 40146392,
+              "americanIndianAndAlaskaNative": 1826286,
+              "asian": 18873442,
+              "nativeHawaiianAndPacificIslander": 561561,
+              "otherRace": 1418481,
+              "twoOrMoreRaces": 11629101,
+              "hispanicOrLatino": 61755866
+            },
+            "gender": {
+              "totalPopulation": 331097593,
+              "male": 164200298,
+              "female": 166897295
+            },
+            "education": {
+              "totalPopulation25AndOver": 226600992,
+              "lessThanHighSchool": 24599698,
+              "highSchoolGraduate": 59741825,
+              "someCollege": 44692390,
+              "associateDegree": 19815732,
+              "bachelorsDegree": 47391673,
+              "graduateDegree": 30359674
+            },
+            "income": {
+              "totalHouseholds": 125736353,
+              "medianHouseholdIncome": 75149,
+              "meanHouseholdIncome": 13307060156700,
+              "lessThan10k": 6192080,
+              "_10kTo15k": 4743710,
+              "_15kTo25k": 8823088,
+              "_25kTo35k": 9309426,
+              "_35kTo50k": 13463922,
+              "_50kTo75k": 20228418,
+              "_75kTo100k": 16085302,
+              "_100kTo150k": 21466924,
+              "_150kTo200k": 11075396,
+              "_200kOrMore": 14348087
+            },
+            "metadata": {
+              "source": "US Census Bureau",
+              "year": "2022",
+              "surveyType": "ACS 5-Year Estimates"
+            }
+          },
+          "aiInsights": {
+            "summary": "Targeted analysis for \"Adults age 18+ who own a gaming console (PS5, Xbox Series X|S) or gaming PC\" regarding \"Age, gender, household income distribution, and video game spending habits\" in United States: ## 1. KEY INSIGHTS:\n\n- The addressable audience is primarily working-age adults: ages 18–64 represent 183.7 million people, or approximately 71% of the total population after excluding children and adults 65+.\n- The largest adult age groups are 25–34 at 45.4 million, 35–44 at 42.8 million, 55–64 at 42.6 million, and 45–54 at 41.1 million.\n- Gender is nearly balanced, with women representing 50.4% ",
+            "insights": "## 1. KEY INSIGHTS:\n\n- The addressable audience is primarily working-age adults: ages 18–64 represent 183.7 million people, or approximately 71% of the total population after excluding children and adults 65+.\n- The largest adult age groups are 25–34 at 45.4 million, 35–44 at 42.8 million, 55–64 at 42.6 million, and 45–54 at 41.1 million.\n- Gender is nearly balanced, with women representing 50.4% of the population and men 49.6%; gaming outreach should not assume a predominantly male audience.\n- Household income supports a broad gaming market, but purchasing power is concentrated among middle- and upper-income households. Approximately 56.8% of households earn at least $75,000 annually.\n- External gaming research indicates that 61% of Americans play weekly, 53% of players identify as male and 46% as female, and 29% of players are age 50 or older.[2] These figures support an inclusive, multigenerational audience rather than a narrowly defined young-male segment.\n\n## 2. SPECIFIC DATA POINTS:\n\n- Adults 18+ total approximately 257.9 million, or 77.9% of the supplied population; this is the relevant base for console and gaming-PC targeting.\n- Adults ages 18–34 total 76.7 million, representing approximately 29.7% of adults; this group is especially relevant for premium console launches, competitive gaming, and PC hardware.\n- The male/female population split is 164.2 million men versus 166.9 million women, a difference of only 2.7 million; gender-neutral creative and segmentation are justified.\n- Household income counts are concentrated in the $50,000–$150,000 range: 20.2 million households earn $50,000–$75,000, 16.1 million earn $75,000–$100,000, and 21.5 million earn $100,000–$150,000.\n- The supplied mean household income appears to be an aggregate total—approximately $13.3 trillion—not a per-household mean. Dividing it by 125.7 million households produces roughly $105,844, so it should not be interpreted as the reported mean without verification.\n\n## 3. ACTIONABLE RECOMMENDATIONS:\n\n- Prioritize adults 25–44 for premium hardware, major releases, subscriptions, and gaming-PC upgrades; this segment totals approximately 88.2 million people.\n- Use income-tiered offers: premium bundles for households earning $100,000+, financing or trade-in programs for $50,000–$100,000 households, and value-focused subscriptions for lower-income households.\n- Build gender-inclusive campaigns because the population is nearly evenly divided and gaming participation is also broadly balanced by gender.[2]\n- Retain older adults in the media plan: 65+ adults total approximately 54.7 million, while 29% of players are reportedly age 50 or older.[2]\n- Emphasize total cost of ownership—hardware, accessories, games, subscriptions, and upgrades—because high-income households are more likely to support premium purchases; households earning $100,000+ accounted for 36% of US video-game hardware purchases in Q3 2024.[1]\n\n## 4. NOTABLE TRENDS:\n\n- Gaming should be treated as a mainstream adult activity: 56% of US adults reportedly played games regularly, and the average player age was reported as 36.[9]\n- Younger adults remain the strongest console ownership opportunity; historical Pew data found console ownership substantially higher among adults ages 18–49 than among adults 50+.[4]\n- Income increasingly influences hardware purchasing: the share of hardware purchased by households earning $100,000+ rose from 29% in Q1 2020 to 36% in Q3 2024.[1]\n- Lower-income households remain important for reach but show greater price sensitivity; households earning $50,000 or less represented 35% of hardware purchases in Q3 2024, down from 41% in Q1 2020.[1]\n- The audience is aging and diversifying, with 29% of players age 50+ and women representing 46% of players in recent ESA data.[2]\n\n## 5. AGREES WITH (regarding: Age, gender, household income distribution, and video game spending habits):\n\n- **Adults 25–44 are a core gaming market:** Their large population base and high likelihood of technology adoption support prioritizing them for console and gaming-PC campaigns.\n- **Gaming is not exclusively male:** The nearly even US gender split and ESA’s 46% female player share support inclusive messaging and balanced media allocation.[2]\n- **Higher-income households are more valuable for premium hardware:** The concentration of households above $75,000 and the 36% hardware-purchase share from $100,000+ households support premium positioning.[1]\n- **Middle-income households require value messaging:** The large number of households earning $50,000–$100,000 supports bundles, subscriptions, discounts, and installment options.\n- **Older adults should not be excluded:** The 50+ population is substantial, and 29% of players are reportedly 50 or older.[2]\n- **Gaming spending can extend beyond the console:** Higher-income households are more capable of purchasing accessories, extra controllers, monitors, headsets, games, downloadable content, and recurring subscriptions.\n- **Audience segmentation should combine age and income:** A 25–44-year-old household earning $100,000+ is likely to have different purchase capacity and motivations than a similarly aged household earning below $50,000.\n\n## 6. DISAGREES WITH (regarding: Age, gender, household income distribution, and video game spending habits):\n\n- **The audience is only teenagers or young adults:** Adults 35–64 account for approximately 121.6 million people, and older adults constitute a meaningful player segment.\n- **The audience is overwhelmingly male:** The supplied population is nearly gender-balanced, while recent player data shows women comprise 46% of players.[2]\n- **All gamers have equal purchasing power:** Household income varies substantially, and lower-income households are less represented in recent hardware-purchase data than higher-income households.[1]\n- **Premium hardware should be marketed identically to every household:** The data supports differentiated pricing, financing, bundles, and subscription strategies.\n- **Gaming purchases are limited to console hardware:** Spending opportunities also include PCs, displays, peripherals, software, subscriptions, downloadable content, and services.\n- **Older adults are irrelevant to gaming marketing:** The 50+ population and reported older-player share contradict an exclusive focus on adults under 35.[2]\n- **Population size alone predicts ownership or spending:** The supplied Census data describes the total population, not the number of people who own a PS5, Xbox Series X|S, or gaming PC; ownership, platform preference, employment, household composition, and actual spending require additional survey or behavioral data.",
+            "insightsList": [
+              {
+                "category": "Age Distribution",
+                "insight": "Adults ages 25–44 are a core segment for premium hardware, major releases, and gaming-PC upgrades, representing approximately 88.2 million people.",
+                "priority": "high"
+              },
+              {
+                "category": "Gender Balance",
+                "insight": "The gaming audience is nearly gender-balanced, with women representing 46% of players and the general population split almost evenly; campaigns should be gender-inclusive.",
+                "priority": "high"
+              },
+              {
+                "category": "Household Income",
+                "insight": "Purchasing power is concentrated among middle- and upper-income households, with 56.8% earning at least $75,000 annually and households earning $100,000+ accounting for 36% of hardware purchases.",
+                "priority": "high"
+              },
+              {
+                "category": "Spending Habits",
+                "insight": "Gaming spending extends beyond hardware to include accessories, games, subscriptions, and upgrades, especially among higher-income households.",
+                "priority": "medium"
+              },
+              {
+                "category": "Audience Diversity",
+                "insight": "Older adults (age 50+) are a significant and growing segment, comprising 29% of players; gaming is a mainstream, multigenerational activity.",
+                "priority": "medium"
+              }
+            ],
+            "agreesWithList": [
+              "Adults 25–44 are a core gaming market: Their large population base and high likelihood of technology adoption support prioritizing them for console and gaming-PC campaigns.",
+              "Gaming is not exclusively male: The nearly even US gender split and 46% female player share support inclusive messaging and balanced media allocation.",
+              "Higher-income households are more valuable for premium hardware: The concentration of households above $75,000 and the 36% hardware-purchase share from $100,000+ households support premium positioning.",
+              "Middle-income households require value messaging: The large number of households earning $50,000–$100,000 supports bundles, subscriptions, discounts, and installment options.",
+              "Older adults should not be excluded: The 50+ population is substantial, and 29% of players are reportedly 50 or older.",
+              "Gaming spending can extend beyond the console: Higher-income households are more capable of purchasing accessories, extra controllers, monitors, headsets, games, downloadable content, and recurring subscriptions.",
+              "Audience segmentation should combine age and income: A 25–44-year-old household earning $100,000+ is likely to have different purchase capacity and motivations than a similarly aged household earning below $50,000."
+            ],
+            "disagreesWithList": [
+              "The audience is only teenagers or young adults: Adults 35–64 account for approximately 121.6 million people, and older adults constitute a meaningful player segment.",
+              "The audience is overwhelmingly male: The supplied population is nearly gender-balanced, while recent player data shows women comprise 46% of players.",
+              "All gamers have equal purchasing power: Household income varies substantially, and lower-income households are less represented in recent hardware-purchase data than higher-income households.",
+              "Premium hardware should be marketed identically to every household: The data supports differentiated pricing, financing, bundles, and subscription strategies.",
+              "Gaming purchases are limited to console hardware: Spending opportunities also include PCs, displays, peripherals, software, subscriptions, downloadable content, and services.",
+              "Older adults are irrelevant to gaming marketing: The 50+ population and reported older-player share contradict an exclusive focus on adults under 35.",
+              "Population size alone predicts ownership or spending: The supplied Census data describes the total population, not the number of people who own a PS5, Xbox Series X|S, or gaming PC; ownership, platform preference, employment, household composition, and actual spending require additional survey or behavioral data."
+            ],
+            "targetedFor": {
+              "audience": "Adults age 18+ who own a gaming console (PS5, Xbox Series X|S) or gaming PC",
+              "question": "Age, gender, household income distribution, and video game spending habits"
+            }
+          },
+          "geographicDistribution": {
+            "level": "national",
+            "weights": [
+              {
+                "name": "Alabama",
+                "fips": "01",
+                "share": 0.01518613274847939
+              },
+              {
+                "name": "Alaska",
+                "fips": "02",
+                "share": 0.0022193486619517646
+              },
+              {
+                "name": "Arizona",
+                "fips": "04",
+                "share": 0.02166213875194194
+              },
+              {
+                "name": "Arkansas",
+                "fips": "05",
+                "share": 0.009117157792204185
+              },
+              {
+                "name": "California",
+                "fips": "06",
+                "share": 0.11886556964489924
+              },
+              {
+                "name": "Colorado",
+                "fips": "08",
+                "share": 0.01742927197903248
+              },
+              {
+                "name": "Connecticut",
+                "fips": "09",
+                "share": 0.010907107379666152
+              },
+              {
+                "name": "Delaware",
+                "fips": "10",
+                "share": 0.003001033595553804
+              },
+              {
+                "name": "District of Columbia",
+                "fips": "11",
+                "share": 0.002025345439463826
+              },
+              {
+                "name": "Florida",
+                "fips": "12",
+                "share": 0.06534184922328928
+              },
+              {
+                "name": "Georgia",
+                "fips": "13",
+                "share": 0.03238418287142305
+              },
+              {
+                "name": "Hawaii",
+                "fips": "15",
+                "share": 0.0043811523570936985
+              },
+              {
+                "name": "Idaho",
+                "fips": "16",
+                "share": 0.00559988667752109
+              },
+              {
+                "name": "Illinois",
+                "fips": "17",
+                "share": 0.038531340214243114
+              },
+              {
+                "name": "Indiana",
+                "fips": "18",
+                "share": 0.02049064427961577
+              },
+              {
+                "name": "Iowa",
+                "fips": "19",
+                "share": 0.009631105956122127
+              },
+              {
+                "name": "Kansas",
+                "fips": "20",
+                "share": 0.008867240541975187
+              },
+              {
+                "name": "Kentucky",
+                "fips": "21",
+                "share": 0.013600023362296083
+              },
+              {
+                "name": "Louisiana",
+                "fips": "22",
+                "share": 0.014015644021912294
+              },
+              {
+                "name": "Maine",
+                "fips": "23",
+                "share": 0.004128538016886158
+              },
+              {
+                "name": "Maryland",
+                "fips": "24",
+                "share": 0.018609941993749258
+              },
+              {
+                "name": "Massachusetts",
+                "fips": "25",
+                "share": 0.0210940977755764
+              },
+              {
+                "name": "Michigan",
+                "fips": "26",
+                "share": 0.03037751168429666
+              },
+              {
+                "name": "Minnesota",
+                "fips": "27",
+                "share": 0.017201248575672973
+              },
+              {
+                "name": "Mississippi",
+                "fips": "28",
+                "share": 0.008936476925702085
+              },
+              {
+                "name": "Missouri",
+                "fips": "29",
+                "share": 0.01858793941760851
+              },
+              {
+                "name": "Montana",
+                "fips": "30",
+                "share": 0.003297637986755162
+              },
+              {
+                "name": "Nebraska",
+                "fips": "31",
+                "share": 0.005916500274890249
+              },
+              {
+                "name": "Nevada",
+                "fips": "32",
+                "share": 0.009377346938308911
+              },
+              {
+                "name": "New Hampshire",
+                "fips": "33",
+                "share": 0.004166777497533786
+              },
+              {
+                "name": "New Jersey",
+                "fips": "34",
+                "share": 0.02793455221524368
+              },
+              {
+                "name": "New Mexico",
+                "fips": "35",
+                "share": 0.006380182292657138
+              },
+              {
+                "name": "New York",
+                "fips": "36",
+                "share": 0.06038817382764845
+              },
+              {
+                "name": "North Carolina",
+                "fips": "37",
+                "share": 0.03162274272407652
+              },
+              {
+                "name": "North Dakota",
+                "fips": "38",
+                "share": 0.002346359552061135
+              },
+              {
+                "name": "Ohio",
+                "fips": "39",
+                "share": 0.03556257505019072
+              },
+              {
+                "name": "Oklahoma",
+                "fips": "40",
+                "share": 0.01199192348100217
+              },
+              {
+                "name": "Oregon",
+                "fips": "41",
+                "share": 0.0127737986908289
+              },
+              {
+                "name": "Pennsylvania",
+                "fips": "42",
+                "share": 0.03923075333259822
+              },
+              {
+                "name": "Rhode Island",
+                "fips": "44",
+                "share": 0.0033049168074139397
+              },
+              {
+                "name": "South Carolina",
+                "fips": "45",
+                "share": 0.015532429436900195
+              },
+              {
+                "name": "South Dakota",
+                "fips": "46",
+                "share": 0.002689062134015574
+              },
+              {
+                "name": "Tennessee",
+                "fips": "47",
+                "share": 0.020911574551978094
+              },
+              {
+                "name": "Texas",
+                "fips": "48",
+                "share": 0.08832242401713866
+              },
+              {
+                "name": "Utah",
+                "fips": "49",
+                "share": 0.009917948874971133
+              },
+              {
+                "name": "Vermont",
+                "fips": "50",
+                "share": 0.0019444901250006974
+              },
+              {
+                "name": "Virginia",
+                "fips": "51",
+                "share": 0.026048244331392648
+              },
+              {
+                "name": "Washington",
+                "fips": "53",
+                "share": 0.023221398048641206
+              },
+              {
+                "name": "West Virginia",
+                "fips": "54",
+                "share": 0.0054152220913306365
+              },
+              {
+                "name": "Wisconsin",
+                "fips": "55",
+                "share": 0.01776554141243787
+              },
+              {
+                "name": "Wyoming",
+                "fips": "56",
+                "share": 0.001745494416807796
+              }
+            ]
+          },
+          "metadata": {
+            "location": "United States",
+            "country": "United States",
+            "source": "Cache",
+            "confidence": "high",
+            "responseTime": 0
+          }
+        },
+        "storage_kind": "inline"
+      }
+    },
+    "conversation_id": null,
+    "message_id": null,
+    "completed_at": "2026-11-21T21:10:36.229Z",
+    "duration_ms": 13116
+  }
+}
