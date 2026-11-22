@@ -139,7 +139,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 #requestState{color:var(--muted);margin:10px 0}.grid{grid-template-columns:minmax(0,1.45fr) minmax(240px,1fr)}
 @media(max-width:1000px){.shell{grid-template-columns:160px minmax(0,1fr)}.grid{grid-template-columns:1fr}.rail{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:720px){.shell{display:block}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:6px 12px}.sidebar nav{display:flex;align-items:center;flex-wrap:wrap;gap:3px}.sidebar .navgroup,.sidebar small{display:none}.sidebar button{padding:6px;font-size:13px}.sidebar #recentList{display:flex;overflow-x:auto}.sidebar #recentList button{white-space:nowrap;max-width:160px;overflow:hidden;text-overflow:ellipsis}.desk{padding:18px 14px}.brandrow{min-height:48px}.submit-row{gap:6px}.composer{margin-top:14px}.example-row{gap:5px}}
-#tabHint{display:none;font-size:12px;font-weight:400;color:var(--muted);margin-left:8px}.composer:has(#objective:focus:placeholder-shown) #tabHint{display:inline}
+.tab-hint{display:none;font-size:12px;font-weight:400;color:var(--muted);margin-left:8px}form:has(textarea:focus:placeholder-shown) .tab-hint{display:inline}
 </style>
 </head>
 <body>
@@ -162,7 +162,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <h1>What do you want to learn?</h1>
 <p class="sub">Give the agent a decision and an audience. Flashpoint will draft a survey you can review and revise here.</p>
 <form id="draftForm" class="composer">
-<label for="objective">Research question <span id="tabHint">Tab to fill example</span></label>
+<label for="objective">Research question <span class="tab-hint" id="tabHint">Tab to fill example</span></label>
 <textarea id="objective" aria-describedby="tabHint" required maxlength="500" rows="3" placeholder="What would make our monthly subscribers switch to an annual plan?"></textarea>
 <div class="evidence-control"><label for="source">Starting evidence</label>
 <select id="source"><option value="new">Fresh study · no prior answers</option><option value="ttwo">GTA VI follow-up · 11 synthetic responses</option></select></div>
@@ -177,7 +177,7 @@ body{background:#f7f8f3}.shell{display:grid;grid-template-columns:206px minmax(0
 <section id="reply" hidden>
 <div class="output-toolbar"><span id="versionTag"></span><div><button id="reviseJump">Revise draft ↓</button><button id="downloadDraft">Download draft</button></div></div>
 <div id="draftText"></div><p id="receipt"></p>
-<form id="revisionForm" class="revision-box"><label for="revision">What should the agent change?</label><textarea id="revision" maxlength="500" rows="2" required placeholder="For example, add an option for people who would wait for a discount."></textarea>
+<form id="revisionForm" class="revision-box"><label for="revision">What should the agent change? <span class="tab-hint" id="revisionTabHint">Tab to fill example</span></label><textarea id="revision" aria-describedby="revisionTabHint" maxlength="500" rows="2" required placeholder="For example, add an option for people who would wait for a discount."></textarea>
 <div class="submit-row"><button class="action">Generate revised copy →</button><span>Up to 0.50 USDC · saves a new version</span></div></form>
 </section>
 <button class="textbtn" id="startOver" hidden>Start another study</button>
@@ -645,13 +645,15 @@ byId('source').onchange = () => {
   byId('sourceTip').hidden = !paired;
   field.placeholder = paired ? 'What would make players who plan to wait buy GTA VI at full price?' : freshExample;
 };
-field.addEventListener('keydown', event => {
-  if (event.key !== 'Tab' || event.shiftKey || event.ctrlKey || event.altKey || event.metaKey ||
-      event.isComposing || event.repeat || field.value !== '') return;
+document.addEventListener('keydown', event => {
+  const input = event.target;
+  if (!(input instanceof HTMLTextAreaElement) || !input.placeholder || input.readOnly ||
+      input.value !== '' || event.key !== 'Tab' || event.shiftKey || event.ctrlKey ||
+      event.altKey || event.metaKey || event.isComposing || event.repeat) return;
   event.preventDefault();
-  field.value = field.placeholder;
-  field.setSelectionRange(field.value.length, field.value.length);
-  field.dispatchEvent(new Event('input', {bubbles:true}));
+  input.value = input.placeholder;
+  input.setSelectionRange(input.value.length, input.value.length);
+  input.dispatchEvent(new Event('input', {bubbles:true}));
 });
 document.querySelectorAll('[data-example]').forEach(button => {
   button.onclick = () => {
