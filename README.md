@@ -2,9 +2,38 @@
 
 [**Download the MCP challenge walkthrough**](https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha/raw/refs/heads/mcp-challenge/demo/Field_Alpha_Agent_Run.html) · [**Read the three-round run log**](evidence/live_challenge_run_log.md) · [**Original project write-up**](docs/Field_Alpha_Project_Writeup_v6.pdf)
 
-**For judges.** Open the downloaded HTML and click **Replay the recorded run**: it replays the November 21 run call by call, offline and free, ending at 26 paid Flashpoint MCP calls and 11.35 USDC. The live team workbench is linked from the same page and is paid from the team's challenge wallet (0.50 USDC cap per call). If the link does not open, the replay still shows the full loop.
+## Quick guide: what the agent does and how to try it
 
-**Answer in one line.** $210 needs about a **33% EBITDA margin** for ten years, even with the survey's bull-case demand. That matches Activision Blizzard's 2012–2021 average (32.7%). Take-Two's best year since FY2012 was 21.3%, and GTA V's launch year was 18.4% ([`evidence/margin_anchors.json`](evidence/margin_anchors.json), SEC 10-K data). The page also compares the synthetic panel with the one real respondent each round (4 of 7 answers matched; the other 3 were more cautious) and shows the guardrail added after this run: with synthetic-only answers, the agent now returns WAIT.
+**Field Alpha turns one investment question into first-hand customer evidence and a valuation call, in minutes, through the Flashpoint MCP.** A launch, price change or controversy moves a stock on the day; reported sales arrive a quarter later. Field Alpha fills that gap.
+
+**What the agent does on its own**
+
+1. **Takes one question.** For example: *“Given Take-Two’s $210 share price, how much revenue must GTA VI generate, and is TTWO cheap, fair or expensive?”* Nothing else is specified.
+2. **Picks the audience** with Flashpoint `demographics` and builds a synthetic `panel` for fast pilots.
+3. **Writes, checks, publishes and emails each survey** with `tool_survey`, then exports the answers.
+4. **Reads the answers and decides**: **ASK** another round, **WAIT** for people to reply, or **STOP**. Each round’s questions come from the gaps in the last one.
+5. **Hands the numbers to FinRobot** (DCF and reverse DCF) and delivers a decision with its evidence and limits.
+
+Every call is paid per use in USDC on Base, capped at 0.50 USDC per call, and logged with a receipt.
+
+**What the recorded run shows (TTWO, Nov 21)**
+
+| | |
+|---|---|
+| Autonomous survey rounds | 3, about 15 minutes from start to third export (synthetic panel speed) |
+| Paid Flashpoint MCP calls | 26, total 11.35 USDC, none above 0.50 |
+| Answer | $210 needs about a **33% EBITDA margin** for ten years even with bull-case demand. That is Activision Blizzard’s 2012–21 average; Take-Two’s best year since FY2012 was 21.3% ([SEC 10-K data](evidence/margin_anchors.json)). Expensive, unless GTA VI makes Take-Two that profitable. |
+| Trust checks | Each round compares the synthetic panel with real respondents (4 of 7 answers matched; the other 3 were more cautious). With synthetic-only answers, the agent now returns WAIT ([receipt](evidence/workbench_decision.json)). |
+
+**Try it (2 minutes, no setup)**
+
+1. [Download the walkthrough HTML](https://github.com/pattybepatient/Columbia-Hackathon-Flashpoint-FieldAlpha/raw/refs/heads/mcp-challenge/demo/Field_Alpha_Agent_Run.html) and open it in a browser.
+2. Click **Replay the recorded run →**. The agent’s calls, costs and ASK/STOP decisions play back step by step, ending at 26 calls and 11.35 USDC.
+3. Click **Open the full study →** for every round’s questions and answers, the valuation and the margin anchors.
+
+**Run it live.** Use the team workbench link from the walkthrough page (paid from the team’s challenge wallet): type a research question, click **Generate survey draft** (up to 0.50 USDC), submit pilot answers, and watch the agent choose WAIT, ASK or STOP. To run it on your own wallet, follow [Run an adaptive study](#run-an-adaptive-study) below.
+
+**Same procedure, any event.** Only the brief changes. A Netflix price-increase survey was drafted from a fresh brief in one 0.50 USDC call ([draft](evidence/nflx_draft.json)).
 
 ## Run an adaptive study
 
